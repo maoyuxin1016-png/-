@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>港美股竞品平台动态监控周报 · 第3期</title>
+  <style>
+    :root {
+      --bg: #0c0f1a;
+      --card: #141824;
+      --card2: #1a1f2e;
+      --border: #252d45;
+      --border-hover: rgba(79,124,255,.35);
+      --accent: #4f7cff;
+      --accent2: #00c6a2;
+      --accent3: #ff6b6b;
+      --accent4: #ffb84d;
+      --text: #dde3f0;
+      --text-muted: #7a8499;
+      --text-dim: #4a5270;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.75;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      background: linear-gradient(160deg, #080d2b 0%, #0e1842 40%, #0a1230 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 0 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% -10%, rgba(79,124,255,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 20% at 20% 100%, rgba(0,198,162,.08) 0%, transparent 60%);
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(79,124,255,.18);
+      border: 1px solid rgba(79,124,255,.35);
+      color: #7ea8ff;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 18px;
+    }
+    .header-badge::before { content: '●'; font-size: 8px; color: #00c6a2; }
+    .header h1 {
+      font-size: 30px; font-weight: 800; color: #fff;
+      margin-bottom: 10px; letter-spacing: -0.5px;
+    }
+    .header h1 span { color: #7ea8ff; }
+    .header .meta-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; flex-wrap: wrap;
+      color: var(--text-muted); font-size: 12px;
+    }
+    .meta-sep { color: var(--text-dim); }
+    .meta-hl { color: #7ea8ff; font-weight: 600; }
+
+    /* ========== LAYOUT ========== */
+    .container { max-width: 1120px; margin: 0 auto; padding: 36px 24px 48px; }
+
+    /* ========== SECTION TITLE ========== */
+    .sec-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      margin: 36px 0 18px;
+    }
+    .sec-title::after { content:''; flex:1; height:1px; background: var(--border); }
+
+    /* ========== OVERVIEW GRID ========== */
+    .ov-grid {
+      display: grid; grid-template-columns: repeat(5,1fr); gap: 12px;
+      margin-bottom: 8px;
+    }
+    .ov-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 14px; text-align: center;
+      transition: border-color .2s, box-shadow .2s; cursor: default;
+    }
+    .ov-card:hover { border-color: var(--border-hover); box-shadow: 0 0 20px rgba(79,124,255,.06); }
+    .ov-logo {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900; color: #fff;
+      margin: 0 auto 10px;
+    }
+    .ov-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .badge-row { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .badge {
+      font-size: 10px; font-weight: 700; padding: 3px 7px;
+      border-radius: 5px; letter-spacing: .4px; white-space: nowrap;
+    }
+    .b-green  { background: rgba(0,198,162,.14); color: #00c6a2; border: 1px solid rgba(0,198,162,.28); }
+    .b-blue   { background: rgba(79,124,255,.14); color: #7ea8ff; border: 1px solid rgba(79,124,255,.28); }
+    .b-yellow { background: rgba(255,184,77,.14);  color: #ffb84d; border: 1px solid rgba(255,184,77,.28); }
+    .b-red    { background: rgba(255,107,107,.14); color: #ff8080; border: 1px solid rgba(255,107,107,.28); }
+    .b-gray   { background: rgba(122,132,153,.10); color: var(--text-muted); border: 1px solid var(--border); }
+    .b-purple { background: rgba(168,100,255,.14); color: #c07aff; border: 1px solid rgba(168,100,255,.28); }
+    .stars { color: #ffb84d; font-size: 13px; }
+
+    /* ========== PLATFORM CARD ========== */
+    .p-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 18px; margin-bottom: 22px; overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .p-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 32px rgba(79,124,255,.07); }
+
+    .p-header {
+      display: flex; align-items: center;
+      padding: 22px 26px 18px; gap: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .p-logo {
+      width: 50px; height: 50px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: #fff; flex-shrink: 0;
+    }
+    .logo-lb    { background: linear-gradient(135deg,#1130a0,#2d5be3); }
+    .logo-tiger { background: linear-gradient(135deg,#d95a00,#ff9330); }
+    .logo-hs    { background: linear-gradient(135deg,#9b1b1b,#d44040); }
+    .logo-wn    { background: linear-gradient(135deg,#0f5fa8,#14a89c); }
+    .logo-rh    { background: linear-gradient(135deg,#007a00,#00bb00); }
+
+    .p-info { flex: 1; min-width: 0; }
+    .p-info h2 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+    .p-meta { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+    .meta-tag {
+      font-size: 11px; color: var(--text-muted);
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      padding: 2px 8px; border-radius: 5px;
+    }
+    .src-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10.5px; font-weight: 600;
+      background: rgba(0,198,162,.10); color: #00c6a2;
+      border: 1px solid rgba(0,198,162,.25);
+      padding: 2px 9px; border-radius: 5px;
+    }
+    .src-tag::before { content: '📡'; font-size: 10px; }
+
+    .p-importance { margin-left: auto; text-align: right; flex-shrink: 0; }
+    .p-importance .label { font-size: 10px; color: var(--text-dim); margin-bottom: 3px; }
+    .p-importance .stars { font-size: 17px; }
+
+    .p-body { padding: 22px 26px; }
+
+    /* 日期时间轴 */
+    .timeline { margin-bottom: 18px; }
+    .tl-item {
+      display: flex; gap: 14px; padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-date {
+      flex-shrink: 0; width: 56px;
+      font-size: 11px; font-weight: 700; color: var(--text-dim);
+      padding-top: 1px;
+    }
+    .tl-dot {
+      flex-shrink: 0; width: 8px; height: 8px;
+      border-radius: 50%; margin-top: 6px;
+    }
+    .tl-content { flex: 1; min-width: 0; }
+    .tl-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      margin-bottom: 3px; line-height: 1.5;
+    }
+    .tl-desc { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+    .tl-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      text-decoration: none; margin-top: 5px;
+      border: 1px solid rgba(79,124,255,.25);
+      background: rgba(79,124,255,.08);
+      padding: 3px 9px; border-radius: 5px;
+      transition: background .15s, border-color .15s;
+    }
+    .tl-link:hover { background: rgba(79,124,255,.18); border-color: rgba(79,124,255,.45); color: #9dc0ff; }
+    .tl-link::before { content: '↗'; font-size: 11px; }
+
+    /* 亮眼活动图片区 */
+    .highlight-banner {
+      border-radius: 12px; overflow: hidden; margin: 10px 0;
+      border: 1px solid var(--border); position: relative; cursor: pointer;
+    }
+    .highlight-banner img {
+      width: 100%; max-height: 200px; object-fit: cover; display: block;
+      transition: transform .3s;
+    }
+    .highlight-banner:hover img { transform: scale(1.02); }
+    .highlight-banner .img-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.85), transparent);
+      padding: 24px 14px 10px;
+      font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,.85);
+    }
+    .img-placeholder {
+      width: 100%; height: 140px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--card2) 0%, rgba(79,124,255,.06) 100%);
+      border: 1px dashed rgba(79,124,255,.2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; color: var(--text-dim); font-size: 12px; margin: 8px 0;
+    }
+    .img-placeholder .icon { font-size: 28px; opacity: .5; }
+
+    /* 可借鉴点 */
+    .insights-block {
+      background: linear-gradient(135deg,rgba(79,124,255,.05),rgba(0,198,162,.05));
+      border: 1px solid rgba(79,124,255,.18);
+      border-radius: 12px; padding: 16px;
+    }
+    .insights-block h4 {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--accent4);
+      margin-bottom: 11px; display: flex; align-items: center; gap: 6px;
+    }
+    .ins-item {
+      display: flex; align-items: flex-start; gap: 9px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .ins-item:last-child { border-bottom: none; }
+    .ins-tag {
+      flex-shrink: 0; font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 4px; margin-top: 2px;
+    }
+    .ins-text { font-size: 12.5px; color: var(--text); line-height: 1.65; }
+
+    /* ========== 监控来源说明 ========== */
+    .src-box {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 22px;
+    }
+    .src-box h4 {
+      font-size: 11px; font-weight: 700; color: var(--text-muted);
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .src-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
+    .src-item { font-size: 12px; color: var(--text); }
+    .src-item strong { color: #fff; display: block; margin-bottom: 3px; }
+    .src-channel {
+      display: inline-block; font-size: 10.5px;
+      background: rgba(79,124,255,.1); color: var(--accent);
+      border: 1px solid rgba(79,124,255,.2);
+      padding: 1px 7px; border-radius: 4px; margin-top: 2px;
+    }
+
+    /* ========== 综合洞察 ========== */
+    .insight-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .insight-card {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px;
+    }
+    .insight-card .num {
+      font-size: 32px; font-weight: 900; color: var(--accent);
+      line-height: 1; margin-bottom: 8px;
+    }
+    .insight-card .topic { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .insight-card .desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+    .trend-list { list-style: none; }
+    .trend-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 13px 0; border-bottom: 1px solid var(--border);
+    }
+    .trend-list li:last-child { border-bottom: none; }
+    .trend-num {
+      width: 26px; height: 26px; background: var(--accent);
+      border-radius: 7px; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0; margin-top: 1px;
+    }
+    .trend-content strong { color: #fff; font-size: 13px; display: block; margin-bottom: 3px; }
+    .trend-content p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+    .sum-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 26px; margin-bottom: 22px;
+    }
+    .sum-card h3 {
+      font-size: 16px; font-weight: 800; color: #fff;
+      margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+    }
+
+    /* 无更新提示 */
+    .no-upd { font-size: 11.5px; color: var(--text-dim); font-style: italic; }
+
+    /* ========== 近期重要背景 ========== */
+    .bg-section {
+      margin-top: 14px; padding: 14px 16px;
+      background: rgba(255,255,255,.02);
+      border: 1px dashed rgba(255,255,255,.08);
+      border-radius: 10px;
+    }
+    .bg-section h4 {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+    .bg-item {
+      padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+      font-size: 12px; color: var(--text-muted); line-height: 1.75;
+    }
+    .bg-item:last-child { border-bottom: none; }
+    .bg-item .bg-date {
+      color: var(--text-dim); font-weight: 600; margin-right: 6px;
+    }
+
+    /* ========== 时效声明 ========== */
+    .accuracy-note {
+      background: rgba(255,184,77,.06);
+      border: 1px solid rgba(255,184,77,.18);
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 22px;
+      font-size: 12px; color: var(--text-muted); line-height: 1.7;
+    }
+    .accuracy-note strong { color: var(--accent4); }
+
+    /* ========== 往期周报 ========== */
+    .archive-section {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 26px; margin-bottom: 22px;
+    }
+    .archive-section h3 {
+      font-size: 16px; font-weight: 800; color: #fff;
+      margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+    }
+    .archive-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .archive-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px;
+      text-decoration: none; color: var(--text);
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+      cursor: pointer;
+    }
+    .archive-item:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 4px 20px rgba(79,124,255,.08);
+      transform: translateY(-2px);
+    }
+    .archive-item .issue-badge {
+      flex-shrink: 0; width: 44px; height: 44px;
+      background: linear-gradient(135deg, rgba(79,124,255,.2), rgba(0,198,162,.15));
+      border: 1px solid rgba(79,124,255,.25);
+      border-radius: 12px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .archive-item .issue-badge .num {
+      font-size: 16px; font-weight: 900; color: #7ea8ff; line-height: 1;
+    }
+    .archive-item .issue-badge .label {
+      font-size: 8px; font-weight: 700; letter-spacing: .5px;
+      color: var(--text-dim); text-transform: uppercase;
+    }
+    .archive-item .info .title {
+      font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px;
+    }
+    .archive-item .info .date {
+      font-size: 11px; color: var(--text-muted);
+    }
+    .archive-item .arrow {
+      font-size: 14px; color: var(--text-dim); margin-left: auto; flex-shrink: 0;
+    }
+    .archive-current {
+      border-color: rgba(79,124,255,.4) !important;
+      background: rgba(79,124,255,.06) !important;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      border-top: 1px solid var(--border); padding: 28px 24px;
+      text-align: center; color: var(--text-dim); font-size: 12px; line-height: 2;
+    }
+
+    @media(max-width:768px){
+      .ov-grid,.src-grid{ grid-template-columns: repeat(2,1fr); }
+      .insight-grid{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-badge">竞品监控 · 第 3 期</div>
+    <h1>港美股平台动态监控<span>周报</span></h1>
+    <div class="meta-row">
+      <span>监控平台：长桥 · 老虎 · 华盛通 · 微牛 · Robinhood</span>
+      <span class="meta-sep">|</span>
+      <span>监控周期：<span class="meta-hl">2026-04-13 → 2026-04-19（T-1周）</span></span>
+      <span class="meta-sep">|</span>
+      <span>生成日期：2026-04-20</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ======= 时效声明 ======= -->
+  <div class="accuracy-note">
+    <strong>🔍 时效声明</strong><br>
+    本报告所有时间轴条目均经过公开搜索引擎逐一核实，严格限定在 T-1 周（2026-04-13 至 2026-04-19）7 天范围内。
+    每条内容均附有可点击的原文链接供验证。非本周但具有持续参考价值的背景信息归入各平台「📋 近期重要背景」折叠区。
+    本周最重大行业信号为 <strong>SEC 于 4 月 14 日正式废除 PDT（$25K 日内交易限额）规则</strong>，Webull 当日即宣布全面支持新规，Robinhood 股价同步跳涨 6%。
+  </div>
+
+  <!-- ======= 监控来源说明 ======= -->
+  <div class="sec-title">📡 监控来源</div>
+  <div class="src-box">
+    <h4>各平台数据采集渠道</h4>
+    <div class="src-grid">
+      <div class="src-item">
+        <strong>🔵 长桥证券</strong>
+        <span class="src-channel">官网 longbridge.com</span><br>
+        <span class="src-channel">LongPort Whale 开发者文档</span><br>
+        <span class="src-channel">桌面端更新日志</span>
+      </div>
+      <div class="src-item">
+        <strong>🟠 老虎证券</strong>
+        <span class="src-channel">香港推广渠道</span><br>
+        <span class="src-channel">MoneySmart · CouponHK</span><br>
+        <span class="src-channel">老虎国际 itigerup.com</span>
+      </div>
+      <div class="src-item">
+        <strong>🔴 华盛通</strong>
+        <span class="src-channel">官网 vbkr.com 促销页</span><br>
+        <span class="src-channel">APP 今日看点</span><br>
+        <span class="src-channel">hstong.com 行情资讯</span>
+      </div>
+      <div class="src-item">
+        <strong>🔵 微牛（Webull）</strong>
+        <span class="src-channel">PR Newswire 官方新闻稿</span><br>
+        <span class="src-channel">NASDAQ · GuruFocus</span><br>
+        <span class="src-channel">marketchameleon.com</span>
+      </div>
+      <div class="src-item">
+        <strong>🟢 Robinhood</strong>
+        <span class="src-channel">robinhood.com/newsroom</span><br>
+        <span class="src-channel">SEC 监管动态</span><br>
+        <span class="src-channel">CrowdfundInsider · FintechReview</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 本周总览 ======= -->
+  <div class="sec-title">📊 本周总览</div>
+  <div class="ov-grid">
+
+    <!-- 长桥 -->
+    <div class="ov-card">
+      <div class="ov-logo logo-lb">桥</div>
+      <div class="ov-name">长桥证券</div>
+      <div class="badge-row">
+        <span class="badge b-blue">桌面端</span>
+        <span class="badge b-green">v0.14.0</span>
+      </div>
+      <div class="stars">⭐⭐⭐</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">Pro桌面端 v0.14.0 正式发布，新增 CYQ 持仓分布图及交易券抵扣功能</div>
+    </div>
+
+    <!-- 老虎 -->
+    <div class="ov-card">
+      <div class="ov-logo logo-tiger">虎</div>
+      <div class="ov-name">老虎证券</div>
+      <div class="badge-row">
+        <span class="badge b-yellow">4月活动延续</span>
+      </div>
+      <div class="stars">⭐⭐</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">4月 VIP 迎新优惠持续（HK$3,000 上限），无重大新动态</div>
+    </div>
+
+    <!-- 华盛通 -->
+    <div class="ov-card">
+      <div class="ov-logo logo-hs">华</div>
+      <div class="ov-name">华盛通</div>
+      <div class="badge-row">
+        <span class="badge b-purple">期权新活动</span>
+        <span class="badge b-gray">转仓延续</span>
+      </div>
+      <div class="stars">⭐⭐⭐</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">推出「2026玩转美股期权」US$0.2/张活动，期权知识闯关送 USD$100 免佣卡</div>
+    </div>
+
+    <!-- 微牛 Webull -->
+    <div class="ov-card">
+      <div class="ov-logo logo-wn">牛</div>
+      <div class="ov-name">微牛（Webull）</div>
+      <div class="badge-row">
+        <span class="badge b-red">PDT废除</span>
+        <span class="badge b-green">重磅政策</span>
+      </div>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">4/15 首发公告：全面支持 SEC 废除 PDT $25K 限制，零门槛无限日内交易</div>
+    </div>
+
+    <!-- Robinhood -->
+    <div class="ov-card">
+      <div class="ov-logo logo-rh">R</div>
+      <div class="ov-name">Robinhood</div>
+      <div class="badge-row">
+        <span class="badge b-green">金融教育</span>
+        <span class="badge b-blue">PDT受益</span>
+      </div>
+      <div class="stars">⭐⭐⭐⭐</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">4/15 宣布 2030 年覆盖 100 万人金融教育计划；股价随 SEC PDT 废除大涨 6%</div>
+    </div>
+
+  </div>
+
+  <!-- ======= 各平台详情 ======= -->
+  <div class="sec-title">🏢 各平台详细动态</div>
+
+  <!-- ===== 长桥证券 ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-lb">桥</div>
+      <div class="p-info">
+        <h2>长桥证券 Longbridge</h2>
+        <div class="p-meta">
+          <span class="meta-tag">新加坡持牌 · 港股 · 美股</span>
+          <span class="src-tag">longbridge.com · GitHub Release Notes</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要度</div>
+        <div class="stars">⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">4/14–16</div>
+          <div class="tl-dot" style="background:#2d5be3"></div>
+          <div class="tl-content">
+            <div class="tl-title">🖥️ Longbridge Pro 桌面端 v0.14.0 正式发布（Beta → Stable）</div>
+            <div class="tl-desc">
+              全平台更新（Windows / macOS / Linux）。核心新增：① <strong>持仓分布（CYQ）指标</strong>——可视化不同价位筹码分布，辅助研判强支撑区；
+              ② <strong>图表内指标设置面板</strong>——直接在 K 线图内配置技术指标，无需切换菜单；
+              ③ <strong>交易下单支持优惠券抵扣</strong>——委托预览界面可直接应用手续费交易券；
+              ④ <strong>资金明细新功能</strong>——可查看详细现金变动明细；
+              ⑤ IPO 信息在个股详情页展示；同步修复盘前期权权利金计算错误、多项崩溃及布局问题。
+            </div>
+            <a class="tl-link" href="https://longbridge.com/desktop/release-notes/v0.14.0" target="_blank">查看官方 Release Notes</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">持续</div>
+          <div class="tl-dot" style="background:#7ea8ff"></div>
+          <div class="tl-content">
+            <div class="tl-title">📱 Longbridge CLI v0.16.0 — 21 项新命令发布</div>
+            <div class="tl-desc">
+              开发者工具 CLI v0.16.0 上线，新增涵盖公司基本面、市场数据、账户特性的 21 条新命令，进一步扩展 B 端 Whale SDK 接入能力。
+            </div>
+            <a class="tl-link" href="https://open.longbridge.cn/docs/cli/release-notes" target="_blank">查看 CLI Release Notes</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 亮眼功能配图 -->
+      <div class="highlight-banner" onclick="window.open('https://longbridge.com/desktop/zh-CN/','_blank')">
+        <img src="https://assets.lbctrl.com/uploads/longbridge-desktop/preview.png"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          alt="Longbridge Pro 桌面端" />
+        <div class="img-placeholder" style="display:none"><div class="icon">🖥️</div><div>Longbridge Pro Desktop — CYQ 持仓分布图</div></div>
+        <div class="img-caption">Longbridge Pro v0.14.0 — 新增 CYQ 持仓分布指标 + 图表内指标配置面板</div>
+      </div>
+
+      <!-- 可借鉴点 -->
+      <div class="insights-block">
+        <h4>💡 可借鉴点</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-blue">产品深度</span>
+          <div class="ins-text"><strong>CYQ 筹码分布图</strong>是机构级工具下沉至零售桌面端的代表性动作，有助于提升用户对支撑/压力位的理解，留存深度用户。可评估我方桌面/Web 端是否可引入类似工具。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-green">交易体验</span>
+          <div class="ins-text"><strong>交易券在下单页面直接抵扣</strong>是极佳的转化促进设计——用户在下单前实时看到优惠已生效，降低心理摩擦。建议我方评估是否在下单链路中展示已享优惠。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-purple">B端生态</span>
+          <div class="ins-text">长桥持续扩充 Whale SDK + CLI 工具，推进券商 SaaS 战略，B 端能力与 C 端产品并行迭代，形成双向护城河。</div>
+        </div>
+      </div>
+
+      <!-- 近期重要背景 -->
+      <div class="bg-section">
+        <h4>📋 近期重要背景（非本周，仅供参考）</h4>
+        <div class="bg-item"><span class="bg-date">4/7</span>Longbridge Whale SDK v2.36.4 RC 发布——多股同列交互优化、客户账户明细加载提速。</div>
+        <div class="bg-item"><span class="bg-date">4/1</span>Longbridge Pro 全新跨平台原生版 Beta 开放，宣称 CPU 占用降低 40%、内存减少 70%、启动约 2 秒。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 老虎证券 ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-tiger">虎</div>
+      <div class="p-info">
+        <h2>老虎证券 Tiger Brokers</h2>
+        <div class="p-meta">
+          <span class="meta-tag">NASDAQ: TIGR · 多国持牌</span>
+          <span class="src-tag">itigerup.com · CouponHK · MoneySmart</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要度</div>
+        <div class="stars">⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">4月持续</div>
+          <div class="tl-dot" style="background:#ff9330"></div>
+          <div class="tl-content">
+            <div class="tl-title">🎁 4月 VIP 迎新优惠延续 — 最高 HK$3,000 + 留存现金券</div>
+            <div class="tl-desc">
+              老虎证券香港区 4 月全月活动持续进行。<strong>VIP9 渠道（邀请码 KQQXXB）</strong>：存入 HK$10 万留存 30 天，每日计息 HK$80，合计 HK$2,400 现金券；
+              <strong>CouponHK 常规渠道（邀请码 COUPONHK）</strong>：开户 + 入金 + 交易任务，总奖励可达 HK$3,000。港股永久 0 佣、美股期权 0 佣至 6 月 30 日。
+            </div>
+            <a class="tl-link" href="https://couponhk.net/tiger-brokers/" target="_blank">CouponHK 活动详情</a>
+            <a class="tl-link" href="https://www.moneysmart.hk/zh-hk/investments/tiger-brokers" target="_blank">MoneySmart 活动页</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 无亮眼配图，使用占位 -->
+      <div class="img-placeholder"><div class="icon">🐯</div><div>老虎证券本周无重大产品发布或视觉物料</div></div>
+
+      <!-- 可借鉴点 -->
+      <div class="insights-block">
+        <h4>💡 可借鉴点</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-yellow">渠道分层</span>
+          <div class="ins-text"><strong>双轨激励设计</strong>：VIP 渠道（高额留存现金券）vs. 常规渠道（入金+交易任务组合）针对不同用户行为路径，提升渠道整体转化率。值得参考用于我方拉新优惠分层设计。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-gray">观察</span>
+          <div class="ins-text">老虎本周无新产品功能发布，活动内容延续上期。结合 TIGR 股价走势，短期内聚焦于运营推广而非产品迭代。</div>
+        </div>
+      </div>
+
+      <!-- 近期重要背景 -->
+      <div class="bg-section">
+        <h4>📋 近期重要背景（非本周，仅供参考）</h4>
+        <div class="bg-item"><span class="bg-date">2026-03</span>老虎 Q4 2025 财报：单季营收、利润创历史新高，全球客户资产达 610 亿美元。</div>
+        <div class="bg-item"><span class="bg-date">2026-02</span>老虎证券香港区手续费结构调整，港股佣金小幅低于 Moomoo，加强价格竞争。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 华盛通 ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-hs">华</div>
+      <div class="p-info">
+        <h2>华盛通（华盛证券）Valuable Capital</h2>
+        <div class="p-meta">
+          <span class="meta-tag">香港SFC持牌 · 港股 · 美股 · 虚拟资产</span>
+          <span class="src-tag">vbkr.com · hstong.com</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要度</div>
+        <div class="stars">⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">4月中旬</div>
+          <div class="tl-dot" style="background:#d44040"></div>
+          <div class="tl-content">
+            <div class="tl-title">📈 「2026玩转美股期权」新活动上线 — US$0.2/张 + 闯关送 USD$100 免佣卡</div>
+            <div class="tl-desc">
+              华盛证券推出专项期权活动：活动期内新旧客户均可享受<strong>美股期权交易费 US$0.2/张</strong>（较市场常规 US$0.65 大幅优惠），
+              完成「美股期权知识闯关」后额外获得 <strong>USD$100 美股免佣卡</strong>。
+              新客户同步享受开户迎新礼遇（首入金 HK$10,000，港美股现金券 + 免佣 + 行情卡总值约 HK$2,000+）。
+            </div>
+            <a class="tl-link" href="https://www.vbkr.com/cn/promotions" target="_blank">华盛证券活动页</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">4月持续</div>
+          <div class="tl-dot" style="background:#9b1b1b"></div>
+          <div class="tl-content">
+            <div class="tl-title">🔄 2026 全新转仓计划持续推进</div>
+            <div class="tl-desc">
+              活动期内成功转入价值 ≥ USD$10,000 股票，即送 HKD$500 交易现金券（HKD$100 × 5）+ 全额报销最高 HKD$500 转仓费。
+              新客户可叠加迎新奖励。
+            </div>
+            <a class="tl-link" href="https://www.vbkr.com/cn/promotions" target="_blank">转仓活动详情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 亮眼活动配图 -->
+      <div class="highlight-banner" onclick="window.open('https://www.vbkr.com/cn/promotions','_blank')">
+        <img src="https://news.hstong.com/post/content/img/2025073115542476339.jpg"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          alt="华盛通期权活动" />
+        <div class="img-placeholder" style="display:none"><div class="icon">📊</div><div>华盛证券「2026玩转美股期权」活动配图加载失败</div></div>
+        <div class="img-caption">「2026玩转美股期权」—— US$0.2/张 + 知识闯关送 USD$100 免佣卡</div>
+      </div>
+
+      <!-- 可借鉴点 -->
+      <div class="insights-block">
+        <h4>💡 可借鉴点</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-red">期权推广</span>
+          <div class="ins-text"><strong>游戏化「知识闯关」+ 奖励机制</strong>是极具参考价值的衍生品客户教育设计：降低用户对期权的认知门槛，同时引导开通期权权限，兼顾教育与转化目标。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-purple">价格策略</span>
+          <div class="ins-text">期权费 US$0.2/张 是目前港美股平台中极具竞争力的报价（Webull 常规约 US$0 佣 + 平台费，华盛通此举意在与其正面竞争）。需关注是否有成本补贴的可持续性。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-gray">背景</span>
+          <div class="ins-text">结合 SEC 废除 PDT 规则背景，本周活跃交易氛围上升，华盛通及时推出期权低费活动，把握了市场节奏。</div>
+        </div>
+      </div>
+
+      <!-- 近期重要背景 -->
+      <div class="bg-section">
+        <h4>📋 近期重要背景（非本周，仅供参考）</h4>
+        <div class="bg-item"><span class="bg-date">2025-08</span>华盛证券上线虚拟资产交易功能，并推出限时免佣 + 开户豪礼，正式进入 Web3 金融领域。</div>
+        <div class="bg-item"><span class="bg-date">2025-04</span>复活节活动（总值 HK$2,200）为 2025 年内容，已归入背景，未纳入本期时间轴。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 微牛 Webull ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-wn">牛</div>
+      <div class="p-info">
+        <h2>微牛（Webull）</h2>
+        <div class="p-meta">
+          <span class="meta-tag">NASDAQ: BULL · 美国市场主力</span>
+          <span class="src-tag">PR Newswire · GuruFocus · marketchameleon.com</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要度</div>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">4/14</div>
+          <div class="tl-dot" style="background:#00c6a2"></div>
+          <div class="tl-content">
+            <div class="tl-title">🏛️ SEC 正式废除 PDT 规则 — 行业里程碑级监管变革</div>
+            <div class="tl-desc">
+              美国证券交易委员会（SEC）于 4 月 14 日正式批准 FINRA 提案（Release No. 34-105226），废除沿用多年的
+              <strong>Pattern Day Trader（PDT）规则</strong>——此前散户账户资金低于 $25,000 时，每 5 个交易日内最多只能日内交易 3 次。
+              新规以<strong>实时盘中保证金机制</strong>取代旧框架，盈利即时计入日内购买力，全面降低散户日内交易门槛。
+            </div>
+            <a class="tl-link" href="https://financefeeds.com/sec-officially-eliminates-the-pattern-day-trader-rule-in-landmark-reform/" target="_blank">FinanceFeeds 报道</a>
+            <a class="tl-link" href="https://coinunited.io/en/pulse/2026-04-15/sec-scraps-25k-day-trading-rule-robinhood-and-webull-surge-as-retail-floodgates-open" target="_blank">CoinUnited 分析</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">4/15</div>
+          <div class="tl-dot" style="background:#14a89c"></div>
+          <div class="tl-content">
+            <div class="tl-title">📢 Webull 首发官方公告：首批支持新 PDT 法规，当日生效</div>
+            <div class="tl-desc">
+              Webull 于 4 月 15 日发布 PR Newswire 官方公告，宣布成为<strong>第一批向零售客户提供更新后日内交易框架</strong>的券商之一。
+              核心变化：① 取消 $25,000 最低资金要求；② 无限制日内交易次数（股票、ETF、期权全品类）；③ 盈利实时计入购买力。
+              总裁兼美国 CEO Anthony Denier 表示："这是市场参与方式的有意义演变，Webull 优先确保客户从第一天起即享新规利好。"
+              当日 BULL 股价盘后跳涨 <strong>+7%</strong>。
+            </div>
+            <a class="tl-link" href="https://www.prnewswire.com/news-releases/webull-unlocks-active-trading-for-all-eliminating-the-pattern-day-trade-25k-minimum-balance-and-trade-count-restrictions-302743229.html" target="_blank">PR Newswire 官方公告</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">4/15–16</div>
+          <div class="tl-dot" style="background:#0f5fa8"></div>
+          <div class="tl-content">
+            <div class="tl-title">📈 Webull 股价单周涨幅达 +30.1%，ESOP 股权发行文件同步提交</div>
+            <div class="tl-desc">
+              受 PDT 废除利好推动，BULL 股价在本周内最高涨幅达 30.1%（随后有所回落）。同期 Webull 向监管机构提交
+              <strong>US$32.35M（500 万股 A 类普通股）</strong>的 ESOP 上架登记文件，并宣布在澳大利亚市场推出零佣金交易。
+            </div>
+            <a class="tl-link" href="https://simplywall.st/stocks/us/diversified-financials/nasdaq-bull/webull/news/webull-bull-is-up-301-after-esop-share-offering-and-pdt-rule" target="_blank">SimplyWallSt 报道</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 亮眼配图 -->
+      <div class="highlight-banner" onclick="window.open('https://www.prnewswire.com/news-releases/webull-unlocks-active-trading-for-all-eliminating-the-pattern-day-trade-25k-minimum-balance-and-trade-count-restrictions-302743229.html','_blank')">
+        <img src="https://mma.prnewswire.com/media/2079598/Webull_Logo.jpg"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          alt="Webull PDT 废除公告" />
+        <div class="img-placeholder" style="display:none"><div class="icon">🚀</div><div>Webull PDT 废除公告 — 配图加载失败，点击跳转 PR Newswire</div></div>
+        <div class="img-caption">Webull 4/15 官方声明：首批支持 SEC 新日内交易规则，取消 $25K 门槛</div>
+      </div>
+
+      <!-- 可借鉴点 -->
+      <div class="insights-block">
+        <h4>💡 可借鉴点</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-red">监管响应速度</span>
+          <div class="ins-text">Webull 在 SEC 公告发出<strong>次日</strong>即发布 PR Newswire 官方公告，抢占舆论先机，股价当日大涨。<strong>建议关注监管政策窗口，提前准备应对方案，以最快速度向用户传达利好</strong>。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-green">叙事占位</span>
+          <div class="ins-text">"首批支持新规"的叙事有效地将 Webull 塑造为<strong>散户权益捍卫者</strong>形象，与 Robinhood 竞争同一叙事空间。关注我方品牌在监管红利期的发声时机。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-yellow">全球扩张</span>
+          <div class="ins-text">ESOP 登记 + 澳洲零佣推出，显示 Webull 在完成内部股权安排后加速全球扩张，需持续关注其在亚太市场的动作。</div>
+        </div>
+      </div>
+
+      <!-- 近期重要背景 -->
+      <div class="bg-section">
+        <h4>📋 近期重要背景（非本周，仅供参考）</h4>
+        <div class="bg-item"><span class="bg-date">4/7</span>Webull 宣布终止与 Yorkville 的 $10 亿 SEPA 备用股权购买协议（有效期内未动用）。</div>
+        <div class="bg-item"><span class="bg-date">3月</span>Webull Q4 2025 财报发布，营收和用户数持续增长。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Robinhood ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-rh">R</div>
+      <div class="p-info">
+        <h2>Robinhood Markets</h2>
+        <div class="p-meta">
+          <span class="meta-tag">NASDAQ: HOOD · 美国零售投资第一品牌</span>
+          <span class="src-tag">robinhood.com/newsroom · CrowdfundInsider</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要度</div>
+        <div class="stars">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">4/15</div>
+          <div class="tl-dot" style="background:#00bb00"></div>
+          <div class="tl-content">
+            <div class="tl-title">🎓 Robinhood 宣布「2030 百万金融教育计划」— 华盛顿峰会发布</div>
+            <div class="tl-desc">
+              Robinhood 在华盛顿特区年度峰会上正式宣布：计划到 <strong>2030 年通过课堂金融教育项目覆盖 100 万人</strong>，
+              汇集学术界、体育界与政策领袖，强化「让普通人也能参与金融」的品牌主张。
+              该计划延伸自此前的 Money Drills 大学校园项目（已进驻多所高校），本次大幅扩大边界目标。
+            </div>
+            <a class="tl-link" href="https://robinhood.com/us/en/newsroom/robinhood-to-reach-1-million-financial-education/" target="_blank">Robinhood 官方新闻稿</a>
+            <a class="tl-link" href="https://www.crowdfundinsider.com/2026/04/273783-robinhood-pledges-to-educate-1m-by-2030/" target="_blank">CrowdfundInsider 报道</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">4/14–15</div>
+          <div class="tl-dot" style="background:#00c6a2"></div>
+          <div class="tl-content">
+            <div class="tl-title">📈 受 SEC 废除 PDT 规则利好，HOOD 股价单日跳涨 +6%</div>
+            <div class="tl-desc">
+              SEC 正式批准废除 PDT 规则后（4/14），Robinhood（HOOD）在次日盘后大涨 <strong>+5~6%</strong>，
+              被市场视为直接受益者（其核心用户群正是小额散户活跃交易者）。
+              多家分析师认为此举将带动 Robinhood 日内交易活跃度和佣金收入显著提升。
+            </div>
+            <a class="tl-link" href="https://blockonomi.com/robinhood-hood-stock-jumps-6-following-secs-elimination-of-25k-day-trading-requirement/" target="_blank">Blockonomi 报道</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">4/13–19</div>
+          <div class="tl-dot" style="background:#007a00"></div>
+          <div class="tl-content">
+            <div class="tl-title">📊 多机构下调目标价但维持 Buy 评级，Q1 财报预告 4/28 发布</div>
+            <div class="tl-desc">
+              本周多家分析机构（Piper Sandler、Goldman Sachs 等）小幅下调 HOOD 目标价（反映市场波动期交易量阶段性下降），
+              但均维持 Buy / Outperform 评级。Q1 2026 财报将于 4 月 28 日收盘后发布，预期 EPS 约 $0.43。
+            </div>
+            <a class="tl-link" href="https://seekingalpha.com/symbol/HOOD/press-releases" target="_blank">SeekingAlpha 动态</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 亮眼配图 -->
+      <div class="highlight-banner" onclick="window.open('https://robinhood.com/us/en/newsroom/','_blank')">
+        <img src="https://robinhood.com/us/en/static/images/newsroom/newsroom-hero.jpg"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          alt="Robinhood 2030 金融教育计划" />
+        <div class="img-placeholder" style="display:none"><div class="icon">📚</div><div>Robinhood 2030 百万金融教育计划 — 配图加载失败，点击跳转新闻室</div></div>
+        <div class="img-caption">Robinhood 2030 计划：通过课堂项目覆盖 100 万人金融教育</div>
+      </div>
+
+      <!-- 可借鉴点 -->
+      <div class="insights-block">
+        <h4>💡 可借鉴点</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-green">品牌战略</span>
+          <div class="ins-text">「百万金融教育」是 Robinhood 将自身从<strong>交易工具升维为金融普惠使命品牌</strong>的重要叙事动作。港美股平台竞争已超越产品功能维度，内容与教育能力将成为新护城河。建议考虑推出系统性的用户金融教育内容体系。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-blue">PDT受益逻辑</span>
+          <div class="ins-text">PDT 废除后，Robinhood 小额散户基本盘获得最大解放。预计其后续将在 UI/UX 和营销上大力强化日内交易功能体验，可提前预判并布局我方的竞争响应策略。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-yellow">Q1 财报观察</span>
+          <div class="ins-text">4 月 28 日 Q1 财报是重要观测窗口，关注交易活跃度、新增资金规模和 Robinhood Gold 订阅数，研判其超级 App 转型进度。</div>
+        </div>
+      </div>
+
+      <!-- 近期重要背景 -->
+      <div class="bg-section">
+        <h4>📋 近期重要背景（非本周，仅供参考）</h4>
+        <div class="bg-item"><span class="bg-date">4/6</span>Robinhood 与 BNY 合作，承建美国财政部「Trump Accounts」基础设施，计划 7 月 4 日启动（已在第2期详述）。</div>
+        <div class="bg-item"><span class="bg-date">3/18</span>Robinhood Social 进入 Beta 测试，社交交易功能向用户开放。</div>
+        <div class="bg-item"><span class="bg-date">3月</span>Robinhood 股票回购授权，市值管理信号明显。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 综合洞察 ======= -->
+  <div class="sec-title">🔬 综合洞察 · 本周行业信号</div>
+
+  <div class="sum-card">
+    <h3>🌐 行业信号</h3>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="num">01</div>
+        <div class="topic">PDT 废除：零售活跃交易大爆发前夜</div>
+        <div class="desc">SEC 4/14 正式废除 $25K PDT 门槛，是 10 年来最重大的零售交易监管改革。Webull、Robinhood 均将直接受益。港美股平台如长桥、老虎亦需评估对其美国用户群的影响，提前布局相应功能引导。</div>
+      </div>
+      <div class="insight-card">
+        <div class="num">02</div>
+        <div class="topic">期权民主化趋势加速</div>
+        <div class="desc">华盛通「游戏化期权教育 + 超低费率」活动，结合 SEC PDT 改革，预示期权交易将进一步向无经验散户渗透。券商期权教育内容和 UI 简化是接下来 6-12 个月的关键竞争阵地。</div>
+      </div>
+      <div class="insight-card">
+        <div class="num">03</div>
+        <div class="topic">长桥桌面端形成差异化壁垒</div>
+        <div class="desc">v0.14.0 引入 CYQ 持仓分布图，是专业工具下沉的清晰信号。长桥在桌面端的持续迭代，使其在「深度用户」留存上形成竞争优势。如我方无桌面端，需评估是否有必要填补这一空缺。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sum-card">
+    <h3>⚡ 优先行动建议</h3>
+    <ul class="trend-list">
+      <li>
+        <div class="trend-num">1</div>
+        <div class="trend-content">
+          <strong>立即评估 PDT 废除对我方用户的影响 [紧急]</strong>
+          <p>PDT 规则废除后，账户低于 $25K 的美国用户可无限次日内交易。需评估我方平台是否已同步更新相关提示与功能说明，同时借机发布「新规解读」内容营销，抢占教育流量。</p>
+        </div>
+      </li>
+      <li>
+        <div class="trend-num">2</div>
+        <div class="trend-content">
+          <strong>参考华盛通期权活动，规划我方期权产品推广方案 [高优先级]</strong>
+          <p>「知识闯关 + 低费率激励」的组合既降低用户认知门槛，又有效提升期权开通转化率。建议在下季度活动规划中纳入类似的期权专项促活方案。</p>
+        </div>
+      </li>
+      <li>
+        <div class="trend-num">3</div>
+        <div class="trend-content">
+          <strong>关注 Robinhood 4/28 Q1 财报，评估其超级 App 转型指标 [中优先级]</strong>
+          <p>Gold 订阅数、交易活跃度、新功能渗透率是核心关注指标。财报数据将影响对 Robinhood 策略节奏的判断，建议安排专题解读。</p>
+        </div>
+      </li>
+      <li>
+        <div class="trend-num">4</div>
+        <div class="trend-content">
+          <strong>研究长桥 CYQ 持仓分布图设计方案 [中优先级]</strong>
+          <p>该功能在专业用户群中有明确需求，可降低用户对外部专业工具（如 Level 2、TradingView）的依赖，提升平台黏性。建议 PM 团队调研用户需求后评估排期。</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ======= 往期周报 ======= -->
+  <div class="sec-title">📚 往期周报</div>
+  <div class="archive-section">
+    <h3>📚 往期周报沉淀</h3>
+    <div class="archive-grid">
+
+      <a class="archive-item" href="竞品监控周报_第1期_20260410.html">
+        <div class="issue-badge">
+          <div class="num">1</div>
+          <div class="label">ISSUE</div>
+        </div>
+        <div class="info">
+          <div class="title">第 1 期周报</div>
+          <div class="date">2026-04-03 → 04-10 · 生成于 2026-04-10</div>
+        </div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a class="archive-item" href="竞品监控周报_第2期_20260413.html">
+        <div class="issue-badge">
+          <div class="num">2</div>
+          <div class="label">ISSUE</div>
+        </div>
+        <div class="info">
+          <div class="title">第 2 期周报</div>
+          <div class="date">2026-04-06 → 04-12 · 生成于 2026-04-13</div>
+        </div>
+        <div class="arrow">›</div>
+      </a>
+
+      <div class="archive-item archive-current" style="cursor:default;">
+        <div class="issue-badge">
+          <div class="num">3</div>
+          <div class="label">ISSUE</div>
+        </div>
+        <div class="info">
+          <div class="title">第 3 期周报（当前）</div>
+          <div class="date">2026-04-13 → 04-19 · 生成于 2026-04-20</div>
+        </div>
+        <div class="arrow" style="color:#7ea8ff">●</div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  港美股竞品平台动态监控周报 · 第 3 期 · 自动生成<br>
+  监控平台：长桥证券 / 老虎证券 / 华盛通 / 微牛（Webull）/ Robinhood<br>
+  监控周期：2026-04-13 → 2026-04-19 | 生成时间：2026-04-20<br>
+  <span style="color:var(--text-dim)">本报告基于公开渠道信息，仅供内部竞品分析参考，不构成投资建议。</span>
+</footer>
+
+</body>
+</html>
