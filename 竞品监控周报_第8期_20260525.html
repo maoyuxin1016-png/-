@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>港美股竞品平台动态监控周报 · 第8期</title>
+  <style>
+    :root {
+      --bg: #0c0f1a;
+      --card: #141824;
+      --card2: #1a1f2e;
+      --border: #252d45;
+      --border-hover: rgba(79,124,255,.35);
+      --accent: #4f7cff;
+      --accent2: #00c6a2;
+      --accent3: #ff6b6b;
+      --accent4: #ffb84d;
+      --text: #dde3f0;
+      --text-muted: #7a8499;
+      --text-dim: #4a5270;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.75;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      background: linear-gradient(160deg, #080d2b 0%, #0e1842 40%, #0a1230 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 0 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% -10%, rgba(79,124,255,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 20% at 20% 100%, rgba(0,198,162,.08) 0%, transparent 60%);
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(79,124,255,.18);
+      border: 1px solid rgba(79,124,255,.35);
+      color: #7ea8ff;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 18px;
+    }
+    .header-badge::before { content: '●'; font-size: 8px; color: #00c6a2; }
+    .header h1 {
+      font-size: 30px; font-weight: 800; color: #fff;
+      margin-bottom: 10px; letter-spacing: -0.5px;
+    }
+    .header h1 span { color: #7ea8ff; }
+    .header .meta-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; flex-wrap: wrap;
+      color: var(--text-muted); font-size: 12px;
+    }
+    .meta-sep { color: var(--text-dim); }
+    .meta-hl { color: #7ea8ff; font-weight: 600; }
+
+    /* ========== LAYOUT ========== */
+    .container { max-width: 1120px; margin: 0 auto; padding: 36px 24px 48px; }
+
+    /* ========== SECTION TITLE ========== */
+    .sec-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      margin: 36px 0 18px;
+    }
+    .sec-title::after { content:''; flex:1; height:1px; background: var(--border); }
+
+    /* ========== OVERVIEW GRID ========== */
+    .ov-grid {
+      display: grid; grid-template-columns: repeat(5,1fr); gap: 12px;
+      margin-bottom: 8px;
+    }
+    .ov-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 14px; text-align: center;
+      transition: border-color .2s, box-shadow .2s; cursor: default;
+    }
+    .ov-card:hover { border-color: var(--border-hover); box-shadow: 0 0 20px rgba(79,124,255,.06); }
+    .ov-logo {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900; color: #fff;
+      margin: 0 auto 10px;
+    }
+    .ov-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .badge-row { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .badge {
+      font-size: 10px; font-weight: 700; padding: 3px 7px;
+      border-radius: 5px; letter-spacing: .4px; white-space: nowrap;
+    }
+    .b-green  { background: rgba(0,198,162,.14); color: #00c6a2; border: 1px solid rgba(0,198,162,.28); }
+    .b-blue   { background: rgba(79,124,255,.14); color: #7ea8ff; border: 1px solid rgba(79,124,255,.28); }
+    .b-yellow { background: rgba(255,184,77,.14);  color: #ffb84d; border: 1px solid rgba(255,184,77,.28); }
+    .b-red    { background: rgba(255,107,107,.14); color: #ff8080; border: 1px solid rgba(255,107,107,.28); }
+    .b-gray   { background: rgba(122,132,153,.10); color: var(--text-muted); border: 1px solid var(--border); }
+    .b-purple { background: rgba(168,100,255,.14); color: #c07aff; border: 1px solid rgba(168,100,255,.28); }
+    .stars { color: #ffb84d; font-size: 13px; }
+
+    /* ========== PLATFORM CARD ========== */
+    .p-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 18px; margin-bottom: 22px; overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .p-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 32px rgba(79,124,255,.07); }
+
+    .p-header {
+      display: flex; align-items: center;
+      padding: 22px 26px 18px; gap: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .p-logo {
+      width: 50px; height: 50px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: #fff; flex-shrink: 0;
+    }
+    .logo-lb    { background: linear-gradient(135deg,#1130a0,#2d5be3); }
+    .logo-tiger { background: linear-gradient(135deg,#d95a00,#ff9330); }
+    .logo-hs    { background: linear-gradient(135deg,#9b1b1b,#d44040); }
+    .logo-wn    { background: linear-gradient(135deg,#0f5fa8,#14a89c); }
+    .logo-rh    { background: linear-gradient(135deg,#007a00,#00bb00); }
+
+    .p-info { flex: 1; min-width: 0; }
+    .p-info h2 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+    .p-meta { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+    .meta-tag {
+      font-size: 11px; color: var(--text-muted);
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      padding: 2px 8px; border-radius: 5px;
+    }
+    .src-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10.5px; font-weight: 600;
+      background: rgba(0,198,162,.10); color: #00c6a2;
+      border: 1px solid rgba(0,198,162,.25);
+      padding: 2px 9px; border-radius: 5px;
+    }
+    .src-tag::before { content: '📡'; font-size: 10px; }
+
+    .p-importance { margin-left: auto; text-align: right; flex-shrink: 0; }
+    .p-importance .label { font-size: 10px; color: var(--text-dim); margin-bottom: 3px; }
+    .p-importance .stars { font-size: 17px; }
+
+    .p-body { padding: 22px 26px; }
+
+    /* 日期时间轴 */
+    .timeline { margin-bottom: 18px; }
+    .tl-item {
+      display: flex; gap: 14px; padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-date {
+      flex-shrink: 0; width: 56px;
+      font-size: 11px; font-weight: 700; color: var(--text-dim);
+      padding-top: 1px;
+    }
+    .tl-dot {
+      flex-shrink: 0; width: 8px; height: 8px;
+      border-radius: 50%; margin-top: 6px;
+    }
+    .tl-content { flex: 1; min-width: 0; }
+    .tl-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      margin-bottom: 3px; line-height: 1.5;
+    }
+    .tl-desc { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+    .tl-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      text-decoration: none; margin-top: 5px;
+      border: 1px solid rgba(79,124,255,.25);
+      background: rgba(79,124,255,.08);
+      padding: 3px 9px; border-radius: 5px;
+      transition: background .15s, border-color .15s;
+    }
+    .tl-link:hover { background: rgba(79,124,255,.18); border-color: rgba(79,124,255,.45); color: #9dc0ff; }
+    .tl-link::before { content: '↗'; font-size: 11px; }
+
+    /* 亮眼活动图片区 */
+    .highlight-banner {
+      border-radius: 12px; overflow: hidden; margin: 10px 0;
+      border: 1px solid var(--border); position: relative; cursor: pointer;
+    }
+    .highlight-banner img {
+      width: 100%; max-height: 200px; object-fit: cover; display: block;
+      transition: transform .3s;
+    }
+    .highlight-banner:hover img { transform: scale(1.02); }
+    .highlight-banner .img-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.85), transparent);
+      padding: 24px 14px 10px;
+      font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,.85);
+    }
+    .img-placeholder {
+      width: 100%; height: 140px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--card2) 0%, rgba(79,124,255,.06) 100%);
+      border: 1px dashed rgba(79,124,255,.2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; color: var(--text-dim); font-size: 12px; margin: 8px 0;
+    }
+    .img-placeholder .icon { font-size: 28px; opacity: .5; }
+
+    /* 可借鉴点 */
+    .insights-block {
+      background: linear-gradient(135deg,rgba(79,124,255,.05),rgba(0,198,162,.05));
+      border: 1px solid rgba(79,124,255,.18);
+      border-radius: 12px; padding: 16px;
+    }
+    .insights-block h4 {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--accent4);
+      margin-bottom: 11px; display: flex; align-items: center; gap: 6px;
+    }
+    .ins-item {
+      display: flex; align-items: flex-start; gap: 9px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .ins-item:last-child { border-bottom: none; }
+    .ins-tag {
+      flex-shrink: 0; font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 4px; margin-top: 2px;
+    }
+    .ins-text { font-size: 12.5px; color: var(--text); line-height: 1.65; }
+
+    /* ========== 监控来源说明 ========== */
+    .src-box {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 22px;
+    }
+    .src-box h4 {
+      font-size: 11px; font-weight: 700; color: var(--text-muted);
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .src-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
+    .src-item { font-size: 12px; color: var(--text); }
+    .src-item strong { color: #fff; display: block; margin-bottom: 3px; }
+    .src-channel {
+      display: inline-block; font-size: 10.5px;
+      background: rgba(79,124,255,.1); color: var(--accent);
+      border: 1px solid rgba(79,124,255,.2);
+      padding: 1px 7px; border-radius: 4px; margin-top: 2px;
+    }
+
+    /* ========== 综合洞察 ========== */
+    .insight-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .insight-card {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px;
+    }
+    .insight-card .num {
+      font-size: 32px; font-weight: 900; color: var(--accent);
+      line-height: 1; margin-bottom: 8px;
+    }
+    .insight-card .topic { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .insight-card .desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+    .trend-list { list-style: none; }
+    .trend-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 13px 0; border-bottom: 1px solid var(--border);
+    }
+    .trend-list li:last-child { border-bottom: none; }
+    .trend-num {
+      width: 26px; height: 26px; background: var(--accent);
+      border-radius: 7px; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0; margin-top: 1px;
+    }
+    .trend-content strong { color: #fff; font-size: 13px; display: block; margin-bottom: 3px; }
+    .trend-content p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+    .sum-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 26px; margin-bottom: 22px;
+    }
+    .sum-card h3 {
+      font-size: 16px; font-weight: 800; color: #fff;
+      margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ========== 近期重要背景 ========== */
+    .bg-section {
+      margin-top: 14px; padding: 14px 16px;
+      background: rgba(255,255,255,.02);
+      border-radius: 10px; border: 1px solid rgba(255,255,255,.05);
+    }
+    .bg-toggle {
+      font-size: 11px; font-weight: 700; color: var(--text-muted);
+      letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; display: flex; align-items: center; gap: 6px;
+      user-select: none;
+    }
+    .bg-toggle:hover { color: var(--text); }
+    .bg-content { margin-top: 10px; }
+    .bg-item {
+      display: flex; gap: 10px; padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      font-size: 12px; color: var(--text-muted);
+    }
+    .bg-item:last-child { border-bottom: none; }
+    .bg-item .bg-dot { color: var(--accent4); flex-shrink: 0; margin-top: 2px; }
+
+    /* ========== 警告卡片 ========== */
+    .alert-card {
+      background: rgba(255,107,107,.08); border: 1px solid rgba(255,107,107,.3);
+      border-radius: 12px; padding: 16px 18px; margin-bottom: 14px;
+    }
+    .alert-card .alert-header {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; color: #ff8080;
+      margin-bottom: 8px; text-transform: uppercase; letter-spacing: .8px;
+    }
+    .alert-card p { font-size: 12.5px; color: var(--text-muted); line-height: 1.7; }
+    .alert-card strong { color: var(--text); }
+
+    /* ========== 往期周报 ========== */
+    .archive-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
+    }
+    .archive-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px;
+      text-decoration: none; color: inherit;
+      transition: all .2s;
+    }
+    .archive-item:hover {
+      border-color: rgba(79,124,255,.4);
+      background: rgba(79,124,255,.04);
+    }
+    .archive-num {
+      font-size: 22px; font-weight: 900; color: #fff;
+      flex-shrink: 0;
+    }
+    .archive-info { flex: 1; min-width: 0; }
+    .archive-title2 { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .archive-date { font-size: 11px; color: var(--text-muted); }
+    .archive-arrow { color: var(--text-dim); font-size: 14px; }
+
+    /* ========== UPLOAD REMINDER ========== */
+    .upload-reminder {
+      background: linear-gradient(135deg, rgba(255,184,77,.08), rgba(79,124,255,.05));
+      border: 1px solid rgba(255,184,77,.3);
+      border-radius: 14px; padding: 20px 24px; margin-top: 32px;
+    }
+    .upload-reminder h3 {
+      font-size: 14px; font-weight: 800; color: #ffb84d;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .upload-list { list-style: none; }
+    .upload-list li {
+      padding: 6px 0; font-size: 12.5px; color: var(--text-muted);
+      display: flex; align-items: flex-start; gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .upload-list li:last-child { border-bottom: none; }
+    .upload-list li .check { color: #00c6a2; flex-shrink: 0; }
+    .upload-list li code {
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-size: 11px; color: #7ea8ff;
+      background: rgba(79,124,255,.1); padding: 1px 6px; border-radius: 4px;
+    }
+
+    /* ========== footer ========== */
+    footer {
+      margin-top: 48px; text-align: center;
+      padding: 24px 0; border-top: 1px solid var(--border);
+      color: var(--text-dim); font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .ov-grid { grid-template-columns: repeat(3,1fr); }
+      .insight-grid { grid-template-columns: 1fr 1fr; }
+      .src-grid { grid-template-columns: repeat(3,1fr); }
+      .archive-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .ov-grid { grid-template-columns: 1fr 1fr; }
+      .insight-grid { grid-template-columns: 1fr; }
+      .src-grid { grid-template-columns: 1fr 1fr; }
+      .archive-grid { grid-template-columns: 1fr 1fr; }
+      .header h1 { font-size: 22px; }
+      .p-header { flex-wrap: wrap; }
+      .p-importance { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">WEEKLY INTELLIGENCE · ISSUE 08</div>
+    <h1>港美股竞品平台动态监控 · <span>第 8 期</span></h1>
+    <div class="meta-row">
+      <span>监控周期</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-hl">2026-05-18 → 2026-05-24</span>
+      <span class="meta-sep">|</span>
+      <span>生成日期</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-hl">2026-05-25</span>
+      <span class="meta-sep">|</span>
+      <span>覆盖平台 5 家</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== 监控来源 ===== -->
+  <div class="src-box">
+    <h4>📡 本期监控来源</h4>
+    <div class="src-grid">
+      <div class="src-item"><strong>长桥证券</strong><span class="src-channel">open.longbridge.cn</span><br><span class="src-channel">GitHub Release</span></div>
+      <div class="src-item"><strong>老虎证券</strong><span class="src-channel">ir.itigerup.com</span><br><span class="src-channel">SEC 6-K / CSRC 公告</span></div>
+      <div class="src-item"><strong>华盛通</strong><span class="src-channel">hstong.com</span><br><span class="src-channel">webull.hk</span></div>
+      <div class="src-item"><strong>微牛 Webull</strong><span class="src-channel">webullcorp.com IR</span><br><span class="src-channel">PR Newswire</span></div>
+      <div class="src-item"><strong>Robinhood</strong><span class="src-channel">investors.robinhood.com</span><br><span class="src-channel">Seeking Alpha</span></div>
+    </div>
+  </div>
+
+  <!-- ===== 总览卡片 ===== -->
+  <div class="sec-title">🗂 Platform Overview</div>
+  <div class="ov-grid">
+    <!-- 老虎证券 - 本期最大事件 -->
+    <div class="ov-card">
+      <div class="ov-logo logo-tiger">虎</div>
+      <div class="ov-name">老虎证券</div>
+      <div class="badge-row">
+        <span class="badge b-red">⚠️ 监管重击</span>
+        <span class="badge b-red">CSRC 处罚</span>
+      </div>
+      <div class="stars">★★★★★</div>
+    </div>
+    <!-- Webull -->
+    <div class="ov-card">
+      <div class="ov-logo logo-wn">W</div>
+      <div class="ov-name">微牛 Webull</div>
+      <div class="badge-row">
+        <span class="badge b-green">财报超预期</span>
+        <span class="badge b-blue">AI 功能上线</span>
+      </div>
+      <div class="stars">★★★</div>
+    </div>
+    <!-- Robinhood -->
+    <div class="ov-card">
+      <div class="ov-logo logo-rh">R</div>
+      <div class="ov-name">Robinhood</div>
+      <div class="badge-row">
+        <span class="badge b-blue">机构路演</span>
+        <span class="badge b-gray">稳步推进</span>
+      </div>
+      <div class="stars">★★★</div>
+    </div>
+    <!-- 长桥 -->
+    <div class="ov-card">
+      <div class="ov-logo logo-lb">桥</div>
+      <div class="ov-name">长桥证券</div>
+      <div class="badge-row">
+        <span class="badge b-purple">CLI v0.22.0</span>
+        <span class="badge b-blue">选股器上线</span>
+      </div>
+      <div class="stars">★★★</div>
+    </div>
+    <!-- 华盛通 -->
+    <div class="ov-card">
+      <div class="ov-logo logo-hs">盛</div>
+      <div class="ov-name">华盛通</div>
+      <div class="badge-row">
+        <span class="badge b-gray">无新动态</span>
+      </div>
+      <div class="stars">★</div>
+    </div>
+  </div>
+
+  <!-- ===== ALERT: 老虎监管事件 ===== -->
+  <div class="sec-title">🚨 本期重大事件预警</div>
+  <div class="alert-card">
+    <div class="alert-header">⚠️ 极高优先级 · 老虎证券遭中国证监会重磅处罚</div>
+    <p>
+      <strong>2026年5月22日</strong>，老虎证券（UP Fintech，纳斯达克：TIGR）宣布，中国证监会（CSRC）对其内地子公司作出行政处罚：
+      <strong>罚款约人民币3.081亿元 + 没收违法所得约1.031亿元</strong>，另对CEO吴天华个人处以125万元罚款并予以警告。
+      违规事项为未取得许可在内地开展<strong>跨境证券经纪及基金/期货业务</strong>。
+      公司已接受处罚并表示全面配合整改。消息公布后TIGR股价<strong>单日暴跌35%</strong>，叠加集体诉讼压力，至本周末累计跌幅逾25%。
+      内地零售客户资产约占公司总AUM的10%，此次执法从根本上封堵了其内地获客通道。
+    </p>
+  </div>
+
+  <!-- ===== 平台详情 ===== -->
+  <div class="sec-title">📊 Platform Details</div>
+
+  <!-- ===== 老虎证券 ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-tiger">虎</div>
+      <div class="p-info">
+        <h2>老虎证券 · UP Fintech (TIGR)</h2>
+        <div class="p-meta">
+          <span class="meta-tag">NASDAQ: TIGR</span>
+          <span class="meta-tag">港美股券商</span>
+          <span class="src-tag">ir.itigerup.com / SEC 6-K</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要性</div>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">05/21</div>
+          <div class="tl-dot" style="background:#4f7cff;"></div>
+          <div class="tl-content">
+            <div class="tl-title">公告 Q1 2026 财报发布日期：6月2日（新确认）</div>
+            <div class="tl-desc">UP Fintech发布公告，Q1 2026财报将于2026年6月2日（美东时间）盘后发布，电话会议定于同日美东时间上午8点（北京/香港时间晚8点）举行。此前市场预期为5月29日，推迟至6月2日。</div>
+            <a class="tl-link" href="https://marketchameleon.com/PressReleases/i/2309668/TIGR/up-fintech-holding-limited-to-report-first" target="_blank">查看公告原文</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">05/22</div>
+          <div class="tl-dot" style="background:#ff6b6b;"></div>
+          <div class="tl-content">
+            <div class="tl-title">🚨 中国证监会对其内地子公司作出行政处罚决定</div>
+            <div class="tl-desc">CSRC北京局认定老虎证券旗下子公司未取得许可在内地开展跨境证券经纪业务及非法基金/期货活动，处以<strong>行政罚款约人民币3.081亿元，没收违法所得约1.031亿元</strong>；另对CEO吴天华个人处以125万元罚款并予以警告。公司表示已接受处罚，正在配合整改。</div>
+            <a class="tl-link" href="https://www.tipranks.com/news/company-announcements/up-fintech-hit-with-major-csrc-penalties-over-mainland-china-securities-operations" target="_blank">查看处罚详情</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">05/22</div>
+          <div class="tl-dot" style="background:#ff6b6b;"></div>
+          <div class="tl-content">
+            <div class="tl-title">TIGR股价单日暴跌35%，随即触发集体诉讼</div>
+            <div class="tl-desc">受CSRC处罚消息冲击，TIGR股价单日暴跌约35%（盘前），至周末累计跌幅仍超25%。同期富途控股（FUTU）股价也出现明显跟跌。据报道，已有投资者发起集体诉讼。内地业务合规整改料将影响其短期用户增长预期。</div>
+            <a class="tl-link" href="https://coinunited.io/en/pulse/2026-05-22/up-fintech-tigr-crashes-23-on-chinese-regulatory-investigation-leverage-liquidation-risk-elevated" target="_blank">股价影响分析</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">05/22</div>
+          <div class="tl-dot" style="background:#7a8499;"></div>
+          <div class="tl-content">
+            <div class="tl-title">CSRC同步启动跨境证券中介机构专项整治</div>
+            <div class="tl-desc">中国证监会同日宣布对违规从事境内跨境证券业务的中介机构展开专项整治行动，老虎证券为首批受罚对象。业界预计富途控股等同类机构亦面临审查压力，行业合规生态将迎来系统性调整。</div>
+            <a class="tl-link" href="https://www.chinaretailnews.com/2026/05/22/23765-china-announces-crackdown-on-illicit-cross-border-securities-activities/" target="_blank">查看整治公告</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-banner" onclick="window.open('https://www.tipranks.com/news/company-announcements/up-fintech-hit-with-major-csrc-penalties-over-mainland-china-securities-operations','_blank')">
+        <div class="img-placeholder">
+          <div class="icon">📉</div>
+          <div>老虎证券 CSRC 处罚事件 · 股价单日-35%</div>
+          <div style="font-size:10px;color:#4a5270;">罚款 ¥3.08亿 + 没收 ¥1.03亿 · 点击查看原文</div>
+        </div>
+      </div>
+
+      <div class="insights-block">
+        <h4>💡 可借鉴点 &amp; 行业影响</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-red">风险警示</span>
+          <div class="ins-text">中国监管层对跨境证券经纪的执法已从"窗口指导"升级为"重磅行政处罚"，罚金规模刷新历史记录。所有内地导流型互联网券商均需重新审视合规边界，降低对内地零售客户的依赖度。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-yellow">竞争机遇</span>
+          <div class="ins-text">老虎内地获客通道受阻，其内地用户或将寻求替代平台。对竞品而言，这是争取海外留学、外籍华人等合规用户群体的窗口期。可针对"已离岸"用户加大触达与转化力度。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-blue">内容方向</span>
+          <div class="ins-text">事件引发市场对中概股、内地居民出海投资合规性的广泛关注。可输出"合规投资指南""如何合法参与港美股"等教育类内容，强化品牌可信度并获取自然流量。</div>
+        </div>
+      </div>
+
+      <!-- 近期重要背景 -->
+      <div class="bg-section">
+        <div class="bg-toggle">📌 近期重要背景（点击展开）</div>
+        <div class="bg-content">
+          <div class="bg-item"><span class="bg-dot">▸</span><span>5/7 UP Fintech递交20-F年报（2025全年营收$6.12亿+56%，净利润$1.71亿），2025年是业绩爆发年。</span></div>
+          <div class="bg-item"><span class="bg-dot">▸</span><span>Q1 2026财报现确认于6月2日发布（此前预期5月29日），CSRC处罚后市场对财报前景更加谨慎。</span></div>
+          <div class="bg-item"><span class="bg-dot">▸</span><span>5月迎新优惠HK$3,000已延续多期，但内地新增获客已受到实质性约束。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Webull ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-wn">W</div>
+      <div class="p-info">
+        <h2>微牛证券 · Webull (BULL)</h2>
+        <div class="p-meta">
+          <span class="meta-tag">NASDAQ: BULL</span>
+          <span class="meta-tag">美股零售券商</span>
+          <span class="src-tag">webullcorp.com / Motley Fool</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要性</div>
+        <div class="stars">★★★</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">05/19</div>
+          <div class="tl-dot" style="background:#00c6a2;"></div>
+          <div class="tl-content">
+            <div class="tl-title">发布 Vega Analyst：AI 驱动的个性化研究摘要工具</div>
+            <div class="tl-desc">Webull正式上线"Vega Analyst"，一款AI驱动的个性化投研摘要工具，为投资者提供定制化的AI生成研究摘要。据CEO Anthony Denier介绍，平台同期数据显示散户正将AI/半导体投资重心从单一龙头芯片股扩散至更广泛的供应链生态，约9%用户持有至少一只半导体或相关股票。</div>
+            <a class="tl-link" href="https://www.webullcorp.com/investor-relations/press-releases" target="_blank">查看官方IR</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">05/21</div>
+          <div class="tl-dot" style="background:#4f7cff;"></div>
+          <div class="tl-content">
+            <div class="tl-title">Q1 2026 财报发布：营收 $1.599亿 +36% YoY，连续第六季度调整后盈利</div>
+            <div class="tl-desc">Webull发布Q1 2026财报（5/21盘后）：总营收$1.599亿，同比增长36%，高交易量拉动全品类增长；调整后EPS $0.03，符合市场预期；调整后净利润$920万（利润率5.8%），调整后经营利润$1,480万（利润率9.3%）。连续第6个季度实现调整后经营盈利，$1亿股票回购计划持续推进中。</div>
+            <a class="tl-link" href="https://www.fool.com/earnings/call-transcripts/2026/05/21/webull-bull-q1-2026-earnings-call-transcript/" target="_blank">查看电话会议实录</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">05/21</div>
+          <div class="tl-dot" style="background:#7a8499;"></div>
+          <div class="tl-content">
+            <div class="tl-title">CEO发言：散户AI投资重心向半导体供应链扩散</div>
+            <div class="tl-desc">Webull集团总裁兼美国CEO Anthony Denier在财报电话会议中表示，平台用户不再仅追逐少数龙头芯片股，而是加速布局更广泛的AI/半导体生态，包括数据中心REIT、封装测试等细分领域，约9%用户已持有至少一只半导体或相关股票。</div>
+            <a class="tl-link" href="https://new.qq.com/rain/a/20260521A041LY00" target="_blank">查看报道</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-banner">
+        <div class="img-placeholder">
+          <div class="icon">🤖</div>
+          <div>Webull Vega Analyst · AI个性化投研摘要工具</div>
+          <div style="font-size:10px;color:#4a5270;">2026-05-19 正式上线 · Q1营收$1.599亿+36%</div>
+        </div>
+      </div>
+
+      <div class="insights-block">
+        <h4>💡 可借鉴点</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-blue">AI产品</span>
+          <div class="ins-text">Vega Analyst的上线代表着Webull将AI能力从辅助工具升级为核心投研服务。"个性化"是关键词——AI不是通用总结，而是基于用户持仓/行为的定制化输出，可大幅提升用户粘性和付费转化。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-green">数据洞察</span>
+          <div class="ins-text">Webull将平台用户行为数据（半导体持仓渗透率）转化为公开传播内容，实现了"数据→内容→品牌"的完整链路。我方可借鉴此思路，将用户热搜数据、持仓分布等转化为定期发布的数据洞察报告。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-yellow">盈利模型</span>
+          <div class="ins-text">连续6季度调整后盈利 + 回购计划同步推进，表明Webull已完成从"烧钱扩张"到"盈利增长"的转型。在零佣金竞争下，高附加值工具（AI研究、专业数据）是关键盈利支柱，值得深入研究。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Robinhood ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-rh">R</div>
+      <div class="p-info">
+        <h2>Robinhood (HOOD)</h2>
+        <div class="p-meta">
+          <span class="meta-tag">NASDAQ: HOOD</span>
+          <span class="meta-tag">美国零售券商</span>
+          <span class="src-tag">investors.robinhood.com</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要性</div>
+        <div class="stars">★★★</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">05/19</div>
+          <div class="tl-dot" style="background:#00c6a2;"></div>
+          <div class="tl-content">
+            <div class="tl-title">出席 JP Morgan 第54届全球科技、媒体与通信大会</div>
+            <div class="tl-desc">首席经纪官 Steve Quirk 出席摩根大通TMT年会（5/19，美东时间11:25 AM）并接受Fireside Chat访谈，Robinhood以"$700亿市值平台"定位亮相。会议音频通过直播对外开放，标志Robinhood将主动出席顶级机构会议作为投资者关系常规操作。</div>
+            <a class="tl-link" href="https://robinhood.gcs-web.com/news-releases/news-release-details/robinhood-markets-inc-present-jp-morgan-global-technology-1" target="_blank">查看会议公告</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">05/20</div>
+          <div class="tl-dot" style="background:#4f7cff;"></div>
+          <div class="tl-content">
+            <div class="tl-title">宣布出席 Bernstein 战略决策会议（5月27日）</div>
+            <div class="tl-desc">Robinhood宣布CFO Shiv Verma将于2026年5月27日出席Bernstein战略决策会议并发表演讲，这是继JP Morgan TMT大会之后，本周内第二次参与机构投资者会议，密集的路演节奏反映管理层积极开展资本市场对话的战略意图。</div>
+            <a class="tl-link" href="https://investors.robinhood.com/news-releases/news-release-details/robinhood-markets-inc-present-bernstein-strategic-decisions-0" target="_blank">查看公告原文</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">05/18</div>
+          <div class="tl-dot" style="background:#7a8499;"></div>
+          <div class="tl-content">
+            <div class="tl-title">HOOD股价受市场关注，Zacks提示投资者聚焦态势</div>
+            <div class="tl-desc">Zacks于5/18发布研报，指出Robinhood（HOOD）近期在投资者中关注度显著上升，结合公司Q1 2026的强劲数据（入金客户2,760万，平台资产$3,450亿+49% YoY），机构投资者热度持续升温。</div>
+            <a class="tl-link" href="https://www.zacks.com/stock/news/2922432/robinhood-markets-inc-hood-is-attracting-investor-attention-here-is-what-you-should-know" target="_blank">查看研报</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-banner">
+        <div class="img-placeholder">
+          <div class="icon">🏦</div>
+          <div>Robinhood · 密集机构路演周</div>
+          <div style="font-size:10px;color:#4a5270;">JP Morgan TMT 5/19 + Bernstein 5/27 · CFO双会议出席</div>
+        </div>
+      </div>
+
+      <div class="insights-block">
+        <h4>💡 可借鉴点</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-blue">品牌建设</span>
+          <div class="ins-text">Robinhood本周同时布局JP Morgan和Bernstein两大机构会议，CFO+首席经纪官双管齐下，显示其已将机构路演作为"品牌公信力建设"工具，不仅针对散户，更主动影响机构投资者和分析师对公司的认知。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-green">增长叙事</span>
+          <div class="ins-text">"$700亿市值平台"的定位锚定是关键。在Fireside Chat中以规模体量作为行业定位基础，配合4月运营数据（入金客户2,760万+49% AUM增速），构建了可信度极高的"下一阶段增长故事"。</div>
+        </div>
+      </div>
+
+      <!-- 近期重要背景 -->
+      <div class="bg-section">
+        <div class="bg-toggle">📌 近期重要背景</div>
+        <div class="bg-content">
+          <div class="bg-item"><span class="bg-dot">▸</span><span>4月运营数据（5/13发布）：入金客户2,760万（+110K/月），平台资产$3,450亿（+49% YoY），Q1 2026营收超预期。</span></div>
+          <div class="bg-item"><span class="bg-dot">▸</span><span>2025年9月HOOD Summit发布Robinhood Social（跟单交易）、期货交易、AI功能组合，生态建设持续推进。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 长桥证券 ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-lb">桥</div>
+      <div class="p-info">
+        <h2>长桥证券 · Longbridge</h2>
+        <div class="p-meta">
+          <span class="meta-tag">港美股券商</span>
+          <span class="meta-tag">开发者生态</span>
+          <span class="src-tag">open.longbridge.cn</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要性</div>
+        <div class="stars">★★★</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">05/16前后</div>
+          <div class="tl-dot" style="background:#c07aff;"></div>
+          <div class="tl-content">
+            <div class="tl-title">CLI v0.22.0 发布：选股器、股东对比、同业估值比较全新上线</div>
+            <div class="tl-desc">长桥CLI发布v0.22.0，本次更新新增7大命令：<strong>screener（选股器）</strong>支持策略/自定义条件筛股；<strong>shareholder --top</strong>前20大股东多期对比；<strong>compare</strong>多股PE/PB/PS/市值估值横比；<strong>top-movers</strong>价格突破标准差+关联新闻；<strong>short-positions/short-trades</strong>新增港股卖空数据；<strong>rank</strong>多维度人气榜单。MCP服务器同步更新，LLM集成能力持续扩展。</div>
+            <a class="tl-link" href="https://open.longbridge.cn/docs/cli/release-notes" target="_blank">查看发布说明</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">持续</div>
+          <div class="tl-dot" style="background:#4f7cff;"></div>
+          <div class="tl-content">
+            <div class="tl-title">OpenAPI SDK 更新：新增 OAuth 2.0 认证支持</div>
+            <div class="tl-desc">长桥OpenAPI Python SDK更新，新增OAuth 2.0（Bearer token）作为推荐认证方式，替代原有HMAC认证，降低开发门槛，进一步吸引独立开发者和机构量化团队接入。</div>
+            <a class="tl-link" href="https://pypi.org/project/longbridge/" target="_blank">查看 PyPI 更新</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">持续</div>
+          <div class="tl-dot" style="background:#7a8499;"></div>
+          <div class="tl-content">
+            <div class="tl-title">longbridge.com/hk 主站持续更新，港美股服务强化</div>
+            <div class="tl-desc">长桥香港主站保持活跃更新状态，延续港美股$0佣金 + 投资组合管理工具的核心定位，同时配合CLI/API工具生态，主攻"报价分析+交易执行"一体化的进阶用户群体。</div>
+            <a class="tl-link" href="https://longbridge.com/hk" target="_blank">访问长桥官网</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-banner">
+        <div class="img-placeholder">
+          <div class="icon">🛠️</div>
+          <div>长桥 CLI v0.22.0 · 选股器 + 股东对比 + 同业估值</div>
+          <div style="font-size:10px;color:#4a5270;">7大新命令 · MCP服务器同步更新 · 投研API生态持续深化</div>
+        </div>
+      </div>
+
+      <div class="insights-block">
+        <h4>💡 可借鉴点</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-purple">工具生态</span>
+          <div class="ins-text">v0.22.0的screener选股器是一个重大产品里程碑——从数据查询工具升级为"投资决策辅助系统"。选股器+同业估值+股东结构，构成完整的"选股→验证→跟踪"闭环，极大提升专业用户的平台粘性。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-blue">开发者策略</span>
+          <div class="ins-text">连续多个版本稳定迭代CLI工具，且每版都扩展MCP/LLM集成能力，表明长桥正在构建"AI原生投研平台"的技术护城河。开发者社区的聚集将带动付费机构用户和API收入。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-green">内容机会</span>
+          <div class="ins-text">可针对CLI选股器功能出品"如何用命令行选出下一个十倍股"类的深度内容，既能服务技术型用户，又能借助工具的传播力带来自然引流。</div>
+        </div>
+      </div>
+
+      <!-- 近期重要背景 -->
+      <div class="bg-section">
+        <div class="bg-toggle">📌 近期重要背景</div>
+        <div class="bg-content">
+          <div class="bg-item"><span class="bg-dot">▸</span><span>第7期（5/11-15）：CLI三版连发（v0.20.2、v0.20.3、v0.21.0），已新增机构评级视图、行业排名、同行企业对比、财报快照等命令，本期v0.22.0是系列延续。</span></div>
+          <div class="bg-item"><span class="bg-dot">▸</span><span>长桥CLI自4月以来平均每10天发布一个新版本，迭代速度在同类开发者工具中属于高频水平。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 华盛通 ===== -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-hs">盛</div>
+      <div class="p-info">
+        <h2>华盛通 · Washtong / Webull HK</h2>
+        <div class="p-meta">
+          <span class="meta-tag">港美股零售券商</span>
+          <span class="meta-tag">香港市场</span>
+          <span class="src-tag">hstong.com / webull.hk</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本期重要性</div>
+        <div class="stars">★</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">持续</div>
+          <div class="tl-dot" style="background:#7a8499;"></div>
+          <div class="tl-content">
+            <div class="tl-title">本期无新动态，常规活动维持运营</div>
+            <div class="tl-desc">监控周期（2026-05-18至05-24）内未发现华盛通官网、华盛号（公众号2133691）有新增重大公告或产品更新。期货免佣政策延续，开户优惠维持现有体系。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insights-block">
+        <h4>💡 动态解读</h4>
+        <div class="ins-item">
+          <span class="ins-tag b-gray">观察</span>
+          <div class="ins-text">华盛通（Webull HK品牌"真0收费"嘉年华活动于5/9-17已结束，本期属活动后空窗期。下一个值得关注的节点是6月下旬华盛通8周年庆（约6月25日前后），预计5月下旬开始预热，需持续关注。</div>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag b-yellow">背景补充</span>
+          <div class="ins-text">Webull HK"真0收费"（美港股0佣金0平台费）于2026年5月5日正式成为标准定价，不再作为促销活动，这一举措确立了香港市场的价格战基准。华盛通/竞品的响应策略值得持续关注。</div>
+        </div>
+      </div>
+
+      <div class="bg-section">
+        <div class="bg-toggle">📌 近期重要背景</div>
+        <div class="bg-content">
+          <div class="bg-item"><span class="bg-dot">▸</span><span>Webull HK"精明出击嘉年华"（铜锣湾利舞台，5/9-17）已结束，为香港市场罕见的线下推广活动。</span></div>
+          <div class="bg-item"><span class="bg-dot">▸</span><span>Webull HK 5月-6月开户活动：入金满HK$10,000可获最高HK$100,000+现金券，活动至2026年6月30日。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 综合洞察 ===== -->
+  <div class="sec-title">🔭 Comprehensive Insights</div>
+
+  <div class="sum-card">
+    <h3>📡 本期行业信号</h3>
+    <ul class="trend-list">
+      <li>
+        <div class="trend-num">1</div>
+        <div class="trend-content">
+          <strong>监管地震：中国跨境证券整治从"警示"升级为"重击"</strong>
+          <p>老虎证券5/22遭CSRC处以超4亿元罚款，创跨境券商处罚金额历史之最，且CSRC同步宣布启动行业专项整治。这标志着监管态度的根本性转变——不再容忍"默认存在"的内地跨境经纪业务。行业格局将重塑：合规优先的离岸券商（如已在海外市场深耕的平台）或获得相对竞争优势。</p>
+        </div>
+      </li>
+      <li>
+        <div class="trend-num">2</div>
+        <div class="trend-content">
+          <strong>AI投研工具成新战场：从"辅助功能"到"核心价值主张"</strong>
+          <p>Webull的Vega Analyst（5/19）和长桥CLI持续扩展的AI/MCP集成，表明行业头部玩家已将AI投研工具从"差异化功能"升级为"核心竞争力"。下半年预计更多平台加入，AI选股、AI研究摘要、AI预警将成为标配而非卖点。先发者的先发优势窗口正在收窄。</p>
+        </div>
+      </li>
+      <li>
+        <div class="trend-num">3</div>
+        <div class="trend-content">
+          <strong>Robinhood密集路演：机构投资者叙事与散户叙事双轨并行</strong>
+          <p>本周内Robinhood同时布局JP Morgan TMT大会（5/19，首席经纪官）与Bernstein战略会议（5/27，CFO），双高管出席凸显对机构话语权的重视。$700亿市值+平台资产$3,450亿+49%增速，Robinhood正在构建"美国版综合金融服务平台"的机构级叙事，估值重塑进行时。</p>
+        </div>
+      </li>
+      <li>
+        <div class="trend-num">4</div>
+        <div class="trend-content">
+          <strong>Webull盈利能力验证：第6季度调整后盈利 + AI工具同步落地</strong>
+          <p>Webull Q1 2026营收$1.599亿+36%，同时保持调整后盈利并推进回购，在"增收+盈利+AI"三线并进。尤其是Vega Analyst紧跟财报发布，形成"财报验证增长→AI工具展示投入→下季度期待"的市场沟通节奏，值得借鉴。</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="sum-card">
+    <h3>✅ 优先行动建议</h3>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="num">01</div>
+        <div class="topic">抢占老虎用户教育内容窗口</div>
+        <div class="desc">CSRC处罚事件引发大量内地用户关注"如何合法参与港美股投资"，现在是发布合规投资指南、海外开户教育内容的最佳时机，可借助热点流量建立品牌信任度。关键词：合规开户/离岸账户/合法参与港美股。</div>
+      </div>
+      <div class="insight-card">
+        <div class="num">02</div>
+        <div class="topic">加速AI内容/工具的落地布局</div>
+        <div class="desc">Webull Vega Analyst和长桥CLI选股器的密集上线，说明"AI投研"已是平台标配竞争项目。需在内容层面加大AI相关选题投入，同时关注自身是否有AI工具规划节点，提前铺垫内容教育。</div>
+      </div>
+      <div class="insight-card">
+        <div class="num">03</div>
+        <div class="topic">关注华盛通8周年庆预热信号</div>
+        <div class="desc">按历史规律，华盛通8周年庆（约6月下旬）将于5月底-6月初开始预热，届时可能带来新产品功能或大规模促销活动。需在下一周期（5/25-5/31）加大对华盛通官方渠道的监控频率。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 往期周报 ===== -->
+  <div class="sec-title">📚 往期周报归档</div>
+  <div class="archive-grid">
+    <a href="竞品监控周报_第7期_20260518.html" class="archive-item">
+      <div class="archive-num">07</div>
+      <div class="archive-info">
+        <div class="archive-title2">第 7 期</div>
+        <div class="archive-date">2026-05-18 · 05/11-05/17</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第6期_20260511.html" class="archive-item">
+      <div class="archive-num">06</div>
+      <div class="archive-info">
+        <div class="archive-title2">第 6 期</div>
+        <div class="archive-date">2026-05-11 · 05/04-05/10</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第5期_20260504.html" class="archive-item">
+      <div class="archive-num">05</div>
+      <div class="archive-info">
+        <div class="archive-title2">第 5 期</div>
+        <div class="archive-date">2026-05-04 · 04/27-05/03</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第4期_20260427.html" class="archive-item">
+      <div class="archive-num">04</div>
+      <div class="archive-info">
+        <div class="archive-title2">第 4 期</div>
+        <div class="archive-date">2026-04-27 · 04/20-04/26</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第3期_20260420.html" class="archive-item">
+      <div class="archive-num">03</div>
+      <div class="archive-info">
+        <div class="archive-title2">第 3 期</div>
+        <div class="archive-date">2026-04-20 · 04/13-04/19</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第2期_20260413.html" class="archive-item">
+      <div class="archive-num">02</div>
+      <div class="archive-info">
+        <div class="archive-title2">第 2 期</div>
+        <div class="archive-date">2026-04-13 · 04/06-04/12</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第1期_20260410.html" class="archive-item">
+      <div class="archive-num">01</div>
+      <div class="archive-info">
+        <div class="archive-title2">第 1 期</div>
+        <div class="archive-date">2026-04-10 · 04/03-04/10</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- ===== 上传提醒 ===== -->
+  <div class="upload-reminder">
+    <h3>📤 GitHub 上传清单（请手动上传以下文件到 GitHub 仓库）</h3>
+    <ul class="upload-list">
+      <li><span class="check">✅</span><div><code>竞品监控周报_第8期_20260525.html</code> — 本期新文件</div></li>
+      <li><span class="check">✅</span><div><code>index.html</code> — 已更新最新期卡片（指向第8期）及 Archive 区（第7期已移入）</div></li>
+      <li><span class="check">✅</span><div><code>竞品监控周报_第1~7期_*.html</code> — 往期周报「往期周报」模块已追加第8期链接</div></li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <p>📡 数据来源：各平台官方公告、IR页面、PR Newswire、Seeking Alpha、App Store 更新日志</p>
+  <p style="margin-top:6px;">报告由 WorkBuddy 自动化生成 · 第8期 · 监控周期 2026-05-18 → 2026-05-24</p>
+</footer>
+
+</body>
+</html>
