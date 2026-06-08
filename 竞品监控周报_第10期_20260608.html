@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>港美股券商竞品监控周报 · 第10期</title>
+  <style>
+    :root {
+      --bg: #0c0f1a;
+      --card: #141824;
+      --card2: #1a1f2e;
+      --border: #252d45;
+      --border-hover: rgba(79,124,255,.35);
+      --accent: #4f7cff;
+      --accent2: #00c6a2;
+      --accent3: #ff6b6b;
+      --accent4: #ffb84d;
+      --text: #dde3f0;
+      --text-muted: #7a8499;
+      --text-dim: #4a5270;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.75;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(160deg, #080d2b 0%, #0e1842 40%, #0a1230 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 0 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% -10%, rgba(79,124,255,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 20% at 20% 100%, rgba(0,198,162,.08) 0%, transparent 60%);
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(79,124,255,.18);
+      border: 1px solid rgba(79,124,255,.35);
+      color: #7ea8ff;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 18px;
+    }
+    .header-badge::before { content: '●'; font-size: 8px; color: #00c6a2; }
+    .header h1 {
+      font-size: 30px; font-weight: 800; color: #fff;
+      margin-bottom: 10px; letter-spacing: -0.5px;
+    }
+    .header h1 span { color: #7ea8ff; }
+    .header .meta-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; flex-wrap: wrap;
+      color: var(--text-muted); font-size: 12px;
+    }
+    .meta-sep { color: var(--text-dim); }
+    .meta-hl { color: #7ea8ff; font-weight: 600; }
+
+    /* LAYOUT */
+    .container { max-width: 1120px; margin: 0 auto; padding: 36px 24px 48px; }
+
+    /* SECTION TITLE */
+    .sec-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      margin: 36px 0 18px;
+    }
+    .sec-title::after { content:''; flex:1; height:1px; background: var(--border); }
+
+    /* OVERVIEW GRID */
+    .ov-grid {
+      display: grid; grid-template-columns: repeat(5,1fr); gap: 12px;
+      margin-bottom: 8px;
+    }
+    .ov-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 14px; text-align: center;
+      transition: border-color .2s, box-shadow .2s; cursor: default;
+    }
+    .ov-card:hover { border-color: var(--border-hover); box-shadow: 0 0 20px rgba(79,124,255,.06); }
+    .ov-logo {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900; color: #fff;
+      margin: 0 auto 10px;
+    }
+    .ov-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .badge-row { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .badge {
+      font-size: 10px; font-weight: 600; padding: 2px 8px;
+      border-radius: 10px; letter-spacing: .4px;
+    }
+    .badge-red { background: rgba(255,107,107,.15); color: #ff8c8c; border: 1px solid rgba(255,107,107,.3); }
+    .badge-green { background: rgba(0,198,162,.12); color: #00d4a1; border: 1px solid rgba(0,198,162,.25); }
+    .badge-blue { background: rgba(79,124,255,.12); color: #7ea8ff; border: 1px solid rgba(79,124,255,.25); }
+    .badge-yellow { background: rgba(255,184,77,.12); color: #ffc96b; border: 1px solid rgba(255,184,77,.25); }
+    .badge-gray { background: rgba(122,132,153,.12); color: #9aa3b8; border: 1px solid rgba(122,132,153,.25); }
+    .ov-stars { font-size: 13px; color: #ffb84d; letter-spacing: 2px; }
+    .ov-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
+
+    /* REGULATORY TRANSITION BANNER */
+    .reg-banner {
+      background: rgba(79,124,255,.06);
+      border: 1px solid rgba(79,124,255,.25);
+      border-radius: 14px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+    }
+    .reg-banner .reg-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13.5px; font-weight: 800; color: #7ea8ff;
+      margin-bottom: 10px;
+    }
+    .reg-banner .reg-body { font-size: 12.5px; color: var(--text); line-height: 1.8; }
+    .reg-banner .reg-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
+    .reg-banner .reg-table th { color: var(--text-muted); font-weight: 600; padding: 6px 10px; text-align: left; border-bottom: 1px solid rgba(79,124,255,.2); }
+    .reg-banner .reg-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .reg-banner .reg-table tr:last-child td { border-bottom: none; }
+
+    /* PLATFORM SECTION */
+    .platform-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+    .platform-block:hover { border-color: rgba(255,255,255,.1); }
+    .platform-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+    }
+    .platform-logo {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 900; color: #fff; flex-shrink: 0;
+    }
+    .platform-header-info { flex: 1; }
+    .platform-header-info h3 { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .platform-header-info .sub { font-size: 12px; color: var(--text-muted); }
+    .platform-stars { font-size: 16px; color: #ffb84d; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before { content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--border); }
+    .tl-item { position: relative; margin-bottom: 18px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -19px; top: 6px;
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 2px solid var(--border); background: var(--bg);
+    }
+    .tl-dot.hot { border-color: #ff6b6b; background: rgba(255,107,107,.3); }
+    .tl-dot.new { border-color: #00c6a2; background: rgba(0,198,162,.3); }
+    .tl-dot.info { border-color: #4f7cff; background: rgba(79,124,255,.3); }
+    .tl-dot.warn { border-color: #ffb84d; background: rgba(255,184,77,.3); }
+    .tl-date { font-size: 11px; color: var(--text-dim); font-weight: 600; margin-bottom: 3px; letter-spacing: .5px; }
+    .tl-title { font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .tl-body { font-size: 12.5px; color: var(--text-muted); line-height: 1.65; }
+    .tl-link { color: #7ea8ff; font-size: 11.5px; text-decoration: none; }
+    .tl-link:hover { text-decoration: underline; }
+    .tl-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 5px; }
+    .tl-tag { font-size: 10px; padding: 1.5px 7px; border-radius: 8px; font-weight: 600; }
+
+    /* INSIGHT BOX */
+    .insight-box {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 20px;
+    }
+    .insight-box h4 { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .insight-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; font-size: 12.5px; }
+    .insight-item:last-child { margin-bottom: 0; }
+    .insight-bullet { font-size: 12px; margin-top: 1px; flex-shrink: 0; }
+
+    /* BACKGROUND NOTE */
+    details.bg-note {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-top: 16px;
+    }
+    details.bg-note summary {
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+      user-select: none;
+    }
+    details.bg-note summary:hover { color: var(--text); }
+    .bg-note-body { padding: 0 16px 14px; font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+    .bg-note-body p { margin-bottom: 6px; }
+
+    /* COMPREHENSIVE INSIGHT */
+    .ci-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ci-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+    .ci-card h4 { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
+    .ci-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+    .ci-item:last-child { margin-bottom: 0; }
+    .ci-num {
+      width: 20px; height: 20px; border-radius: 6px;
+      background: rgba(79,124,255,.2); color: #7ea8ff;
+      font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .ci-num.warn { background: rgba(255,184,77,.2); color: #ffc96b; }
+    .ci-num.hot { background: rgba(255,107,107,.2); color: #ff9999; }
+    .ci-text { font-size: 12.5px; color: var(--text); line-height: 1.65; }
+    .ci-text strong { color: #fff; }
+
+    /* ARCHIVE */
+    .archive-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+    .archive-item {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 16px;
+      text-decoration: none; color: inherit;
+      transition: border-color .2s, background .2s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .archive-item:hover { border-color: rgba(255,255,255,.15); background: rgba(255,255,255,.03); }
+    .archive-num { font-size: 20px; font-weight: 800; color: var(--text-dim); line-height: 1; }
+    .archive-meta { flex: 1; }
+    .archive-meta .period { font-size: 12.5px; font-weight: 700; color: var(--text); }
+    .archive-meta .date { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .archive-arrow { color: var(--text-dim); font-size: 14px; }
+
+    /* UPLOAD NOTICE */
+    .upload-notice {
+      background: rgba(79,124,255,.06);
+      border: 1px solid rgba(79,124,255,.25);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-top: 32px;
+    }
+    .upload-notice h4 { font-size: 13px; font-weight: 800; color: #7ea8ff; margin-bottom: 12px; }
+    .upload-notice ul { list-style: none; font-size: 12.5px; color: var(--text-muted); }
+    .upload-notice li { padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .upload-notice li::before { content: '✅'; font-size: 12px; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center; color: var(--text-dim);
+      font-size: 11.5px; padding: 32px 0 20px;
+      border-top: 1px solid var(--border); margin-top: 48px;
+    }
+    .footer p { margin-bottom: 4px; }
+
+    @media (max-width: 860px) {
+      .ov-grid { grid-template-columns: repeat(2,1fr); }
+      .ci-grid { grid-template-columns: 1fr; }
+      .archive-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 600px) {
+      .ov-grid { grid-template-columns: 1fr 1fr; }
+      .archive-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">WEEKLY INTELLIGENCE · 第10期 · 合规落地周</div>
+    <h1>港美股券商竞品监控周报 · <span>第 10 期</span></h1>
+    <div class="meta-row">
+      <span>📅 监控周期</span>
+      <span class="meta-sep">|</span>
+      <span class="meta-hl">2026-06-01（周一）→ 2026-06-07（周日）</span>
+      <span class="meta-sep">|</span>
+      <span>生成日期 2026-06-08</span>
+      <span class="meta-sep">|</span>
+      <span style="color:#7ea8ff;font-weight:600;">🔵 整改落地 · 产品跃进周</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 监管进展追踪 -->
+  <div class="sec-title">📋 本期监管合规落地追踪</div>
+  <div class="reg-banner">
+    <div class="reg-title">📋 各平台境内服务调整执行进展（证监会2年整治期·落地周）</div>
+    <div class="reg-body">
+      继5月22日证监会八部门联合整治后，本周（6/1-6/7）各平台相继公布具体执行时间表。华盛证券成为<strong>首个"主动跟进"（未被点名）的中小跨境券商</strong>（6/6公告），标志着整治从头部向腰部券商全面蔓延。
+    </div>
+    <table class="reg-table">
+      <thead>
+        <tr>
+          <th>机构</th>
+          <th>停止境内开仓时间</th>
+          <th>本周关键动作</th>
+          <th>非大陆业务影响</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>老虎证券（TIGR）</strong></td>
+          <td style="color:#ffb84d;">6月12日起</td>
+          <td>6/2发布Q1财报（营收$1.55亿+26.3%，净亏2673万）；6/2公告境内调整细则</td>
+          <td style="color:#00c6a2;">新加坡/港股业务稳健增长</td>
+        </tr>
+        <tr>
+          <td><strong>长桥证券</strong></td>
+          <td style="color:#ffb84d;">6月12日起</td>
+          <td>6/3公告确认境内调整；CLI v0.22连发三个小版本（v0.22.2、0.22.3、0.22.4）</td>
+          <td style="color:#00c6a2;">开发者生态持续扩张</td>
+        </tr>
+        <tr>
+          <td><strong>华盛通（华盛证券）</strong></td>
+          <td style="color:#ffb84d;">6月15日起</td>
+          <td><strong>6/6主动发布公告</strong>（未被点名但跟进整改），比富途/老虎/长桥晚3天</td>
+          <td style="color:#7ea8ff;">境外服务不受影响</td>
+        </tr>
+        <tr>
+          <td><strong>微牛（Webull）</strong></td>
+          <td>无境内业务</td>
+          <td>6/5 IRA共同基金上线Beta；继续执行$1亿回购</td>
+          <td style="color:#00c6a2;">无监管影响，全力扩张</td>
+        </tr>
+        <tr>
+          <td><strong>Robinhood</strong></td>
+          <td>无境内业务</td>
+          <td>6/1完成WonderFi收购（加拿大加密扩张）；6/4 Steve Quirk出席Piper Sandler会议；6/5世界杯预测市场上线</td>
+          <td style="color:#00c6a2;">无监管影响，地理扩张加速</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 总览卡片 -->
+  <div class="sec-title">总览 · 5平台本期热度评级</div>
+  <div class="ov-grid">
+    <!-- 老虎证券 -->
+    <div class="ov-card">
+      <div class="ov-logo" style="background:linear-gradient(135deg,#ff8c00,#e65c00);">🐯</div>
+      <div class="ov-name">老虎证券</div>
+      <div class="badge-row">
+        <span class="badge badge-yellow">Q1财报</span>
+        <span class="badge badge-red">净亏转</span>
+      </div>
+      <div class="ov-stars">★★★★</div>
+      <div class="ov-desc">Q1营收$1.55亿+26.3%，因4亿罚款转为净亏2673万；入金客户128.3万+11.3%</div>
+    </div>
+    <!-- Robinhood -->
+    <div class="ov-card">
+      <div class="ov-logo" style="background:linear-gradient(135deg,#00c853,#007d32);">🏹</div>
+      <div class="ov-name">Robinhood</div>
+      <div class="badge-row">
+        <span class="badge badge-green">收购完成</span>
+        <span class="badge badge-blue">世界杯市场</span>
+      </div>
+      <div class="ov-stars">★★★★</div>
+      <div class="ov-desc">6/1完成$1.8亿WonderFi收购进军加拿大；6/5世界杯预测市场开放，股价涨5%</div>
+    </div>
+    <!-- 长桥证券 -->
+    <div class="ov-card">
+      <div class="ov-logo" style="background:linear-gradient(135deg,#7b1fa2,#4a148c);">🌉</div>
+      <div class="ov-name">长桥证券</div>
+      <div class="badge-row">
+        <span class="badge badge-blue">CLI连更</span>
+        <span class="badge badge-yellow">合规落地</span>
+      </div>
+      <div class="ov-stars">★★★</div>
+      <div class="ov-desc">v0.22.2/3/4连续三版发布，ETF支持+隔夜盘+RFC时间戳；6/12境内服务调整</div>
+    </div>
+    <!-- Webull -->
+    <div class="ov-card">
+      <div class="ov-logo" style="background:linear-gradient(135deg,#0288d1,#01579b);">🐂</div>
+      <div class="ov-name">Webull（微牛）</div>
+      <div class="badge-row">
+        <span class="badge badge-green">IRA基金</span>
+        <span class="badge badge-blue">产品扩展</span>
+      </div>
+      <div class="ov-stars">★★★</div>
+      <div class="ov-desc">6/5 IRA共同基金Beta上线；6/4 PDT规则生效利好日内交易；$1亿回购继续执行</div>
+    </div>
+    <!-- 华盛通 -->
+    <div class="ov-card">
+      <div class="ov-logo" style="background:linear-gradient(135deg,#c62828,#8b0000);">华</div>
+      <div class="ov-name">华盛通</div>
+      <div class="badge-row">
+        <span class="badge badge-yellow">主动跟进</span>
+        <span class="badge badge-red">境内停开</span>
+      </div>
+      <div class="ov-stars">★★</div>
+      <div class="ov-desc">6/6主动发布公告（未被点名亦跟进），6/15起境内停止新开仓，为首个自发跟进的腰部券商</div>
+    </div>
+  </div>
+
+  <!-- ===== 老虎证券 ===== -->
+  <div class="sec-title">01 · 老虎证券（TIGR）</div>
+  <div class="platform-block">
+    <div class="platform-header">
+      <div class="platform-logo" style="background:linear-gradient(135deg,#ff8c00,#e65c00);">🐯</div>
+      <div class="platform-header-info">
+        <h3>老虎证券 Tiger Brokers（UP Fintech）</h3>
+        <div class="sub">NASDAQ: TIGR · 总部：新加坡 · 主力市场：美股、港股、A股</div>
+      </div>
+      <div class="platform-stars">★★★★</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot hot"></div>
+        <div class="tl-date">2026-06-02（周二）— Q1 2026 财报发布</div>
+        <div class="tl-title">📊 Q1 2026财报：营收$1.55亿+26.3%，因4亿罚款单季净亏$2673万</div>
+        <div class="tl-body">
+          老虎证券（TIGR）6月2日美股盘前发布2026年Q1未经审计财务数据。核心数据：<br>
+          • <strong>总营收：$1.549亿</strong>（+26.3% YoY，上年同期$1.226亿）<br>
+          • 交易手续费：$6720万（+15.3%）；利息收入：$6450万（+19.8%）<br>
+          • <strong>净亏损：$2673万</strong>（受中国证监会4亿元罚款拨备拖累；上年同期净利润$3700万）<br>
+          • <strong>运营利润：$4755万</strong>（+17.5%），运营利润率34.8%——剔除罚款影响后盈利能力仍稳健<br>
+          • 新增入金客户<strong>2.9万</strong>，<strong>总入金客户128.3万</strong>（+11.3% YoY）<br>
+          • 客户总资产增至<strong>$589亿</strong>（+28.4% YoY）；净入金$29亿<br>
+          • 总交易额<strong>$3239亿</strong>（+49% YoY）
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-yellow">Q1财报</span>
+          <span class="tl-tag badge-red">罚款影响</span>
+          <span class="tl-tag badge-green">运营稳健</span>
+        </div>
+        <div style="margin-top:6px;">
+          <a class="tl-link" href="https://www.stcn.com/article/detail/3939436.html" target="_blank">↗ 证券时报网 · 老虎国际Q1财报解读</a>
+          &nbsp;|&nbsp;
+          <a class="tl-link" href="https://www.cls.cn/detail/2388802" target="_blank">↗ 财联社 · Q1财报详情</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot warn"></div>
+        <div class="tl-date">2026-06-02（周二）— 监管合规公告</div>
+        <div class="tl-title">📣 老虎国际发布境内服务调整通知：6月12日起暂停开仓</div>
+        <div class="tl-body">
+          老虎国际于6月2日与财报同步发布境内服务调整通知（与财报同日，信息管理节奏明显）：<strong>自2026年6月12日起，使用中国境内IP的存量账户，仅支持卖出/平仓操作</strong>，同时暂停境内资金转入（转出保持正常）。公告强调，调整不影响境外服务，客户资产安全。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-yellow">境内停开</span>
+          <span class="tl-tag badge-blue">6月12日生效</span>
+        </div>
+        <a class="tl-link" href="https://finance.sina.com.cn/roll/2026-06-02/doc-inhzzqcq1509936.shtml" target="_blank">↗ 新浪财经 · 老虎国际境内调整公告</a>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot info"></div>
+        <div class="tl-date">2026-06-03（周三）— 法律追踪</div>
+        <div class="tl-title">⚖️ Rosen Law、Bronstein等律所启动集体诉讼调查TIGR</div>
+        <div class="tl-body">
+          多家美国证券集体诉讼律所于本周相继宣布对老虎证券（UP Fintech/TIGR）启动调查，调查是否存在证券欺诈——核心指控：公司在年报及公告中未充分披露在中国境内违规展业的合规风险，导致投资者在5月22日股价暴跌中受损（单日跌幅25.3%）。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-red">集体诉讼</span>
+          <span class="tl-tag badge-gray">信息披露</span>
+        </div>
+        <a class="tl-link" href="https://www.prnewswire.com/news-releases/rosen-law-firm-encourages-up-fintech-holding-limited-investors-to-inquire-about-securities-class-action-investigation--tigr-302789485.html" target="_blank">↗ PR Newswire · Rosen Law 集体诉讼公告</a>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:20px;">
+      <h4>🔍 可借鉴点</h4>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#ffb84d;">📊</span>
+        <span>老虎<strong>剔除罚款后的运营利润率仍达34.8%</strong>，说明其经纪业务基本盘健康。与财报同日发布合规公告是典型的「坏消息捆绑披露」技巧，值得学习。</span>
+      </div>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#00c6a2;">💡</span>
+        <span><strong>入金客户128万、客户资产$589亿</strong>，即使大陆存量客户受限，老虎的体量和增势依然显示其海外扩张成功。重点关注其新加坡/香港客户结构及后续增长。</span>
+      </div>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#ff6b6b;">⚠</span>
+        <span>集体诉讼风险是大陆合规处罚的次生效应：<strong>信息披露不充分可能引发进一步法律成本</strong>。此案将为其他跨境平台提供重要的合规披露参考。</span>
+      </div>
+    </div>
+
+    <details class="bg-note">
+      <summary>📌 近期重要背景（非本周内容）</summary>
+      <div class="bg-note-body">
+        <p>• <strong>5月22日</strong>：证监会八部门发布整治方案，老虎被罚没约4.112亿元人民币，CEO巫天华被警告+罚款125万元，股价单日跌25.3%（盘前最大跌45%）</p>
+        <p>• <strong>5月26日</strong>：标普评级维持稳定展望，TIGR股价超跌反弹+15%</p>
+        <p>• <strong>5月7日</strong>：老虎递交20-F年报（2025全年营收$6.12亿+56%，净利润$1.71亿）</p>
+        <p>• 大陆存量客户资产占老虎总客户资产约10%（截至2025年底数据）</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===== Robinhood ===== -->
+  <div class="sec-title">02 · Robinhood（HOOD）</div>
+  <div class="platform-block">
+    <div class="platform-header">
+      <div class="platform-logo" style="background:linear-gradient(135deg,#00e676,#00a046);">🏹</div>
+      <div class="platform-header-info">
+        <h3>Robinhood Markets</h3>
+        <div class="sub">NASDAQ: HOOD · 总部：加利福尼亚州门洛帕克</div>
+      </div>
+      <div class="platform-stars">★★★★</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot new"></div>
+        <div class="tl-date">2026-06-01（周一）— 重大并购完成</div>
+        <div class="tl-title">🇨🇦 Robinhood 正式完成 WonderFi 收购（C$2.5亿/约$1.8亿），进军加拿大加密市场</div>
+        <div class="tl-body">
+          Robinhood于6月1日宣布以<strong>C$0.36/股、总价约C$2.5亿（约$1.8亿美元）</strong>完成对加拿大数字资产服务商WonderFi的全部收购，WonderFi现为Robinhood全资子公司。WonderFi旗下拥有加拿大两家最大加密交易所：<strong>Bitbuy</strong>（B2C）和<strong>Coinsquare</strong>（B2B），合计约<strong>30万加拿大注册用户</strong>。这是Robinhood在北美地区的首次重大地理扩张，标志着其加密战略正式落地加拿大。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-green">并购完成</span>
+          <span class="tl-tag badge-blue">加拿大扩张</span>
+          <span class="tl-tag badge-yellow">加密布局</span>
+        </div>
+        <div style="margin-top:6px;">
+          <a class="tl-link" href="https://www.wonder.fi/press-release/robinhood-completes-acquisition-of-wonderfi" target="_blank">↗ WonderFi官网 · 并购完成公告</a>
+          &nbsp;|&nbsp;
+          <a class="tl-link" href="https://coinalertnews.com/news/2026/06/02/robinhood-wonderfi-canada-acquisition" target="_blank">↗ CoinAlertNews · 并购详情报道</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot info"></div>
+        <div class="tl-date">2026-06-04（周四）— 机构路演</div>
+        <div class="tl-title">🏦 Robinhood首席经纪官 Steve Quirk 出席 Piper Sandler 全球交易所与金融科技大会</div>
+        <div class="tl-body">
+          Robinhood首席经纪官（Chief Brokerage Officer）<strong>Steve Quirk</strong>于6月4日下午3:00 ET（北京时间次日凌晨3:00）在Piper Sandler Global Exchange and Fintech Conference上发表演讲，并提供了实时音频直播。这是Quirk本月第二次代表Robinhood出席机构投资者大会（此前5月19日曾出席JP Morgan TMT大会），机构公关频次显著增加，彰显Robinhood提升机构认知度的战略意图。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-blue">机构路演</span>
+          <span class="tl-tag badge-gray">Steve Quirk</span>
+        </div>
+        <a class="tl-link" href="https://finviz.com/news/357940/robinhood-markets-inc-to-present-at-the-piper-sandler-global-exchange-and-fintech-conference-on-june-4-2026" target="_blank">↗ Finviz · Piper Sandler大会公告</a>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot hot"></div>
+        <div class="tl-date">2026-06-05（周五）— 重大产品上线</div>
+        <div class="tl-title">🏆 Robinhood推出2026年FIFA世界杯预测市场，股价单日涨+5%</div>
+        <div class="tl-body">
+          Robinhood于6月5日宣布推出<strong>FIFA 2026世界杯预测市场</strong>，面向符合条件的客户开放。支持交易的合约包括：单场比赛结果、小组赛名次、锦标赛冠军预测、让分盘、总分、<strong>球员表现相关合约</strong>等多维度押注。合约正在逐步上线，预计数日内向所有合格客户开放。消息公布后Robinhood股价单日上涨逾5%，市场对其<strong>预测市场业务扩张</strong>反应积极。此前Robinhood已在美国大选等重大事件上推出预测合约，世界杯是其迄今最大规模的体育事件合约集。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-green">世界杯</span>
+          <span class="tl-tag badge-blue">预测市场</span>
+          <span class="tl-tag badge-yellow">股价+5%</span>
+        </div>
+        <a class="tl-link" href="https://so.html5.qq.com/page/real/search_news?docid=70000021_2246a21d88e80052" target="_blank">↗ QQ新闻 · Robinhood世界杯预测市场详情</a>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot info"></div>
+        <div class="tl-date">2026-06-04（周四）— 月度运营数据</div>
+        <div class="tl-title">📈 Robinhood发布5月月度运营数据（预计）</div>
+        <div class="tl-body">
+          Robinhood按计划于6月4日发布5月月度运营数据（May Monthly Metrics Release）。参考4月数据（已知）：<strong>入金客户2760万（+110K/月）</strong>，平台总资产<strong>$3450亿（+49% YoY）</strong>，4月净存款$60亿（年化23%增速）；5月数据预计将进一步体现资产增长势头。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-blue">月度数据</span>
+        </div>
+        <a class="tl-link" href="https://marketchameleon.com/PressReleases/i/2305287/HOOD/robinhood-markets-inc-reports-april-2026-operating" target="_blank">↗ MarketChameleon · 4月运营数据（参考基准）</a>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:20px;">
+      <h4>🔍 可借鉴点</h4>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#00c6a2;">🌏</span>
+        <span>WonderFi收购标志着Robinhood正式从「美国券商」转型为「北美金融超级平台」。<strong>加拿大加密资产市场</strong>是其去年以来全球化战略（欧洲/东南亚/加拿大）的第三个落子。</span>
+      </div>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#ffb84d;">🏆</span>
+        <span>世界杯预测市场是<strong>流量杠杆工具</strong>：FIFA世界杯将于2026年6月11日正式开幕，Robinhood提前一周上线，预判了海量体育博彩需求的用户流量。<strong>事件驱动+预测市场</strong>是其获取新用户、提升平台活跃度的成熟打法。</span>
+      </div>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#4f7cff;">💡</span>
+        <span>Robinhood<strong>两周内连续出席2场机构大会</strong>（Bernstein+Piper Sandler），明显在提升机构投资者认知度，为未来产品/扩张融资铺路。</span>
+      </div>
+    </div>
+
+    <details class="bg-note">
+      <summary>📌 近期重要背景（非本周内容）</summary>
+      <div class="bg-note-body">
+        <p>• <strong>5月27日</strong>：Robinhood推出AI代理交易Beta（Agentic Trading），通过MCP协议允许AI Agent自主下单；同日CFO出席Bernstein战略决策会议</p>
+        <p>• <strong>Q1 2026财报</strong>（4月28日）：营收$10.7亿（+15%），Gold订阅430万（+36%），净存款$7B（+80%）</p>
+        <p>• <strong>5月19日</strong>：Steve Quirk出席JP Morgan TMT大会</p>
+        <p>• WonderFi收购原于2025年5月宣布，于5月20日获加拿大CIRO最终监管批准，6月1日完成交割</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===== 长桥证券 ===== -->
+  <div class="sec-title">03 · 长桥证券（Longbridge）</div>
+  <div class="platform-block">
+    <div class="platform-header">
+      <div class="platform-logo" style="background:linear-gradient(135deg,#7b1fa2,#4a148c);">🌉</div>
+      <div class="platform-header-info">
+        <h3>长桥证券 Longbridge</h3>
+        <div class="sub">非上市 · 总部：新加坡 · 主力市场：港股、美股 · 牌照：香港、新加坡</div>
+      </div>
+      <div class="platform-stars">★★★</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot new"></div>
+        <div class="tl-date">2026-06-02（周二）— CLI版本</div>
+        <div class="tl-title">🛠️ Longbridge CLI v0.22.2：JSON时间戳升级为RFC 3339，AI工作流兼容性大幅增强</div>
+        <div class="tl-body">
+          CLI v0.22.2于6月2日发布，核心更新：<br>
+          • <strong>JSON时间戳格式从Unix时间戳改为ISO 8601/RFC 3339</strong>，涵盖K线、成交、日内行情、资金流向等全部时间序列命令——此更改使JSON输出可被Claude/GPT等AI Agent直接消费，无需中间层转换<br>
+          • <strong>`market-temp --history`默认时间范围改为近一个月</strong>（原仅一天），提升历史分析实用性
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-blue">v0.22.2</span>
+          <span class="tl-tag badge-green">AI兼容</span>
+        </div>
+        <a class="tl-link" href="https://open.longbridge.com/docs/changelog.md" target="_blank">↗ Longbridge Developers · CLI更新日志</a>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot new"></div>
+        <div class="tl-date">2026-06-03（周三）— CLI版本 + 合规公告</div>
+        <div class="tl-title">🛠️ CLI v0.22.3：美股隔夜盘数据上线；同日发布境内服务调整公告</div>
+        <div class="tl-body">
+          <strong>CLI v0.22.3更新：</strong><br>
+          • `quote`命令新增 <strong>overnight_quote 字段</strong>（隔夜盘），与盘前/盘后数据并列，完整覆盖美股全时段行情<br>
+          • `positions`、`assets`、`portfolio`等账户命令新增<strong>账户类型横幅</strong>（Live A/C / Demo A/C），避免混淆真实/模拟账户<br><br>
+          <strong>同日合规公告：</strong>长桥证券发布《关于存量投资者在中国境内服务合规调整的通知》，确认自<strong>6月12日起暂停境内新开仓、加仓及资金转入</strong>，与老虎同步。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-blue">v0.22.3</span>
+          <span class="tl-tag badge-yellow">境内停开</span>
+          <span class="tl-tag badge-gray">6月12日生效</span>
+        </div>
+        <div style="margin-top:6px;">
+          <a class="tl-link" href="https://open.longbridge.com/docs/changelog.md" target="_blank">↗ CLI v0.22.3 更新日志</a>
+          &nbsp;|&nbsp;
+          <a class="tl-link" href="https://finance.sina.com.cn/roll/2026-06-04/doc-iniaeuqe9760153.shtml" target="_blank">↗ 新浪财经 · 长桥境内服务调整通知</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot new"></div>
+        <div class="tl-date">2026-06-04（周四）— CLI版本</div>
+        <div class="tl-title">🛠️ CLI v0.22.4：ETF成分股支持上线，美股ETF接入SEC EDGAR N-PORT数据</div>
+        <div class="tl-body">
+          <strong>CLI v0.22.4更新：</strong>`constituent`命令新增<strong>ETF支持</strong>——ETF代码现可返回持仓（holdings）、地区分布（regional）、资产类别（asset-class）、行业分布（industry）四类数据。<strong>美股ETF默认从SEC EDGAR N-PORT文件获取完整持仓数据</strong>（权重、股数、市值），若N-PORT不可用则自动降级至平台资产配置摘要，指数代码行为保持不变。这是本周第三个连续CLI版本，体现极高迭代速度。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-blue">v0.22.4</span>
+          <span class="tl-tag badge-green">ETF支持</span>
+          <span class="tl-tag badge-yellow">SEC数据</span>
+        </div>
+        <a class="tl-link" href="https://open.longbridge.com/docs/changelog.md" target="_blank">↗ CLI v0.22.4 更新日志</a>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:20px;">
+      <h4>🔍 可借鉴点</h4>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#7ea8ff;">🛠</span>
+        <span>长桥本周CLI三版连发（v0.22.2/3/4），每隔一天一个版本，<strong>迭代密度超越多数传统券商一季度的更新量</strong>。「合规落地日」（6/3）当天也不停止产品发布，显示其工程团队的组织能力。</span>
+      </div>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#00c6a2;">🤖</span>
+        <span><strong>RFC 3339时间戳标准化</strong>是默默无声但极为重要的基础设施改造。时间戳格式统一后，AI Agent可直接处理长桥的JSON输出，无需中间层——这与Robinhood的MCP协议战略异曲同工，均在<strong>降低AI Agent接入门槛</strong>。</span>
+      </div>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#ffb84d;">📡</span>
+        <span>长桥接入SEC EDGAR原始数据（ETF N-PORT）表明其数据能力已达到<strong>专业投研级别</strong>。这不再是面向散户的「APP功能」，而是针对量化/机构投研用户的生态卡位。</span>
+      </div>
+    </div>
+
+    <details class="bg-note">
+      <summary>📌 近期重要背景（非本周内容）</summary>
+      <div class="bg-note-body">
+        <p>• <strong>5月29日</strong>：长桥 CLI v0.22.0发布，新增股东/空头/比较/异动/筛选/排行6大命令模块</p>
+        <p>• <strong>5月22日</strong>：长桥遭证监会整治，违法所得全额没收（具体金额未公开）；同日发布客户安抚声明</p>
+        <p>• <strong>5月15日</strong>：CLI v0.21.0发布（机构评级视图、行业排名、同行企业对比、财报快照）</p>
+        <p>• 长桥CLI自4月以来共发布10+个版本，是本年度更新最活跃的竞品平台</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===== Webull ===== -->
+  <div class="sec-title">04 · 微牛 Webull（BULL）</div>
+  <div class="platform-block">
+    <div class="platform-header">
+      <div class="platform-logo" style="background:linear-gradient(135deg,#0288d1,#01579b);">🐂</div>
+      <div class="platform-header-info">
+        <h3>Webull Corporation（微牛）</h3>
+        <div class="sub">NASDAQ: BULL · 总部：佛罗里达州圣彼得堡 · 覆盖16个市场</div>
+      </div>
+      <div class="platform-stars">★★★</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot new"></div>
+        <div class="tl-date">2026-06-05（周五）— 重大产品上线</div>
+        <div class="tl-title">🏦 Webull 推出 IRA 账户共同基金（Beta），退休长期投资产品线首次补全</div>
+        <div class="tl-body">
+          Webull（NASDAQ: BULL）于6月5日发布PR Newswire公告，宣布面向部分美国IRA账户用户推出<strong>共同基金（Mutual Funds）Beta版</strong>。核心亮点：<br>
+          • 提供<strong>免佣共同基金（No-load）</strong>，专为退休投资者设计<br>
+          • 可在Webull单平台内管理股票、ETF、期权、加密货币+共同基金，实现<strong>一站式退休储蓄</strong><br>
+          • 支持IRA供款、Rollover转入<br>
+          • Beta当前面向部分用户，即将全量开放；后续将支持ACAT持仓转入及扩充基金品种<br><br>
+          美国产品负责人Lindsay Ryan表示：「让投资者通过单一平台管理退休储蓄，帮助客户简化长期财务规划。」
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-green">IRA基金</span>
+          <span class="tl-tag badge-blue">Beta上线</span>
+          <span class="tl-tag badge-yellow">退休市场</span>
+        </div>
+        <a class="tl-link" href="https://www.crweworld.com/article/news-provided-by-pr-newswire/3852929/webull-launches-mutual-funds-for-ira-investors-expanding-long-term-investing-offerings" target="_blank">↗ PR Newswire · Webull IRA共同基金发布公告</a>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot info"></div>
+        <div class="tl-date">2026-06-04（周四）— 政策利好</div>
+        <div class="tl-title">📜 美国PDT（模式日内交易）规则变更正式生效，Webull直接受益</div>
+        <div class="tl-body">
+          美国证券监管机构（SEC/FINRA）的<strong>PDT规则修订</strong>于6月4日正式生效。修订内容：提高散户日内交易账户的灵活度（具体为降低或取消对低账户资金量日内交易次数的限制）。Webull在5月Q1财报电话会上明确将此视为重要增长催化剂，预期将带动日内活跃交易用户显著增加，进而拉升交易手续费收入。此前Seeking Alpha已将Webull列为PDT规则变化最直接受益方之一。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-blue">PDT规则</span>
+          <span class="tl-tag badge-green">政策利好</span>
+        </div>
+        <a class="tl-link" href="https://seekingalpha.com/news/4596130-webull-outlines-100m-share-repurchase-as-pdt-rule-change-takes-effect-june-4" target="_blank">↗ Seeking Alpha · Webull PDT规则及回购计划</a>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:20px;">
+      <h4>🔍 可借鉴点</h4>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#0288d1;">🏦</span>
+        <span>IRA共同基金的战略意义在于<strong>覆盖用户全生命周期</strong>：从活跃散户（股票/期权交易）到退休储蓄用户（IRA/共同基金），Webull正在做与Charles Schwab/Fidelity同类型的<strong>完整理财闭环</strong>，客户黏性将大幅提升。</span>
+      </div>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#00c6a2;">📈</span>
+        <span>PDT规则变化+IRA基金，Webull本周获得<strong>一个政策催化剂+一个产品扩展</strong>的双重利好。无大陆监管风险使其在本轮整治周期中成为<strong>受益最少但无干扰</strong>的玩家。</span>
+      </div>
+    </div>
+
+    <details class="bg-note">
+      <summary>📌 近期重要背景（非本周内容）</summary>
+      <div class="bg-note-body">
+        <p>• <strong>5月21日</strong>：Webull Q1 2026财报发布：营收$1.599亿（+36% YoY），连续第6季度调整后盈利，客户资产$240亿（+90% YoY）</p>
+        <p>• <strong>$1亿股份回购计划</strong>：于Q1财报电话会宣布，正在执行中</p>
+        <p>• <strong>5月19日</strong>：Vega Analyst AI分析工具正式上线，面向全体用户开放</p>
+        <p>• <strong>欧洲扩张</strong>：Webull已覆盖欧洲多国市场，继续拓展中</p>
+        <p>• <strong>全球用户：超2700万</strong>注册用户，覆盖16个市场</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===== 华盛通 ===== -->
+  <div class="sec-title">05 · 华盛通（华盛证券）</div>
+  <div class="platform-block">
+    <div class="platform-header">
+      <div class="platform-logo" style="background:linear-gradient(135deg,#c62828,#8b0000);">华</div>
+      <div class="platform-header-info">
+        <h3>华盛通 Huasheng Securities</h3>
+        <div class="sub">非上市 · 总部：中国香港 · 主力市场：港股、美股</div>
+      </div>
+      <div class="platform-stars">★★</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot warn"></div>
+        <div class="tl-date">2026-06-06（周六）— 合规重大公告</div>
+        <div class="tl-title">📣 华盛证券主动跟进：6月15日起暂停内地存量客户开仓及资金转入（未被点名亦主动整改）</div>
+        <div class="tl-body">
+          华盛证券于6月6日上午向存量客户发布通知，宣布自<strong>北京时间6月15日起</strong>进行服务调整：<br>
+          • 境内交易服务：<strong>暂停股票等所有品种的新开仓、加仓交易，仅支持卖出、平仓操作</strong><br>
+          • 境内资金划转服务：<strong>暂停资金及证券转入，转出功能保持正常</strong><br>
+          华盛证券表示，此举是为落实5月22日证监会等八部门两年集中整治要求。值得注意的是，华盛证券<strong>并未出现在5月22日证监会点名处罚名单中</strong>（仅富途/老虎/长桥三家），此次属<strong>主动合规跟进</strong>，且整改时间（6/15）比三大头部晚3天（头部为6/12），但早于一些更小型的跨境平台。这一举动受到业内关注，被视为监管整治向腰部券商全面蔓延的信号。
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag badge-yellow">主动整改</span>
+          <span class="tl-tag badge-red">境内停开</span>
+          <span class="tl-tag badge-blue">6月15日生效</span>
+        </div>
+        <div style="margin-top:6px;">
+          <a class="tl-link" href="https://www.yicai.com/news/103218389.html" target="_blank">↗ 第一财经 · 华盛证券主动跟进清理内地业务</a>
+          &nbsp;|&nbsp;
+          <a class="tl-link" href="https://finance.eastmoney.com/a/202606063762572219.html" target="_blank">↗ 东方财富 · 华盛通境内服务调整详情</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:20px;">
+      <h4>🔍 可借鉴点</h4>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#ffb84d;">⚠</span>
+        <span>华盛通「主动跟进」证明监管合规压力已<strong>从被点名头部（富途/老虎/长桥）向未被直接处罚的腰部券商传导</strong>——合规预期是关键驱动力，而非等待主动执法。</span>
+      </div>
+      <div class="insight-item">
+        <span class="insight-bullet" style="color:#00c6a2;">💡</span>
+        <span>华盛通大陆用户迁移窗口期正在收窄（6/15停开），其<strong>港股账户开立体验和香港客群留存</strong>将是接下来的核心战场。境内用户向境外账户迁移的需求将在短期内集中释放，是引流窗口期。</span>
+      </div>
+    </div>
+
+    <details class="bg-note">
+      <summary>📌 近期重要背景（非本周内容）</summary>
+      <div class="bg-note-body">
+        <p>• 华盛通<strong>未被5月22日证监会点名</strong>，无公开罚款金额，但主动选择跟进整改，表明其内部合规团队判断监管压力将延伸至全行业</p>
+        <p>• 华盛通<strong>8周年庆预计6月下旬</strong>（始于2018年成立），往年有专属活动，需关注是否仍举行及活动范围</p>
+        <p>• 期货免佣优惠延续（无变化）</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===== 综合洞察 ===== -->
+  <div class="sec-title">综合洞察</div>
+  <div class="ci-grid">
+    <div class="ci-card">
+      <h4>📡 行业信号</h4>
+      <div class="ci-item">
+        <div class="ci-num hot">1</div>
+        <div class="ci-text"><strong>合规整治进入「全面落地」阶段</strong>：本周老虎/长桥发布6/12执行公告、华盛通自发跟进（6/15），监管整治不再局限于被点名机构。行业性「大陆清场」正从政策文件转化为客户可感知的服务变更。</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-num hot">2</div>
+        <div class="ci-text"><strong>监管处罚的次生成本正在显现</strong>：老虎Q1因4亿元罚款拨备由盈转亏，同时面临美国律所集体诉讼调查，信息披露合规成本将进一步上升。</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-num">3</div>
+        <div class="ci-text"><strong>Robinhood全球化速度最快</strong>：6月1日完成WonderFi（加拿大）收购后，Robinhood已在欧洲（Bitstamp）、东南亚（印尼）、加拿大（WonderFi）三个方向同步布局，是本期全球化步伐最激进的玩家。</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-num">4</div>
+        <div class="ci-text"><strong>预测市场成为新流量工具</strong>：Robinhood世界杯预测市场上线即引发股价+5%，验证了事件驱动型合约产品的流量杠杆效应，值得港美股平台借鉴到赛事/财经事件运营中。</div>
+      </div>
+    </div>
+    <div class="ci-card">
+      <h4>🎯 优先行动建议</h4>
+      <div class="ci-item">
+        <div class="ci-num warn">A</div>
+        <div class="ci-text"><strong>大陆用户迁移窗口：立即启动</strong>。6/12（老虎/长桥）、6/15（华盛通）停止境内开仓，2-3周内是存量大陆用户寻找替代平台的窗口。应策划「港股账户转入」专项活动，针对这部分活跃用户。</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-num warn">B</div>
+        <div class="ci-text"><strong>世界杯内容运营：跟进Robinhood打法</strong>。FIFA世界杯6月11日开幕，Robinhood提前推出预测市场并引发用户兴趣。可策划「世界杯热门球队相关港美股标的」内容，蹭世界杯热度吸引用户关注金融标的。</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-num">C</div>
+        <div class="ci-text"><strong>AI Agent产品动向：密切跟进长桥CLI和Robinhood MCP</strong>。两家均在本周强化AI工具接口（RFC 3339标准化 vs MCP协议），AI Agent驱动的交易生态正在形成，应评估自身API开放能力的路线图。</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-num">D</div>
+        <div class="ci-text"><strong>Webull退休账户战略值得关注</strong>：IRA+共同基金是针对长期资金的布局，这与港美股平台的即时交易用户画像形成互补。<strong>长线投资+退休储蓄</strong>是未来获取高净值客群的关键产品方向，可列为中期调研课题。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 往期周报 -->
+  <div class="sec-title">📚 往期周报</div>
+  <div class="archive-grid">
+    <a href="竞品监控周报_第9期_20260601.html" class="archive-item">
+      <div class="archive-num">09</div>
+      <div class="archive-meta">
+        <div class="period">第 9 期</div>
+        <div class="date">2026-06-01 · 05/25-05/31</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第8期_20260525.html" class="archive-item">
+      <div class="archive-num">08</div>
+      <div class="archive-meta">
+        <div class="period">第 8 期</div>
+        <div class="date">2026-05-25 · 05/18-05/24</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第7期_20260518.html" class="archive-item">
+      <div class="archive-num">07</div>
+      <div class="archive-meta">
+        <div class="period">第 7 期</div>
+        <div class="date">2026-05-18 · 05/11-05/17</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第6期_20260511.html" class="archive-item">
+      <div class="archive-num">06</div>
+      <div class="archive-meta">
+        <div class="period">第 6 期</div>
+        <div class="date">2026-05-11 · 05/04-05/10</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第5期_20260504.html" class="archive-item">
+      <div class="archive-num">05</div>
+      <div class="archive-meta">
+        <div class="period">第 5 期</div>
+        <div class="date">2026-05-04 · 04/27-05/03</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第4期_20260427.html" class="archive-item">
+      <div class="archive-num">04</div>
+      <div class="archive-meta">
+        <div class="period">第 4 期</div>
+        <div class="date">2026-04-27 · 04/20-04/26</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第3期_20260420.html" class="archive-item">
+      <div class="archive-num">03</div>
+      <div class="archive-meta">
+        <div class="period">第 3 期</div>
+        <div class="date">2026-04-20 · 04/13-04/19</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第2期_20260413.html" class="archive-item">
+      <div class="archive-num">02</div>
+      <div class="archive-meta">
+        <div class="period">第 2 期</div>
+        <div class="date">2026-04-13 · 04/06-04/12</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+    <a href="竞品监控周报_第1期_20260410.html" class="archive-item">
+      <div class="archive-num">01</div>
+      <div class="archive-meta">
+        <div class="period">第 1 期</div>
+        <div class="date">2026-04-10 · 04/03-04/10</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- GitHub上传提醒 -->
+  <div class="upload-notice">
+    <h4>📤 GitHub 上传清单（请手动上传以下文件到 GitHub 仓库）</h4>
+    <ul>
+      <li>竞品监控周报_第10期_20260608.html（本期新文件）</li>
+      <li>index.html（已更新最新期卡片和 Archive 区）</li>
+      <li>竞品监控周报_第9期_20260601.html（往期链接已追加第10期）</li>
+      <li>竞品监控周报_第8期_20260525.html（往期链接已追加第10期）</li>
+      <li>竞品监控周报_第7期_20260518.html（往期链接已追加第10期）</li>
+      <li>竞品监控周报_第6期_20260511.html（往期链接已追加第10期）</li>
+      <li>竞品监控周报_第5期_20260504.html（往期链接已追加第10期）</li>
+      <li>竞品监控周报_第4期_20260427.html（往期链接已追加第10期）</li>
+      <li>竞品监控周报_第3期_20260420.html（往期链接已追加第10期）</li>
+      <li>竞品监控周报_第2期_20260413.html（往期链接已追加第10期）</li>
+      <li>竞品监控周报_第1期_20260410.html（往期链接已追加第10期）</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>📡 数据来源：各平台官方公告、PR Newswire、新浪财经、财联社、第一财经、Seeking Alpha、MarketBeat</p>
+    <p style="margin-top:6px;">监控周期：2026-06-01 → 2026-06-07 · 报告由 WorkBuddy 自动化生成 · 2026-06-08</p>
+  </div>
+
+</div>
+</body>
+</html>
