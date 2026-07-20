@@ -108,6 +108,8 @@
     .b-red    { background: rgba(255,107,107,.14); color: #ff8080; border: 1px solid rgba(255,107,107,.28); }
     .b-gray   { background: rgba(122,132,153,.10); color: var(--text-muted); border: 1px solid var(--border); }
     .b-purple { background: rgba(168,100,255,.14); color: #c07aff; border: 1px solid rgba(168,100,255,.28); }
+    .b-orange { background: rgba(255,165,0,.14); color: #ffb84d; border: 1px solid rgba(255,165,0,.28); }
+    .b-teal   { background: rgba(0,200,200,.14); color: #00cccc; border: 1px solid rgba(0,200,200,.28); }
     .stars { color: #ffb84d; font-size: 13px; }
 
     /* ========== PLATFORM CARD ========== */
@@ -181,6 +183,7 @@
       margin-bottom: 3px; line-height: 1.5;
     }
     .tl-desc { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+    .tl-desc code { background: rgba(79,124,255,.12); color: #7ea8ff; padding: 1px 5px; border-radius: 3px; font-size: 11px; font-family: 'Consolas','Monaco',monospace; }
     .tl-link {
       display: inline-flex; align-items: center; gap: 4px;
       font-size: 11px; font-weight: 600; color: var(--accent);
@@ -452,8 +455,9 @@
       <div class="src-item">
         <strong>🔵 长桥证券</strong>
         <span class="src-channel">官网 longbridge.com</span><br>
-        <span class="src-channel">新加坡发布会</span><br>
-        <span class="src-channel">科技/金融科技媒体</span>
+        <span class="src-channel">新加坡发布会现场</span><br>
+        <span class="src-channel">PR Newswire · finews.asia</span><br>
+        <span class="src-channel">HK01 · TechWhale · tastymoney</span>
       </div>
       <div class="src-item">
         <strong>🟠 老虎证券</strong>
@@ -503,6 +507,8 @@
       <div class="badge-row">
         <span class="badge b-purple">AI原生平台</span>
         <span class="badge b-green">4产品矩阵</span>
+        <span class="badge b-blue">MCP协议</span>
+        <span class="badge b-orange">L0-L5标准</span>
       </div>
       <div class="stars">⭐⭐⭐⭐⭐</div>
     </div>
@@ -584,17 +590,17 @@
     </div>
     <div class="p-body">
 
-      <a href="https://www.businesswire.com/news/home/20260715506891/en/" target="_blank" rel="noopener" style="text-decoration:none;">
+      <a href="https://en.prnasia.com/releases/apac/longbridge-unveils-the-world-s-first-ai-native-investing-platform-ushering-in-a-new-era-of-investing-541009.shtml" target="_blank" rel="noopener" style="text-decoration:none;">
         <div class="highlight-banner">
           <img
             src="https://longbridge.com/static/images/logo.png"
             onerror="this.parentElement.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';"
             alt="Longbridge AI Platform"
           />
-          <div class="img-caption">🤖 长桥发布全球首个 AI 原生投资平台 · 7/15-16 新加坡 · 4 产品矩阵</div>
+          <div class="img-caption">🤖 长桥发布全球首个 AI 原生投资平台 · 7/15-16 新加坡 · 4 产品矩阵 · 500人AI团队</div>
         </div>
       </a>
-      <a href="https://www.businesswire.com/news/home/20260715506891/en/" target="_blank" rel="noopener" style="text-decoration:none;">
+      <a href="https://en.prnasia.com/releases/apac/longbridge-unveils-the-world-s-first-ai-native-investing-platform-ushering-in-a-new-era-of-investing-541009.shtml" target="_blank" rel="noopener" style="text-decoration:none;">
         <div class="img-placeholder" style="display:none;">
           <div class="icon">🤖</div>
           <div>Longbridge 全球首个 AI 原生投资平台发布</div>
@@ -607,19 +613,80 @@
           <div class="tl-date">07/15</div>
           <div class="tl-dot" style="background:#c07aff"></div>
           <div class="tl-content">
-            <div class="tl-title">🤖 【本周重磅】长桥在新加坡发布全球首个 AI 原生投资平台，推出四产品矩阵</div>
-            <div class="tl-desc">7 月 15 日，长桥证券在新加坡正式对外发布全球首个 AI 原生投资平台（AI-native investing platform），并推出四款产品/组件：① Longbridge App——AI 原生投资应用；② Longbridge AI——多模态 AI 投研能力；③ Longbridge Skill——面向开发者的 Agent 能力；④ Longbridge Agent Platform——支持第三方 AI Agent 调用交易、行情与账户数据。核心设计原则为 Human-in-the-loop（人类在环），强调 AI 辅助决策而非替代人类判断。</div>
-            <a href="https://www.businesswire.com/news/home/20260715506891/en/" target="_blank" rel="noopener" class="tl-link">BusinessWire 原文</a>
-            <a href="https://www.fintechfutures.com/2026/07/longbridge-launches-ai-native-investing-platform-in-singapore/" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">FinTech Futures</a>
+            <div class="tl-title">🤖 【本周最重磅】长桥在新加坡发布全球首个 AI 原生投资平台，推出四产品矩阵</div>
+            <div class="tl-desc">
+              <b>7 月 15 日</b>，长桥集团（Longbridge Group）在新加坡正式发布全球首个 <b>AI 原生投资平台（AI-Native Investing Platform）</b>，推出四款互联产品，覆盖从市场机会发掘到投资覆盘的完整旅程：<br>
+              <b>① Longbridge App</b>——旗舰 AI 原生投资应用，围绕 <b>Catalyst（发生了什么）→ Signal（对持仓的影响）→ Plan（该做什么，生成草拟订单）→ Review（学到了什么）</b> 四环节闭环设计，支持文字、语音、图片交互。<br>
+              <b>② Longbridge AI</b>——旗舰 AI 投资智能体，主动扫描市场动态、记忆持仓与历史决策、提前一步草拟行动计划，使用越多越了解投资者偏好。遵循 <b>Human-in-the-loop</b> 原则：AI 提议，投资者决策，所有交易需投资者确认。<br>
+              <b>③ Longbridge Skill</b>——将 <b>125+ 项投资技能</b>（实时行情、基本面分析、衍生品分析、委托单草稿）原生接入 <b>ChatGPT、Claude、Gemini、Cursor</b> 等主流 AI 平台和开发工具。通过 <b>MCP（Model Context Protocol）协议</b>实现云原生接入（<code>openapi.longbridge.com/mcp</code>），一个 URL 搞定，无需下载新应用。<br>
+              <b>④ Longbridge Agent Platform</b>——开放投资 Agent 生态市场，投资者可用自然语言构建自己的投资 Agent、订阅他人策略、发布自己的 Agent 供任何 AI 发现和使用，而非汇聚为单一机构观点。<br>
+              <b>AI-Native 定义</b>：AI 重塑产品本身，而非仅优化效率。据其调研，在港、新、美三地持牌的上市零售券商中，无其他平台达到此标准。
+            </div>
+            <a href="https://en.prnasia.com/releases/apac/longbridge-unveils-the-world-s-first-ai-native-investing-platform-ushering-in-a-new-era-of-investing-541009.shtml" target="_blank" rel="noopener" class="tl-link">PR Newswire 英文</a>
+            <a href="https://www.prnewswire.com/apac/zh/news-releases/-ai---ai--302828207.html" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">PR Newswire 中文</a>
+            <a href="https://www.finews.asia/finance/44995-singapore-s-longbridge-bets-on-ai-agents-to-transform-investing" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">finews.asia</a>
+            <a href="https://www.tastymoney.hk/columns/%E9%87%8D%E9%BB%9E%E6%96%B0%E8%81%9E/105997" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">tastymoney.hk</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">07/16</div>
+          <div class="tl-dot" style="background:#c07aff"></div>
+          <div class="tl-content">
+            <div class="tl-title">🗣️ CEO 朱亮亮（Nowa Zhu）：AI 团队近 500 人，目标 100 万 AI 用户，「领先行业一年，非同时代产物」</div>
+            <div class="tl-desc">
+              <b>7 月 16 日</b>，长桥集团 CEO 兼联合创始人 <b>朱亮亮（Nowa Zhu）</b> 在发布会及接受 HK01 专访时披露：<br>
+              <b>团队与投入</b>：AI 团队已有近 <b>500 人</b>，投入「不设上限」，称「这是我们唯一认为最好的机会」。<br>
+              <b>用户目标</b>：第一个小目标 <b>100 万 AI 活跃用户</b>，第二个目标 <b>100 万订阅用户</b>。AI Agent 服务独立于持牌证券业务，以 <b>订阅制</b> 面向全球用户推广，不受证券牌照限制。<br>
+              <b>技术领先</b>：直言与富途、老虎的 AI 功能「<b>不是同一个时代的产物</b>」，友商仍停留在 AI 做新闻摘要阶段；长桥去年已具备 Skill 能力，而友商「这个星期刚刚宣布 Expert Mode 可以去使用 Skill」。<br>
+              <b>监管沟通</b>：Catalyst（信号）和 Trade Plan（计划）两大功能在香港需与监管进一步沟通。LUI 版 App 最快 <b>8 月在香港推出</b>，但信号与计划功能可能暂时隐藏。新加坡计划 Q3 推出。<br>
+              <b>全球扩张</b>：从新加坡起步，美国即将展业，预计明年底进驻 <b>超过 10 个国家</b>，积极部署日本、中东及东南亚。<br>
+              <b>盈利与上市</b>：过去两年已实现盈利，目前无融资计划，暂无明确上市时间表但「最终一定会上市」，规模已超出富途、老虎上市时「好多倍」。
+            </div>
+            <a href="https://global.hk01.com/%E4%B8%93%E9%A2%98%E4%BA%BA%E8%AE%BF/60370377/%E9%95%BF%E6%A1%A5%E6%8E%A8ai%E6%8A%95%E8%B5%84%E5%B9%B3%E5%8F%B0%E8%B0%8B%E7%99%BE%E4%B8%87%E7%94%A8%E6%88%B7-ceo-%E9%A2%86%E5%85%88%E8%A1%8C%E4%B8%9A%E4%B8%80%E5%B9%B4-%E9%9D%9E%E5%90%8C%E6%97%B6%E4%BB%A3%E4%BA%A7%E7%89%A9" target="_blank" rel="noopener" class="tl-link">HK01 专访</a>
+            <a href="https://www.163.com/game/article/DK3UFFO400318PFH_mobile.html" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">网易 777jp</a>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-date">07/16</div>
           <div class="tl-dot" style="background:#4f7cff"></div>
           <div class="tl-content">
-            <div class="tl-title">🔗 长桥 AI 平台集成 ChatGPT、Claude、Gemini 等多模型，支持自然语言交易</div>
-            <div class="tl-desc">7 月 16 日，长桥进一步披露 AI 平台技术细节：通过 MCP（Model Context Protocol）协议，Longbridge Skill 可接入 OpenAI ChatGPT、Anthropic Claude、Google Gemini 等主流大模型，实现自然语言查询行情、基本面分析、下单交易和风险管理。此举将长桥此前 CLI/MCP 布局升级为完整产品级平台。</div>
-            <a href="https://www.fintechfutures.com/2026/07/longbridge-launches-ai-native-investing-platform-in-singapore/" target="_blank" rel="noopener" class="tl-link">FinTech Futures</a>
+            <div class="tl-title">🏗️ 长桥提出 AI 投资自动化 L0-L5 标准框架，4 大基建支柱重塑投资流程</div>
+            <div class="tl-desc">
+              <b>7 月 16 日</b>，TechWhale 现场报道，朱亮亮在发布会提出类似汽车自动驾驶的 <b>AI 投资自动化分级标准</b>：<br>
+              <b>L0</b>（完全人工控制）→ <b>L1</b>（基础辅助）→ <b>L2</b>（部分自动化）→ <b>L3</b>（有条件自动化）→ <b>L4</b>（高度自动化）→ <b>L5</b>（接近完全自动化）。<br>
+              同时提出 <b>4 大技术支柱</b>：① 数据基建；② 投资方法（策略系统化）；③ 交易基建（自动化执行）；④ AI 基建（生成式 AI + 代理式 AI 整合）。<br>
+              <b>Gavin Chia</b>（东南亚 CEO）强调新加坡有 1500+ 金融科技企业，MAS 早在 2016 年建立金融科技沙盒，2025 年发布生成式 AI 与 Agentic AI 金融发展指引，监管者直接参与生态建设。<br>
+              <b>Angela Zhao</b>（美国增长主管）指出 Z 世代已视 AI 为主要投资顾问，Agent Platform 涵盖新闻收集、技术分析、投资执行与个人化建模。
+            </div>
+            <a href="https://www.techwhale.net/2026/07/16/%E6%96%B0%E5%8A%A0%E5%9D%A1%E7%9B%B4%E6%93%8A%EF%BC%9A%E9%95%B7%E6%A9%8B%E9%9B%86%E5%9C%98%E5%80%A1ai%E6%8A%95%E8%B3%87%E8%87%AA%E5%8B%95%E5%8C%96%E6%A8%99%E6%BA%96-%E6%9C%B1%E4%BA%AE%E4%BA%AE/" target="_blank" rel="noopener" class="tl-link">TechWhale 现场</a>
+            <a href="https://www.bigmedia.com.tw/article/1784257206224" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">BigMedia</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">07/16</div>
+          <div class="tl-dot" style="background:#4f7cff"></div>
+          <div class="tl-content">
+            <div class="tl-title">🔗 Longbridge Skill 通过 MCP 协议接入 ChatGPT/Claude/Gemini，云原生零摩擦</div>
+            <div class="tl-desc">
+              <b>7 月 16 日</b>，多个科技媒体报道长桥 Skill 技术架构细节。Longbridge Skill 采用 <b>MCP（Model Context Protocol）远程服务器</b> 架构，MCP 地址：<code>openapi.longbridge.com/mcp</code>。用户将此 URL 填入 Claude Desktop、Cursor、Zed 配置文件，首次使用浏览器弹出 <b>OAuth 授权</b>页面即可——无需本地软件、无需网关进程、无需 API Key 管理。同时提供 <b>CLI 模式</b>（longbridge 命令行工具）供 Claude Code、Codex、Gemini CLI 等支持 shell 执行的工具使用。<br>
+              <b>长桥 vs 富途技术路线对比</b>：长桥走 <b>云原生 MCP</b> 路线（一个 URL 搞定），富途走 <b>本地网关 OpenD</b> 路线（需安装本地软件）。长桥认为 AI Agent 的使用场景是多设备多平台随时切换，本地依赖 = 摩擦 = 流失，必须云端化。
+            </div>
+            <a href="https://longbridge.com/zh-HK/topics/39709084" target="_blank" rel="noopener" class="tl-link">长桥官方技术对比</a>
+            <a href="https://longbridge.com/zh-CN/academy/ai-investing/blog/words-in-motion-action-begun-how-intelligent-agents-are-redefining-wealth-management-100183" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">长桥 Academy</a>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">07/16</div>
+          <div class="tl-dot" style="background:#4f7cff"></div>
+          <div class="tl-content">
+            <div class="tl-title">🧪 长桥宣布计划在新加坡设立 AI Lab，与大学和行业伙伴合作</div>
+            <div class="tl-desc">
+              <b>7 月 16 日</b>，长桥在发布会上宣布计划在新加坡设立 <b>AI Lab</b>，与本地大学和行业领军企业合作，研究方向涵盖投资研究最佳实践、风险管理、人机协作及 AI 在金融领域的负责任使用。AI Lab 将创造岗位吸引顶尖 AI 人才到新加坡。CEO 朱亮亮表示这是「更长期承诺的开始，而非单一时刻」，旨在为 AI 与金融交叉领域设定行业标准。<br>
+              <b>Gavin Chia</b> 引述：「这项产品在新加坡构思、在新加坡打造。数十年来世界级金融产品大多诞生于纽约与伦敦，我们相信下一代世界级金融产品可以诞生于亚洲，也服务全球。Longbridge AI 正是这个愿景的第一步。」
+            </div>
+            <a href="https://www.finews.asia/finance/44995-singapore-s-longbridge-bets-on-ai-agents-to-transform-investing" target="_blank" rel="noopener" class="tl-link">finews.asia</a>
+            <a href="https://en.prnasia.com/releases/apac/longbridge-unveils-the-world-s-first-ai-native-investing-platform-ushering-in-a-new-era-of-investing-541957.shtml" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">PR Newswire</a>
+            <a href="https://www.etnet.com.hk/www/tc/news/news-article.php?category=prnewswire&newsid=5006152_XG06152_2&section=index" target="_blank" rel="noopener" class="tl-link" style="margin-left:6px;">ETNet 经济通</a>
           </div>
         </div>
       </div>
@@ -628,13 +695,16 @@
       <div class="bg-section">
         <h4>📋 近期重要背景（非本周，但影响本周判断）</h4>
         <div class="bg-item">
-          <span class="bg-date">06/12</span>🚨 长桥与老虎/富途同步执行「只出不进」
+          <span class="bg-date">06/12</span>🚨 长桥与老虎/富途同步执行「只出不进」——在此监管高压下，长桥选择以 AI 原生平台作为战略突围方向
         </div>
         <div class="bg-item">
-          <span class="bg-date">06/上旬</span>🔧 长桥 CLI 6月累计发布 5 个版本，监管高压下技术迭代最密集
+          <span class="bg-date">06/上旬</span>🔧 长桥 CLI 6月累计发布 5 个版本，监管高压下技术迭代最密集——为此次 AI 平台发布奠定基础
         </div>
         <div class="bg-item">
-          <span class="bg-date">05/22</span>💥 CSRC 八部门联合公告：对长桥立案调查并行政处罚
+          <span class="bg-date">05/22</span>💥 CSRC 八部门联合公告：对长桥立案调查并行政处罚——倒逼长桥将重心转向新加坡和海外市场
+        </div>
+        <div class="bg-item">
+          <span class="bg-date">持续</span>🏬 长桥在港实体店扩张不受监管影响：尖沙咀（3年前）→ 荃湾（7月开业）→ 旺角（年底前）→ 铜锣湾 7,300呎旗舰店（明年初），CEO 称要打造「香港 Times Square」
         </div>
       </div>
 
@@ -642,15 +712,27 @@
         <h4>💡 可借鉴点</h4>
         <div class="ins-item">
           <span class="ins-tag badge b-purple">AI 原生平台</span>
-          <span class="ins-text">长桥在「只出不进」监管高压下，选择以「AI 原生投资平台」作为战略突围方向——从单一交易工具升级为 AI 投资操作系统。四产品矩阵（App/AI/Skill/Agent Platform）分别覆盖 C 端、AI 能力、开发者和第三方 Agent，形成完整生态</span>
+          <span class="ins-text">长桥在「只出不进」监管高压下，选择以「AI 原生投资平台」作为战略突围方向——从单一交易工具升级为 AI 投资操作系统。四产品矩阵（App/AI/Skill/Agent Platform）分别覆盖 C 端、AI 能力、开发者和第三方 Agent，形成完整生态闭环。CEO 称「领先行业一年，非同时时代产物」</span>
         </div>
         <div class="ins-item">
           <span class="ins-tag badge b-green">Human-in-the-loop</span>
-          <span class="ins-text">长桥强调「人类在环」设计原则，这对金融场景的 AI 落地至关重要——在监管敏感领域，AI 辅助决策而非自动决策，更易获得合规认可和用户信任</span>
+          <span class="ins-text">长桥强调「人类在环」设计原则，AI 提议、投资者决策、所有交易需确认。这对金融场景的 AI 落地至关重要——在监管敏感领域，AI 辅助决策而非自动决策，更易获得合规认可和用户信任</span>
         </div>
         <div class="ins-item">
-          <span class="ins-tag badge b-blue">MCP 生态卡位</span>
-          <span class="ins-text">长桥通过 MCP 协议接入 ChatGPT/Claude/Gemini，与 Robinhood Agentic Trading、Webull MCP AI 服务器、IBKR AI 集成形成行业共识。券商行业正在从「API 经济」向「MCP 协议」迁移</span>
+          <span class="ins-tag badge b-blue">MCP 云原生卡位</span>
+          <span class="ins-text">Longbridge Skill 通过 MCP 协议（<code>openapi.longbridge.com/mcp</code>）接入 ChatGPT/Claude/Gemini，采用云原生 OAuth 授权——一个 URL 搞定，零本地依赖。与富途本地 OpenD 网关路线形成鲜明对比，券商行业正从「API 经济」向「MCP 协议」迁移</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag badge b-orange">L0-L5 自动化标准</span>
+          <span class="ins-text">长桥提出类似汽车自动驾驶的 AI 投资自动化 L0-L5 分级框架，这是行业首个系统化定义 AI 投资自动化程度的尝试。配合 4 大基建支柱（数据/投资方法/交易基建/AI 基建），为券商 AI 产品演进提供了清晰路线图</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag badge b-red">订阅制独立变现</span>
+          <span class="ins-text">AI Agent 服务独立于持牌证券业务，以订阅制面向全球用户推广——不受证券牌照限制。目标 100 万 AI 活跃用户 + 100 万订阅用户。这开创了券商「AI 服务脱牌变现」的新商业模式，将 AI 从成本中心变为收入中心</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag badge b-teal">亚洲创新走向全球</span>
+          <span class="ins-text">长桥选择新加坡作为 AI 平台首发地和全球研发基地（「Made in Singapore: designed here, built here」），计划设立 AI Lab 吸引顶尖人才。CEO 明确表示「下一代世界级金融产品可以诞生于亚洲」——中资跨境券商首次以 AI 原生平台实现从「跟随者」到「标准制定者」的角色转换</span>
         </div>
       </div>
     </div>
@@ -1128,7 +1210,7 @@
       <div class="insight-card">
         <div class="num">01</div>
         <div class="topic">长桥发布全球首个 AI 原生投资平台：从交易工具到 AI 投资操作系统</div>
-        <div class="desc">长桥在新加坡发布 AI 原生投资平台，推出 App/AI/Skill/Agent Platform 四产品矩阵，集成 ChatGPT/Claude/Gemini，强调 Human-in-the-loop。这是中资跨境券商在「只出不进」后首次以 AI 原生平台实现战略突围，标志着券商产品形态从「交易终端」向「AI 投资操作系统」跃迁。</div>
+        <div class="desc">长桥在新加坡发布 AI 原生投资平台，推出 App/AI/Skill/Agent Platform 四产品矩阵，集成 ChatGPT/Claude/Gemini（MCP 协议），强调 Human-in-the-loop。CEO 朱亮亮称 AI 团队近 500 人，目标 100 万 AI 用户，以订阅制独立变现。同时提出 AI 投资自动化 L0-L5 分级标准和 4 大基建支柱，计划设立新加坡 AI Lab。这是中资跨境券商在「只出不进」后首次以 AI 原生平台实现战略突围，标志券商产品形态从「交易终端」向「AI 投资操作系统」跃迁。</div>
       </div>
       <div class="insight-card">
         <div class="num">02</div>
@@ -1167,7 +1249,7 @@
         <div class="trend-num">1</div>
         <div class="trend-content">
           <strong>深度研究长桥 AI 原生投资平台的四产品矩阵和 MCP 集成方式</strong>
-          <p>长桥发布全球首个 AI 原生投资平台，需重点研究：① Longbridge App/AI/Skill/Agent Platform 的具体分工 ② 通过 MCP 接入 ChatGPT/Claude/Gemini 的技术实现 ③ Human-in-the-loop 在交易合规中的设计。评估其对富途牛牛/老虎的潜在竞争威胁。</p>
+          <p>长桥发布全球首个 AI 原生投资平台，需重点研究：① Longbridge App 的 Catalyst-Signal-Plan-Review 闭环 ② Longbridge Skill 通过 MCP（<code>openapi.longbridge.com/mcp</code>）云原生接入 ChatGPT/Claude/Gemini 的技术实现 ③ Longbridge Agent Platform 的开放 Agent 生态 ④ CEO 朱亮亮提出的 L0-L5 AI 投资自动化标准 ⑤ 订阅制独立变现模式对券商商业模式的影响 ⑥ 8 月香港 LUI 版 App 上线计划及监管沟通进展。评估其对富途牛牛/老虎的潜在竞争威胁。</p>
         </div>
       </li>
       <li>
