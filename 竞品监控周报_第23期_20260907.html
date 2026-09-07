@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>港美股竞品平台动态监控周报 · 第23期</title>
+  <style>
+    :root {
+      --bg: #0c0f1a;
+      --card: #141824;
+      --card2: #1a1f2e;
+      --border: #252d45;
+      --border-hover: rgba(79,124,255,.35);
+      --accent: #4f7cff;
+      --accent2: #00c6a2;
+      --accent3: #ff6b6b;
+      --accent4: #ffb84d;
+      --text: #dde3f0;
+      --text-muted: #7a8499;
+      --text-dim: #4a5270;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.75;
+    }
+    .header {
+      background: linear-gradient(160deg, #080d2b 0%, #0e1842 40%, #0a1230 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 0 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% -10%, rgba(79,124,255,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 20% at 20% 100%, rgba(0,198,162,.08) 0%, transparent 60%);
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(79,124,255,.18);
+      border: 1px solid rgba(79,124,255,.35);
+      color: #7ea8ff;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 18px;
+    }
+    .header-badge::before { content: '●'; font-size: 8px; color: #00c6a2; }
+    .header h1 {
+      font-size: 30px; font-weight: 800; color: #fff;
+      margin-bottom: 10px; letter-spacing: -0.5px;
+    }
+    .header h1 span { color: #7ea8ff; }
+    .header .meta-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; flex-wrap: wrap;
+      color: var(--text-muted); font-size: 12px;
+    }
+    .meta-sep { color: var(--text-dim); }
+    .meta-hl { color: #7ea8ff; font-weight: 600; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 36px 24px 48px; }
+    .sec-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      margin: 36px 0 18px;
+    }
+    .sec-title::after { content:''; flex:1; height:1px; background: var(--border); }
+    .ov-grid {
+      display: grid; grid-template-columns: repeat(7,1fr); gap: 12px;
+      margin-bottom: 8px;
+    }
+    .ov-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 14px; text-align: center;
+      transition: border-color .2s, box-shadow .2s; cursor: default;
+    }
+    .ov-card:hover { border-color: var(--border-hover); box-shadow: 0 0 20px rgba(79,124,255,.06); }
+    .ov-logo {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900; color: #fff;
+      margin: 0 auto 10px;
+    }
+    .ov-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .badge-row { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .badge {
+      font-size: 10px; font-weight: 700; padding: 3px 7px;
+      border-radius: 5px; letter-spacing: .4px; white-space: nowrap;
+    }
+    .b-green  { background: rgba(0,198,162,.14); color: #00c6a2; border: 1px solid rgba(0,198,162,.28); }
+    .b-blue   { background: rgba(79,124,255,.14); color: #7ea8ff; border: 1px solid rgba(79,124,255,.28); }
+    .b-yellow { background: rgba(255,184,77,.14);  color: #ffb84d; border: 1px solid rgba(255,184,77,.28); }
+    .b-red    { background: rgba(255,107,107,.14); color: #ff8080; border: 1px solid rgba(255,107,107,.28); }
+    .b-gray   { background: rgba(122,132,153,.10); color: var(--text-muted); border: 1px solid var(--border); }
+    .b-purple { background: rgba(168,100,255,.14); color: #c07aff; border: 1px solid rgba(168,100,255,.28); }
+    .b-orange { background: rgba(255,165,0,.14); color: #ffb84d; border: 1px solid rgba(255,165,0,.28); }
+    .b-teal   { background: rgba(0,200,200,.14); color: #00cccc; border: 1px solid rgba(0,200,200,.28); }
+    .b-pink   { background: rgba(255,105,180,.14); color: #ff80c0; border: 1px solid rgba(255,105,180,.28); }
+    .stars { color: #ffb84d; font-size: 13px; }
+    .p-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 18px; margin-bottom: 22px; overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .p-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 32px rgba(79,124,255,.07); }
+    .p-header {
+      display: flex; align-items: center;
+      padding: 22px 26px 18px; gap: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .p-logo {
+      width: 50px; height: 50px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: #fff; flex-shrink: 0;
+    }
+    .logo-lb    { background: linear-gradient(135deg,#1130a0,#2d5be3); }
+    .logo-tiger { background: linear-gradient(135deg,#d95a00,#ff9330); }
+    .logo-hs    { background: linear-gradient(135deg,#9b1b1b,#d44040); }
+    .logo-wn    { background: linear-gradient(135deg,#0f5fa8,#14a89c); }
+    .logo-rh    { background: linear-gradient(135deg,#007a00,#00bb00); }
+    .logo-schwab { background: linear-gradient(135deg,#0a4b9e,#2b8ce0); }
+    .logo-ibkr   { background: linear-gradient(135deg,#b91424,#e84a5f); }
+    .p-info { flex: 1; min-width: 0; }
+    .p-info h2 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+    .p-meta { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+    .meta-tag {
+      font-size: 11px; color: var(--text-muted);
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      padding: 2px 8px; border-radius: 5px;
+    }
+    .src-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10.5px; font-weight: 600;
+      background: rgba(0,198,162,.10); color: #00c6a2;
+      border: 1px solid rgba(0,198,162,.25);
+      padding: 2px 9px; border-radius: 5px;
+    }
+    .src-tag::before { content: '📡'; font-size: 10px; }
+    .p-importance { margin-left: auto; text-align: right; flex-shrink: 0; }
+    .p-importance .label { font-size: 10px; color: var(--text-dim); margin-bottom: 3px; }
+    .p-importance .stars { font-size: 17px; }
+    .p-body { padding: 22px 26px; }
+    .timeline { margin-bottom: 18px; }
+    .tl-item {
+      display: flex; gap: 14px; padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-date {
+      flex-shrink: 0; width: 56px;
+      font-size: 11px; font-weight: 700; color: var(--text-dim);
+      padding-top: 1px;
+    }
+    .tl-dot {
+      flex-shrink: 0; width: 8px; height: 8px;
+      border-radius: 50%; margin-top: 6px;
+    }
+    .tl-content { flex: 1; min-width: 0; }
+    .tl-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      margin-bottom: 3px; line-height: 1.5;
+    }
+    .tl-desc { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+    .tl-desc code { background: rgba(79,124,255,.12); color: #7ea8ff; padding: 1px 5px; border-radius: 3px; font-size: 11px; font-family: 'Consolas','Monaco',monospace; }
+    .tl-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      text-decoration: none; margin-top: 5px;
+      border: 1px solid rgba(79,124,255,.25);
+      background: rgba(79,124,255,.08);
+      padding: 3px 9px; border-radius: 5px;
+      transition: background .15s, border-color .15s;
+    }
+    .tl-link:hover { background: rgba(79,124,255,.18); border-color: rgba(79,124,255,.45); color: #9dc0ff; }
+    .tl-link::before { content: '↗'; font-size: 11px; }
+    .insights-block {
+      background: linear-gradient(135deg,rgba(79,124,255,.05),rgba(0,198,162,.05));
+      border: 1px solid rgba(79,124,255,.18);
+      border-radius: 12px; padding: 16px;
+    }
+    .insights-block h4 {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--accent4);
+      margin-bottom: 11px; display: flex; align-items: center; gap: 6px;
+    }
+    .ins-item {
+      display: flex; align-items: flex-start; gap: 9px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .ins-item:last-child { border-bottom: none; }
+    .ins-tag {
+      flex-shrink: 0; font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 4px; margin-top: 2px;
+    }
+    .ins-text { font-size: 12px; line-height: 1.65; color: var(--text); }
+    .bg-section {
+      margin-top: 18px;
+      background: rgba(255,255,255,.025);
+      border: 1px dashed var(--border);
+      border-radius: 10px; padding: 14px 16px;
+    }
+    .bg-section h4 {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-dim);
+      margin-bottom: 9px;
+    }
+    .bg-item {
+      font-size: 12px; color: var(--text-muted);
+      padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.03);
+    }
+    .bg-item:last-child { border-bottom: none; }
+    .bg-date {
+      display: inline-block; min-width: 44px;
+      font-weight: 700; color: var(--text-dim); font-size: 11px;
+      margin-right: 8px;
+    }
+    .hl-banner {
+      display: flex; align-items: center; gap: 14px;
+      background: linear-gradient(135deg,rgba(79,124,255,.10),rgba(0,198,162,.10));
+      border: 1px solid rgba(79,124,255,.25);
+      border-radius: 12px; padding: 14px 18px;
+      margin-bottom: 18px;
+    }
+    .hl-banner-emoji {
+      font-size: 28px; flex-shrink: 0;
+      background: rgba(79,124,255,.18); width: 48px; height: 48px;
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    }
+    .hl-banner-text { flex: 1; min-width: 0; }
+    .hl-banner-text .hl-title {
+      font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 4px;
+    }
+    .hl-banner-text .hl-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .src-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 22px; margin-bottom: 8px;
+    }
+    .src-box h4 {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .src-grid {
+      display: grid; grid-template-columns: repeat(7,1fr); gap: 12px;
+    }
+    .src-item {
+      font-size: 12px; color: var(--text-muted); line-height: 1.7;
+    }
+    .src-item strong { display: block; color: #fff; font-size: 12.5px; margin-bottom: 4px; }
+    .src-channel {
+      display: inline-block; font-size: 10.5px;
+      background: rgba(255,255,255,.04);
+      padding: 1px 6px; border-radius: 3px;
+      color: var(--text-muted);
+    }
+    .insight-section {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-bottom: 8px;
+    }
+    .insight-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px;
+    }
+    .insight-block.full { grid-column: span 2; }
+    .insight-block h4 {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .insight-block h4.signals { color: var(--accent); }
+    .insight-block h4.actions { color: var(--accent2); }
+    .insight-list { list-style: none; }
+    .insight-list li {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+      font-size: 12px; line-height: 1.65;
+    }
+    .insight-list li:last-child { border-bottom: none; }
+    .ins-num {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border-radius: 50%; background: rgba(79,124,255,.18);
+      color: #7ea8ff; font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .insight-block.actions .ins-num { background: rgba(0,198,162,.18); color: #00c6a2; }
+    .archive-section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 26px; margin-top: 28px;
+    }
+    .archive-section h3 {
+      font-size: 14px; font-weight: 800; color: #fff;
+      margin-bottom: 16px;
+    }
+    .archive-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
+    }
+    .archive-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none; color: var(--text);
+      transition: all .15s;
+    }
+    .archive-item:hover {
+      background: rgba(79,124,255,.08);
+      border-color: rgba(79,124,255,.35);
+      transform: translateY(-1px);
+    }
+    .issue-badge {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center;
+      background: linear-gradient(135deg, rgba(79,124,255,.20), rgba(0,198,162,.12));
+      border: 1px solid rgba(79,124,255,.25);
+      border-radius: 8px; padding: 5px 9px; min-width: 44px;
+    }
+    .issue-badge .num {
+      font-size: 15px; font-weight: 900; color: #fff; line-height: 1;
+    }
+    .issue-badge .label {
+      font-size: 8.5px; font-weight: 700; color: var(--text-muted);
+      letter-spacing: 1px; margin-top: 2px;
+    }
+    .archive-item .info { flex: 1; min-width: 0; }
+    .archive-item .title {
+      font-size: 12px; font-weight: 600; color: var(--text);
+      margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .archive-item .date {
+      font-size: 10.5px; color: var(--text-dim); font-weight: 600;
+    }
+    .archive-item .arrow {
+      color: var(--text-dim); font-size: 14px; flex-shrink: 0;
+      transition: color .15s, transform .15s;
+    }
+    .archive-item:hover .arrow { color: var(--accent); transform: translateX(2px); }
+    .upload-list {
+      background: rgba(255,184,77,.05);
+      border: 1px solid rgba(255,184,77,.18);
+      border-radius: 12px; padding: 16px 20px;
+      margin-top: 24px;
+    }
+    .upload-list h3 {
+      font-size: 13px; font-weight: 800; color: var(--accent4);
+      margin-bottom: 10px;
+    }
+    .upload-list ul { list-style: none; padding-left: 0; }
+    .upload-list li {
+      font-size: 12px; color: var(--text); padding: 5px 0;
+      padding-left: 16px; position: relative;
+    }
+    .upload-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent2); font-weight: 800; }
+    .upload-list code {
+      background: rgba(79,124,255,.15); color: #7ea8ff;
+      padding: 1px 6px; border-radius: 3px; font-size: 11px;
+    }
+    footer {
+      text-align: center; padding: 32px 0 48px;
+      color: var(--text-muted); font-size: 12px;
+      border-top: 1px solid var(--border); margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">2026 · WEEKLY INTELLIGENCE BRIEFING</div>
+    <h1>港美股竞品平台动态监控周报 · <span>第 23 期</span></h1>
+    <div class="meta-row">
+      <span class="meta-hl">监控周期</span>
+      <span>2026-08-31</span>
+      <span class="meta-sep">→</span>
+      <span>2026-09-06</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-hl">生成于</span>
+      <span>2026-09-07</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-hl">共覆盖</span>
+      <span>7 家平台</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ======= 监控来源说明 ======= -->
+  <div class="sec-title">📡 监控来源</div>
+  <div class="src-box">
+    <h4>各平台数据采集渠道</h4>
+    <div class="src-grid">
+      <div class="src-item">
+        <strong>🔵 长桥证券</strong>
+        <span class="src-channel">官网 longbridge.com</span><br>
+        <span class="src-channel">GitHub LongPortApp</span><br>
+        <span class="src-channel">PR Newswire / Topics</span>
+      </div>
+      <div class="src-item">
+        <strong>🟠 老虎证券</strong>
+        <span class="src-channel">TigerTrade 投资者关系</span><br>
+        <span class="src-channel">EveryTicker / AAII 深度</span><br>
+        <span class="src-channel">雪球 · 财新 · 微博</span>
+      </div>
+      <div class="src-item">
+        <strong>🔴 华盛通</strong>
+        <span class="src-channel">官网 vbkr.com · vcltrade.com</span><br>
+        <span class="src-channel">HK01 · APP 今日看点</span><br>
+        <span class="src-channel">华盛号 · 7x24 快讯</span>
+      </div>
+      <div class="src-item">
+        <strong>🔵 微牛（Webull）</strong>
+        <span class="src-channel">Webull PR Newswire</span><br>
+        <span class="src-channel">webullcorp.com IR</span><br>
+        <span class="src-channel">Korea Herald · Yahoo Finance</span>
+      </div>
+      <div class="src-item">
+        <strong>🟢 Robinhood</strong>
+        <span class="src-channel">Robinhood Newsroom · Investors</span><br>
+        <span class="src-channel">PR Newswire · SEC EDGAR</span><br>
+        <span class="src-channel">The Block · Coindesk · Parameter</span>
+      </div>
+      <div class="src-item">
+        <strong>🟤 嘉信理财</strong>
+        <span class="src-channel">aboutschwab.com 投资者关系</span>
+        <span class="src-channel">Compass Point · MarketBeat</span><br>
+        <span class="src-channel">EdgeX / Blockonomi</span>
+      </div>
+      <div class="src-item">
+        <strong>🔴 盈透证券</strong>
+        <span class="src-channel">interactivebrokers.com IR</span><br>
+        <span class="src-channel">IBKR Campus · ForecastEx</span><br>
+        <span class="src-channel">Motley Fool · TickerTalks</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 总览 ======= -->
+  <div class="sec-title">📊 本周动态总览</div>
+  <div class="ov-grid">
+    <div class="ov-card">
+      <div class="ov-logo logo-rh">R</div>
+      <div class="ov-name">Robinhood</div>
+      <div class="badge-row">
+        <span class="badge b-green">HOOD +16.5%</span>
+        <span class="badge b-purple">MS PT $150</span>
+        <span class="badge b-yellow">AMC 抗议</span>
+      </div>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-logo logo-lb">长</div>
+      <div class="ov-name">长桥证券</div>
+      <div class="badge-row">
+        <span class="badge b-purple">ChatGPT Apps</span>
+        <span class="badge b-blue">Agent 平台</span>
+        <span class="badge b-green">港美新行情</span>
+      </div>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-logo logo-wn">牛</div>
+      <div class="ov-name">微牛 Webull</div>
+      <div class="badge-row">
+        <span class="badge b-purple">Vega AI</span>
+        <span class="badge b-green">9月韩股</span>
+        <span class="badge b-blue">MCP 开放</span>
+      </div>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-logo logo-ibkr">I</div>
+      <div class="ov-name">盈透证券</div>
+      <div class="badge-row">
+        <span class="badge b-green">MCP 全开放</span>
+        <span class="badge b-blue">Zero Hash</span>
+        <span class="badge b-purple">质押</span>
+      </div>
+      <div class="stars">⭐⭐⭐⭐</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-logo logo-schwab">S</div>
+      <div class="ov-name">嘉信理财</div>
+      <div class="badge-row">
+        <span class="badge b-yellow">SOL/AVAX/LINK</span>
+        <span class="badge b-blue">Cboe S&P500</span>
+        <span class="badge b-green">39.9M 账户</span>
+      </div>
+      <div class="stars">⭐⭐⭐⭐</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-logo logo-tiger">虎</div>
+      <div class="ov-name">老虎证券</div>
+      <div class="badge-row">
+        <span class="badge b-green">PT $12.13</span>
+        <span class="badge b-yellow">P/E 5.5</span>
+        <span class="badge b-red">YTD -47%</span>
+      </div>
+      <div class="stars">⭐⭐⭐</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-logo logo-hs">华</div>
+      <div class="ov-name">华盛通</div>
+      <div class="badge-row">
+        <span class="badge b-gray">连续12周</span>
+        <span class="badge b-gray">银债 9/4 截止</span>
+      </div>
+      <div class="stars">⭐⭐</div>
+    </div>
+  </div>
+
+  <!-- ======= Robinhood ======= -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-rh">R</div>
+      <div class="p-info">
+        <h2>Robinhood Markets（HOOD）</h2>
+        <div class="p-meta">
+          <span class="src-tag">Robinhood Newsroom</span>
+          <span class="src-tag">Gate.io · 网易格隆汇</span>
+          <span class="meta-tag">HOOD +16.5% 至 $124.72</span>
+          <span class="meta-tag">市值 ~$1121 亿</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本周重要度</div>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="hl-banner">
+        <div class="hl-banner-emoji">🚀</div>
+        <div class="hl-banner-text">
+          <div class="hl-title">本周最重磅：HOOD 单日 +16.5%——华尔街 4 日内 4 家机构密集上调评级</div>
+          <div class="hl-desc">9/4 HOOD 收报 $124.72（+16.57%），盘中触及 $124.88，自 9/1 起连续多日走强，市值攀升至约 $1,121 亿。核心催化：①摩根士丹利 9/2 上调「持股观望」→「增持」，PT 从 $124 → $150；②Piper Sandler 9/3 PT $135 → $145；③加拿大丰业银行启动覆盖（板块跑赢）；④Bernstein 重申 $160。事件合约收入已超股票+加密总和。</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">9/4</span>
+          <span class="tl-dot" style="background: #ffb84d;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📈 HOOD 单日 +16.57% 至 $124.72，市值 ~$1,121 亿</div>
+            <div class="tl-desc">9/4 周四美股，Robinhood 大涨 16.6% 成为标普 500 当天表现最好的股票。一边是 BTC 重回 8 万美元 + SEC 主席推进 CLARITY Act；另一边是旗下 Prediction Markets 交易所 Rothera 拿到美式足球合约监管绿灯，NFL 与大学橄榄球赛季开打。Piper Sandler 进一步预测：2026 年 9-12 月期间用户可能交易约 297 亿份事件合约、产生约 3.2 亿美元收入。
+              <a class="tl-link" href="https://www.gate.com/zh/blog/hood-stock-surges-16-5-in-a-single-day-what-factors-are-driving-robinhoods-stock-rally" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/2</span>
+          <span class="tl-dot" style="background: #00c6a2;"></span>
+          <div class="tl-content">
+            <div class="tl-title">💼 摩根士丹利 PT $124 → $150，盈利预测上调 12-15%</div>
+            <div class="tl-desc">9/2 Morgan Stanley 将评级从「持股观望」上调至「增持」，目标价从 $124 大幅上调至 $150。分析师 Michael Cyprys 在报告中指出，Robinhood 不断扩大产品组合正在改善现有客户群经济效益，并将 2026-2028 年盈利预测上调 12-15%。Bernstein 重申 $160 目标价。
+              <a class="tl-link" href="https://www.gate.com/zh/blog/hood-stock-surges-16-5-in-a-single-day-what-factors-are-driving-robinhoods-stock-rally" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/3</span>
+          <span class="tl-dot" style="background: #4f7cff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📊 Piper Sandler PT $135 → $145：预测市场为「估值重构核心变量」</div>
+            <div class="tl-desc">Piper Sandler 9/3 将目标价从 $135 上调至 $145，维持「增持」评级。该机构预计，随着北美足球赛季开启，Robinhood 预测市场收入可能出现大幅增长。关键数据：约 2,800 万资金账户中，仅不到 200 万用户（约 7%）使用过事件合约——但这 7% 用户在 Q2 贡献了 1.56 亿美元事件合约收入，超过同期股票交易收入+加密交易收入之和。
+              <a class="tl-link" href="https://www.gate.com/zh/blog/hood-stock-surges-16-5-in-a-single-day-what-factors-are-driving-robinhoods-stock-rally" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/2</span>
+          <span class="tl-dot" style="background: #c07aff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🏛️ SEC 主席 Atkins：参议院 9/15 对 CLARITY 进行程序性投票</div>
+            <div class="tl-desc">9/2 SEC 主席 Paul Atkins 公开表示，参议院预计 9/15 对 CLARITY Act 进行程序性投票，希望法案最终顺利送到 Trump 桌上。两周前 Trump 刚在白宫把 Robinhood、Coinbase、Kraken 等加密公司高管叫到一起，公开催国会加快进度；规则越清楚，Robinhood 敢摆上货架的 SKU 越多——每多一个就多一个交易场景、一次收费机会。
+              <a class="tl-link" href="https://www.163.com/dy/article/L65CJA3P05198ETO.html" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/4</span>
+          <span class="tl-dot" style="background: #ff80c0;"></span>
+          <div class="tl-content">
+            <div class="tl-title">⚖️ AMC CEO 公开抗议 Robinhood AMC Token，要求停止交易</div>
+            <div class="tl-desc">9/4 AMC Entertainment CEO Adam Aron 公开要求 Robinhood 立即停止 AMC 关联 Token 交易，威胁向 SEC 投诉，称这些产品为「合成股票」（synthetic equity）。Robinhood 首席法务官、前 SEC 委员 Dan Gallagher 强硬拒绝：「我们知道一点美国证券法，不会 DECIST，派你的律师来，我们来教育他们。」HOOD 当日盘后股价跌约 3%，但事件合约业务不受影响。Robinhood Chain 9/1 网络收入 $3.8M，位列所有区块链网络第一。
+              <a class="tl-link" href="https://parameter.io/robinhood-hood-stock-ceo-defies-amcs-demand-to-halt-token-trading" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="insights-block">
+        <h4>📡 本周关键信号</h4>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(192,122,255,.15); color: #c07aff;">估值重构</span>
+          <span class="ins-text"><strong>「7% 用户贡献 Q2 营收 $1.56 亿」= 预测市场成为「高质量低渗透」的金矿</strong>——事件合约从体育/政治/加密扩展至 NFL 合约 + 宏观对冲 + 加密估值修复，渗透率每提升 1 个百分点对应 ~$2000 万增量收入；HOOD 已成为「RWA + 事件型金融 + 加密合规」三轴叙事标杆。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(255,184,77,.15); color: #ffb84d;">CLARITY</span>
+          <span class="ins-text"><strong>9/15 CLARITY 参议院程序性投票 = 加密合规扩张「最终落地窗口」</strong>——若法案 Q4 通过，HOOD/COIN/SCHW 已吃下先期红利；中资券商加密业务面临被动合规跟进，预计催生 9 月新增合规岗位招聘潮。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(255,107,107,.15); color: #ff8080;">法律风险</span>
+          <span class="ins-text"><strong>AMC 公开抗议 + Robinhood 强硬拒绝 = Tokenized 股票市场首次「高知名度法律威胁」</strong>——RWA.xyz 数据 9/4 显示代币化股票市场达 ~$2.91B（环比 +17.5%）；HOOD 在 Jersey 子公司发行的 ERC-20 债务证券结构能否承受 SEC 正式审查，将决定 RWA 行业走向。</span>
+        </div>
+      </div>
+      <div class="bg-section">
+        <h4>📋 近期重要背景（已超出本周时间窗口，供持续参考）</h4>
+        <div class="bg-item"><span class="bg-date">8/27</span>Arcus pToken 协议登陆 Robinhood Chain，SPY/QQQ/MAG7 代币化 50% LTV。</div>
+        <div class="bg-item"><span class="bg-date">8/18</span>Agentic Trading 全行业首发——AI Agents 通过 Robinhood MCP server 在「隔离账户」真实下单。</div>
+        <div class="bg-item"><span class="bg-date">8/13</span>Robinhood Ventures（RVII）纽交所 IPO $225.5M 募资完成，"PE 基金→公开市场"产品范式跃迁。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 长桥证券 ======= -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-lb">长</div>
+      <div class="p-info">
+        <h2>长桥证券（Longbridge / LongPort）</h2>
+        <div class="p-meta">
+          <span class="src-tag">Longbridge 官网</span>
+          <span class="src-tag">PR Newswire · web.lbkrs.com</span>
+          <span class="meta-tag">LongbridgeAI Agent Platform</span>
+          <span class="meta-tag">Claude 宕机 3 小时</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本周重要度</div>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="hl-banner">
+        <div class="hl-banner-emoji">🤖</div>
+        <div class="hl-banner-text">
+          <div class="hl-title">本周最重磅：长桥 LongbridgeAI Agent Platform 上线——"AI 代理"从工具升级为平台</div>
+          <div class="hl-desc">本周长桥推出 LongbridgeAI Agent Platform——自然语言描述需求即可自动构建专属 AI Agent，覆盖港美 A 韩新加坡五地行情数据 + 账户交易；同步在 Claude、ChatGPT Apps 中上架完整 Plugin/Connector 工具链（140+ 工具）。这是「8/24 双 AI 入口」之后的「AI 生态闭环」关键转折——长桥开始把"AI 投顾"做成"AI 平台"。</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">9/2-10</span>
+          <span class="tl-dot" style="background: #ffb84d;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🚀 【最重磅】LongbridgeAI Agent Platform 正式开放</div>
+            <div class="tl-desc">长桥推出原生 AI Agent 创建平台 LongbridgeAI Agent Platform——用户用自然语言描述需求，平台自动构建专属 AI Agent，覆盖港美 A 韩新加坡五地行情 + 账户交易；面向初级投资者友好，"describe what you need in plain language, and it builds your own AI Agent automatically"；与 8/24 ChatGPT/Claude 双接入形成"AI 入口 + AI 平台"双层栈。
+              <a class="tl-link" href="https://web.lbkrs.com/en/collections/200444/" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/4</span>
+          <span class="tl-dot" style="background: #c07aff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📦 ChatGPT Apps 目录正式收录 Longbridge Plugin</div>
+            <div class="tl-desc">长桥本周正式登陆 ChatGPT Apps 目录——任何 ChatGPT 用户在对话中搜索「longbridge」即可一键安装并连接个人 Longbridge 账户，将港股、美股、新加坡股票即时数据 + 个人持仓带进 ChatGPT 对话；此前 ChatGPT 单独使用时无法读取即时行情与个人持仓，接入后这两个缺口被填补。同期 OpenAI 在 7/9 将原有 App 目录整合至新 Plugin 目录。
+              <a class="tl-link" href="https://longbridge.com/zh-HK/academy/ai-investing/blog/longbridge-is-now-live-on-chatgpt-apps-100548" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">8/24</span>
+          <span class="tl-dot" style="background: #ff8080;"></span>
+          <div class="tl-content">
+            <div class="tl-title">⚠️ Claude 全球宕机 3 小时 24 分——长桥 Connector 同步受影响</div>
+            <div class="tl-desc">8/24 Longbridge 登陆 ChatGPT + Claude 同日，Anthropic Claude 出现 5:06-8:30 UTC 全球宕机（3h24m），影响 Claude Mythos 5/Opus 5/Opus 4.8/Fable 5 全模型；claude.ai/API/Claude Code/Cowork 全部瘫痪，仅 Console/Government 不受影响。Semalt 指出 Longbridge「平台依赖风险」——Claude 用户当日无法访问个人持仓或实时市场数据，是 AI 原生券商的早期压力测试。
+              <a class="tl-link" href="https://www.avtobot.com.ua/?live-blog-31746037-2026-08-26-semalt-longbridge-s-ai-plugin-strategy-exposes-fragility-of-platform-dependent" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/2-10</span>
+          <span class="tl-dot" style="background: #00c6a2;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🎯 Skill 工坊「突破异动雷达」活动：赠送 288 任务币 + AI Pro 权益卡</div>
+            <div class="tl-desc">长桥 Skill 工坊推出「美股港股异动雷达」——浏览器一键打开异动信号扫描；参与即送 288 任务币，另从有效参与者中随机抽 1 位送价值 148 HKD 的 AI 专享 Pro 权益卡。活动时间至 2026/9/10 19:00，活动奖励于结束后 15 个工作日内发放；本工具仅供研究与教育用途，不构成投资建议。
+              <a class="tl-link" href="https://longbridge.com/quote/AAPL260603C315000.US/topics/43731209" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #4f7cff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📊 CLI v0.29.x：macrodata 命令接入 600+ 宏观指标</div>
+            <div class="tl-desc">长桥 CLI 新增 <code>macrodata</code> 命令——600+ 宏观指标覆盖 6 大市场，一单读 CPI、PMI、利率走势判断股票顺逆风；20+ 新 CLI 命令覆盖 IPO 认购、三大报表、估值分位、卖方目标价时间线；MCP 同时支持 Claude、Cursor、Codex 直接调用。
+              <a class="tl-link" href="https://web.lbkrs.com/en/collections/200444/" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="insights-block">
+        <h4>📡 本周关键信号</h4>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(192,122,255,.15); color: #c07aff;">AI 平台</span>
+          <span class="ins-text"><strong>「Agent Platform + ChatGPT Apps + Claude Connector」= 长桥把 AI 投顾从「功能」升级为「生态」</strong>——从「用户用 AI」到「用户自建 AI」再到「AI 在 ChatGPT/Claude 内被调用」三层栈闭环；这是中资背景金融科技公司首次建立完整 AI 原生生态。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(255,107,107,.15); color: #ff8080;">平台风险</span>
+          <span class="ins-text"><strong>Claude 8/24 宕机 3h24m = AI 原生券商「单一故障点」首次公开暴露</strong>——长桥 Connector 用户当日无法访问个人持仓或实时数据；与传统券商的多服务器冗余架构相比，AI 平台依赖第三方大模型基础设施是行业结构性风险，需评估本地化缓存 + 备选 AI 通道方案。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(0,198,162,.15); color: #00c6a2;">国际化</span>
+          <span class="ins-text"><strong>「macrodata 600+ 指标 + 6 大市场」= 长桥 CLI 已经形成「全球宏观研究工具」标准配置</strong>——港美 A 韩新五地行情 + 6 大市场宏观指标 = 中资券商最完整数据栈；这与 PR Newswire 同步发布的 SBR 2026「FinTech Excellence Awards」提名形成"产品 + 品牌"双轮国际化。</span>
+        </div>
+      </div>
+      <div class="bg-section">
+        <h4>📋 近期重要背景（已超出本周时间窗口，供持续参考）</h4>
+        <div class="bg-item"><span class="bg-date">8/24</span>长桥 Plugin 登陆 ChatGPT + Connector 登陆 Claude（全球首家 AI 原生券商）。</div>
+        <div class="bg-item"><span class="bg-date">8/19</span>LongBridge CLI v0.28.0 发布，LongbridgeAI 模块正式进入终端。</div>
+        <div class="bg-item"><span class="bg-date">7/25</span>新加坡合资公司正式注册（与本地家族办公室合作）。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Webull ======= -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-wn">牛</div>
+      <div class="p-info">
+        <h2>Webull Corporation（BULL）</h2>
+        <div class="p-meta">
+          <span class="src-tag">Webull IR</span>
+          <span class="src-tag">Korea Herald · HK01</span>
+          <span class="meta-tag">Vega AI 港版</span>
+          <span class="meta-tag">9 月上线韩国股票交易</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本周重要度</div>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="hl-banner">
+        <div class="hl-banner-emoji">🇭🇰</div>
+        <div class="hl-banner-text">
+          <div class="hl-title">本周最重磅：Webull HK Vega AI 港版正式发布 + 9 月上线韩国股票交易</div>
+          <div class="hl-desc">8/26 Webull HK 召开 Vega AI 香港发布会（160+ 人参与）——基于上期 Q2 财报披露的 48 万 Vega 活跃用户基础，正式发布面向香港投资者的 Vega AI 港版（廣東話語音對答）。同场宣布：①9 月正式上线韩国股票交易（受益于韩国政府近期政策放宽）②Q4 上线加拿大股票，届时将覆盖全球前十大股票市场中的 6 个；MCP 开放生态：未来 GPT/Grok 可直接调用。</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">8/26</span>
+          <span class="tl-dot" style="background: #ffb84d;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🚀 【最重磅】Webull HK 发布 Vega AI——廣東話語音 + 一鍵投資</div>
+            <div class="tl-desc">8/26 Webull HK 召开 Vega AI 香港发布会——现场 160+ 媒体/客户/合作伙伴参与。Vega AI 港版三大核心场景：①智能发掘投资机会（市场情绪标签）②智能解读企业财报（发布前共识预期、发布后利好风险）③个性化策略配置 + 一键投资。廣東話語音對答，本地化训练；安全三原则：对话加密、AI 系统与账户物理隔离、用户最终授权（不自动交易）。
+              <a class="tl-link" href="https://www.koreaherald.com/article/10853292" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">8/26</span>
+          <span class="tl-dot" style="background: #00c6a2;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🌐 9 月上线韩国股票交易——覆盖全球前十大市场 6 个</div>
+            <div class="tl-desc">同场宣布：Webull HK 9 月正式上线韩国股票交易服务——得益于韩国政府近期政策放宽，Webull 凭借全球化技术网络快速完成对接。加拿大股票交易已纳入 Q4 发展路线图。届时 Webull HK 将覆盖美股/港股/A 股/日股/韩股/加拿大 6 个市场，成为 Webull 全球支持最多交易品类的子公司；Webull HK CEO 王海琛：「我们不仅是香港的券商，更是连接全球多个市场的投资平台」。
+              <a class="tl-link" href="https://ezone.hk/article/20107421/Webull-HK-%E6%8E%A8-Vega-AI-%E6%99%BA%E8%83%BD%E6%8A%95%E8%B3%87%E5%B9%B3%E5%8F%B0-%E5%BB%A3%E6%9D%B1%E8%A9%B1%E5%B0%8D%E7%AD%94%E4%B8%80%E9%8D%B5%E7%AD%96%E7%95%A5%E4%B8%8B%E5%96%AE%E5%85%BC%E8%A8%AD-MCP-%E9%96%8B%E6%94%BE%E7%94%9F%E6%85%8B%E6%9E%B6%E6%A7%8B" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">8/26</span>
+          <span class="tl-dot" style="background: #4f7cff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🤖 MCP 开放生态架构：未来 GPT/Grok 可直接调用 Webull</div>
+            <div class="tl-desc">Webull HK 公布 Vega AI 两发展方向：①深化对美股期权等主要交易产品的 AI 支援（覆盖交易前/交易期间/交易后）②构建 MCP 开放生态架构——未来用户无需理解 API 技术细节，只需在 GPT、Grok 等第三方 AI 平台搜尋 Webull 并授权连线，即可在日常对话中调用 Webull 的专业交易能力，填補從研究到執行的「最後一哩路」。
+              <a class="tl-link" href="https://www.valueai.com.hk/news/2026-08-26-webull-vega-ai-platform" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">8/26</span>
+          <span class="tl-dot" style="background: #c07aff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🎤 跨界专家研讨：「AI 颠覆投资：是助手还是主角？」</div>
+            <div class="tl-desc">同场举办跨界专家研讨会，阵容包括纳斯达克数据业务中国及新加坡地区董事总经理 Anny Liu、香港交易所市场科高级副总裁黄集恩、香港经济日报集团执行董事娄志明。讨论焦点：AI 的核心价值在于「做减法」——为投资者过滤噪声、定位为极致高效的「强大助手」，让人类专注目标定义与风险把控。
+              <a class="tl-link" href="https://global.hk01.com/article/60383858" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/4</span>
+          <span class="tl-dot" style="background: #00cccc;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📈 Solana Schwab 纳入利好 + Bitwise SOL ETF $1B+ 流入</div>
+            <div class="tl-desc">本周 Webull 与 Monark Markets SPV 持续放量——SOL 作为 Monark 接入高估值独角兽之一，受 Schwab 8/27 纳入 + Bitwise SOL ETF 9/4 流入 $1B+ 利好共振，SOL $101.68 站稳。Webull 当前估值显著低于 HOOD/SCHW/IBKR，但增长性更高（Vega AI + MCP + 6 大市场 + 拉美欧洲扩张）。
+              <a class="tl-link" href="https://passiveyieldlab.com/blog/schwab-sol-avax-link-institutional-crypto-2026" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="insights-block">
+        <h4>📡 本周关键信号</h4>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(192,122,255,.15); color: #c07aff;">AI 商业化</span>
+          <span class="ins-text"><strong>Vega AI 港版发布 = Webull AI 业务从「披露」进入「商业化」</strong>——上期 Q2 财报首次披露 48 万活跃 + 200 万月活 + 90 万订阅后，本周把「美式 AI 投顾」移植到「亚太资本市场」，与长桥 ChatGPT/Claude 双接入形成「AI 投顾 × 港股」双线竞争。廣東話本地化训练是 Webull 差异化护城河。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(0,198,162,.15); color: #00cccc;">全球化</span>
+          <span class="ins-text"><strong>「9 月韩股 + Q4 加拿大」= 6 大市场覆盖全球前十大市场 60%</strong>——Webull HK 从「亚洲券商」进化为「全球十大市场券商」；韩国政策放宽 + Webull 全球化技术网络快速完成对接，是「政策窗口 + 技术能力」双轮共振的典型案例。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(79,124,255,.15); color: #7ea8ff;">PE 民主化</span>
+          <span class="ins-text"><strong>MCP 开放 + Monark SPV + Schwab Solana 纳入 = 「散户 PE/VC 化」加速</strong>——Webull 通过 MCP 把交易能力开放给第三方 AI 平台（GPT/Grok），同时持续接入 OpenAI/Anthropic/SpaceX 等独角兽 SPV，配合 Schwab 把 Solana 接入 3900 万账户，散户高估值独角兽配置门槛从 $500 起投进一步降低。</span>
+        </div>
+      </div>
+      <div class="bg-section">
+        <h4>📋 近期重要背景（已超出本周时间窗口，供持续参考）</h4>
+        <div class="bg-item"><span class="bg-date">8/27</span>BULL 周涨 +9% 至 $9.57，Northland 上调 Q3/Q4 EPS 预估。</div>
+        <div class="bg-item"><span class="bg-date">8/19</span>Q2 2026 财报：营收 $198.8M (+51% YoY、创历史新高)，AUM $28.5B (+79%)。</div>
+        <div class="bg-item"><span class="bg-date">8/22</span>完成 Pi Securities 泰国业务收购；西班牙/阿根廷/哥伦比亚上线。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= IBKR ======= -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-ibkr">I</div>
+      <div class="p-info">
+        <h2>Interactive Brokers（IBKR）</h2>
+        <div class="p-meta">
+          <span class="src-tag">IBKR Campus</span>
+          <span class="src-tag">ForecastEx · Zero Hash</span>
+          <span class="meta-tag">MCP 全开放</span>
+          <span class="meta-tag">$92.95 +4.30%</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本周重要度</div>
+        <div class="stars">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="hl-banner">
+        <div class="hl-banner-emoji">🔗</div>
+        <div class="hl-banner-text">
+          <div class="hl-title">本周最重磅：IBKR MCP 协议全面开放——任意 AI 工具可连接客户账户</div>
+          <div class="hl-desc">本周 IBKR 宣布客户账户可连接任何支持 MCP 协议的 AI 工具——不再限于 ChatGPT/Claude/Grok 的「认证市场」，扩展至 Claude Code、Cursor、Perplexity、Windsurf、ChatGPT Codex 等全栈 MCP 兼容工具。这是大型券商首次把「AI 协议开放」做到行业标杆地位；同步披露 Zero Hash 合作（质押）+ Coinbase Derivatives 合作（永续期货）。</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #ffb84d;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🚀 【最重磅】MCP 全面开放：任意 AI 工具连接 IBKR 账户</div>
+            <div class="tl-desc">IBKR 宣布 AI 集成连接从「认证市场（ChatGPT/Claude/Grok）」扩展到任何支持 MCP 协议的 AI 工具——Claude Code、Cursor、Perplexity、Windsurf、ChatGPT Codex 等全部支持。MCP 成为连接 AI 应用与外部服务的通用标准；客户可连接任意兼容工具分析持仓、研究投资、监控风险、自然语言生成交易指令。CEO Milan Galik：「兼容性扩展是对客户开放 API 哲学的自然延伸——为客户提供使用首选 AI 应用的灵活性」。
+              <a class="tl-link" href="https://www.centralcharts.com/index.php/es/3089-interactive-brokers-gro/news/5707085-interactive-brokers-abre-la-conectividad-con-ia-a-cualquier-herramienta-basada-en-el-estndar-del-mcp" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/2</span>
+          <span class="tl-dot" style="background: #00c6a2;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📈 IBKR 收盘 $92.95（+4.30%），YTD +35.5%</div>
+            <div class="tl-desc">9/2 IBKR 收盘 $92.95（+4.30%）；市值约 $1,520 亿；PE 约 36.2；运营利润率近 87%；FCF Yield 约 11.5%。分析师共识：在「高质量复利券商」剧本下运行良好，DARTs 与 margin 持续扩张；但 7 月 secondary offering（$86.26 混合稀释股）+ 高盛从 US Director's Cut 名单移除 IBKR（替换为 VRTX），引入首次明显冷却。
+              <a class="tl-link" href="https://www.tickertalks.ai/ticker/IBKR?from=crypto-equity" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Q3 财报</span>
+          <span class="tl-dot" style="background: #4f7cff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📊 Q3 财报 10/20 发布：核心看点 DARTs + 账户增长 + 净利息收入</div>
+            <div class="tl-desc">最近季度营收 $27 亿（YoY +17%），过去四次财报均超共识 5-9%。Q3 财报（2026/10/20）核心看点：①DARTs 是否延续 20%+ 增长 ②净利息收入对利率敏感性 ③股权如何消化 $86.26 secondary offering。AI 集成 / ForecastEx / 加密 / Coinbase Derivatives 合作是新一轮增长动能。
+              <a class="tl-link" href="https://www.tickertalks.ai/ticker/IBKR?from=crypto-equity" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #c07aff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🪙 Zero Hash 合作：质押能力即将上线 + 加密业务扩展</div>
+            <div class="tl-desc">CEO Milan Galik 确认加密转账能力上线仅数周，但已开始有资金流入（主要来自美国，也包括国际）。关于未来加密产品：①持续扩展更多地区（如新加坡）②与 Zero Hash 合作推出「质押能力」——允许 PoS 加密货币持有者获得可观利息收入（staking yield）。同步扩展 Coinbase Derivatives 合作：可交易 Coinbase Derivatives Exchange 上多种加密货币期货（特别是 nano 合约 + 永续期货），永续期货「成交量非常大」。
+              <a class="tl-link" href="https://www.datainsightsmarket.com/de/companies/IBKR" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #00cccc;"></span>
+          <div class="tl-content">
+            <div class="hl-title">📈 ForecastEx 持续放量：Peterffy 称将成为「huge thing」</div>
+            <div class="hl-title">📈 ForecastEx 持续放量：Peterffy 称将成为「huge thing」</div>
+            <div class="tl-desc">Thomas Peterffy 在 Q1 财报会议披露：ForecastEx 收到的咨询越来越多，包括「之前持犹豫态度的人」也「开始有兴趣和考虑」；重申坚信这将成为「huge thing」，预测交易将非常庞大。Barclays 分析师提问机构兴趣：Peterffy 回应称「未来事件型金融将进入主流对冲组合」。与 HOOD 体育 + 政治场景形成「宏观经济对冲」差异化壁垒。
+              <a class="tl-link" href="https://www.datainsightsmarket.com/de/companies/IBKR" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="insights-block">
+        <h4>📡 本周关键信号</h4>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(255,184,77,.15); color: #ffb84d;">AI 协议开放</span>
+          <span class="ins-text"><strong>MCP 全面开放 = IBKR 成为「大型券商 AI 协议开放标杆」</strong>——区别于 HOOD Agentic Trading 仅在自家应用跑 AI、长桥 ChatGPT/Claude 双入口获客、Webull MCP 商业化，IBKR 选择「通用协议开放」路径：客户可用任意 MCP 兼容 AI 工具连接账户。这把「AI 接入」从「产品」升级为「基础设施」。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(0,198,162,.15); color: #00c6a2;">加密业务</span>
+          <span class="ins-text"><strong>Zero Hash 质押 + Coinbase Derivatives 永续期货 = 加密产品线「三层」扩张</strong>——现货（5 月 Coinbase 转账上线）+ 期货（Coinbase Derivatives 合作）+ 质押（Zero Hash 上线）= 完整加密金融产品矩阵；与 HOOD 永续合约扩展至黄金/原油/外汇/ETF 形成「机构 vs 零售」差异化。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(0,200,200,.15); color: #00cccc;">预测市场</span>
+          <span class="ins-text"><strong>ForecastEx 持续放量 + 高盛移除 = 进入「估值冷却 vs 战略加码」窗口</strong>——高盛把 IBKR 从 US Director's Cut 移除（替换为 VRTX），但 Peterffy 对 ForecastEx「huge thing」表述持续强化；机构用户在「宏观对冲」场景的需求与日俱增，预计 Q3 财报 ForecastEx 收入将首次披露。</span>
+        </div>
+      </div>
+      <div class="bg-section">
+        <h4>📋 近期重要背景（已超出本周时间窗口，供持续参考）</h4>
+        <div class="bg-item"><span class="bg-date">8/25</span>IBKR 战略入股韩国 Daol Investment & Securities（亚太股权绑定首单）。</div>
+        <div class="bg-item"><span class="bg-date">7/28</span>IBKR 开放 MCP 协议供第三方工具/AI 助手接入（Claude Code/Cursor 等）。</div>
+        <div class="bg-item"><span class="bg-date">7/16</span>ForecastEx 正式接入 IBKR 客户端，事件合约交易量 $1.6B。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 嘉信理财 ======= -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-schwab">S</div>
+      <div class="p-info">
+        <h2>Charles Schwab（嘉信理财）</h2>
+        <div class="p-meta">
+          <span class="src-tag">Schwab IR</span>
+          <span class="src-tag">EdgeX · Blockonomi</span>
+          <span class="meta-tag">SCHW 加密扩 altcoin</span>
+          <span class="meta-tag">S&P500 预测合约</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本周重要度</div>
+        <div class="stars">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="hl-banner">
+        <div class="hl-banner-emoji">🪙</div>
+        <div class="hl-banner-text">
+          <div class="hl-title">本周最重磅：Schwab Crypto 5 月上线以来首次扩展——新增 SOL/AVAX/LINK 三币种</div>
+          <div class="hl-desc">8/27 嘉信宣布 Schwab Crypto 平台扩展至 SOL/AVAX/LINK 三大 altcoin——这是 5/2026 上线 BTC/ETH 以来的首次扩展；交易手续费 0.75%/笔。同时与 Cboe Global Markets 合作开发「S&P 500 预测合约」（挂钩指数涨跌幅），与 Kalshi/Polymarket 形成「传统券商 + 主流指数」差异化；Schwab 客户资产 $13.04T、39.9M 活跃账户。</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">8/27</span>
+          <span class="tl-dot" style="background: #ffb84d;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🪙 【最重磅】Schwab Crypto 扩张：SOL/AVAX/LINK 三币种上线</div>
+            <div class="tl-desc">8/27 嘉信宣布 Schwab Crypto 正式扩展——继 BTC、ETH 之后新增 SOL（Solana）、AVAX（Avalanche）、LINK（Chainlink）三大 altcoin。手续费 0.75%/笔（高于 Coinbase maker-taker 与 Binance，但低于传统券商平均）；可在 Schwab 网页/手机 App/thinkorswim 全渠道交易。Joe Vietri（Schwab Digital Assets 负责人）：「我们深思熟虑地扩展产品线，匹配机构客户对成熟数字资产的兴趣」。
+              <a class="tl-link" href="https://pro.edgex.exchange/en-US/news/article/charles-schwab-adds-solana-avalanche-chainlink-130446d4" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">6/披露</span>
+          <span class="tl-dot" style="background: #4f7cff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📈 与 Cboe 合作「S&P 500 预测合约」——主流指数差异化</div>
+            <div class="tl-desc">华尔街日报 6 月报道：嘉信计划推出与 S&P 500 表现挂钩的预测合约——投资者可对「标普 500 收盘是否高于/低于预设阈值」建仓；这是与 Kalshi/Polymarket（体育/政治场景）的差异化，Schwab 初期聚焦「股票指数预测」。行业观察人士预计产品将在「几个月内」上线，嘉信尚未公布确切日期。
+              <a class="tl-link" href="https://pro.edgex.exchange/en-US/news/article/charles-schwab-adds-solana-avalanche-chainlink-130446d4" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">7/31</span>
+          <span class="tl-dot" style="background: #00c6a2;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🏦 客户资产 $13.04T，39.9M 活跃账户</div>
+            <div class="tl-desc">截至 2026/7/31，嘉信理财管理客户资产 $13.04 万亿，活跃经纪账户 39.9M（接近 4000 万）；这意味着新增 SOL/AVAX/LINK 直接开放给约 4000 万账户。服务覆盖美国大部分州（纽约、路易斯安那除外）；9/15 FOMC + CLARITY 法案程序性投票同日——若 Fed 加息 + 法案延期，可能短期影响 altcoin 表现。
+              <a class="tl-link" href="https://pro.edgex.exchange/en-US/news/article/charles-schwab-adds-solana-avalanche-chainlink-130446d4" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #c07aff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🛡️ 谨慎风控策略：聚焦主流 altcoin、避开 memecoin</div>
+            <div class="tl-desc">嘉信产品线扩展遵循「深思熟虑、风险优先」原则——优先选择有成熟记录 + 大型机构流动性 + 监管清晰度的资产（SOL/AVAX/LINK）；明显避开 memecoin 与低市值 token；与 Fidelity（2023 年零售加密业务先 BTC/ETH）路径一致。后续可能考虑 Polygon（MATIC）/Polkadot（DOT）等，但尚未官方公布。
+              <a class="tl-link" href="https://pro.edgex.exchange/en-US/news/article/charles-schwab-adds-solana-avalanche-chainlink-130446d4" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">10/27-29</span>
+          <span class="tl-dot" style="background: #ff80c0;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📅 IMPACT 2026 大会 4 周后召开（10/27-29 波士顿）</div>
+            <div class="tl-desc">IMPACT 2026 大会 10/27-29 在波士顿召开，主题「AI × Crypto × ETF」；预定演讲嘉宾包括 Ark Invest CEO Cathie Wood、BlackRock ETF 团队、Solana Foundation 等。距离当前 4 周倒计时，预计将公布更多 SCHW 加密 + AI + ETF 业务整合细节。
+              <a class="tl-link" href="https://www.aboutschwab.com/" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="insights-block">
+        <h4>📡 本周关键信号</h4>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(255,184,77,.15); color: #ffb84d;">加密</span>
+          <span class="ins-text"><strong>5 月上线后首次扩展 + 39.9M 账户同步开放 = 「传统券商加密转型」对标基准</strong>——嘉信延续 Fidelity 2023 年的「先 BTC/ETH 后扩展」节奏，0.75% 手续费体现「传统券商品牌溢价」；预计 Q4 单币种日均交易量将达 $80-120M；MATIC/DOT 可能成为下一波候选。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(192,122,255,.15); color: #c07aff;">预测市场</span>
+          <span class="ins-text"><strong>Cboe S&P 500 预测合约 = 嘉信切入「机构级事件型金融」窗口</strong>——区别于 HOOD（体育 + 政治 + 加密 + 宏观）、IBKR ForecastEx（宏观对冲）、Kalshi/Polymarket（体育/政治），嘉信选择「S&P 500 指数预测」作为差异化场景；与 Cboe 合作 = 复用成熟期权基础设施。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(0,198,162,.15); color: #00c6a2;">监管</span>
+          <span class="ins-text"><strong>9/15 双事件（FOMC + CLARITY 投票）= 嘉信加密业务「窗口期」</strong>——若 Fed 加息（市场定价 65-73% 概率）+ CLARITY 通过同步发生，「传统券商加密转型」估值溢价将加速兑现；若 Fed 加息但 CLARITY 延期，则短期承压。</span>
+        </div>
+      </div>
+      <div class="bg-section">
+        <h4>📋 近期重要背景（已超出本周时间窗口，供持续参考）</h4>
+        <div class="bg-item"><span class="bg-date">8/29</span>Agentic AI 覆盖新顾问 30% → 80% 年底目标。</div>
+        <div class="bg-item"><span class="bg-date">8/22</span>SCHW 收盘历史新高 $112.30；Compass Point 首次覆盖买入 PT $124.7。</div>
+        <div class="bg-item"><span class="bg-date">7/25</span>嘉信 Q2 财报：AUM $13T（创历史新高），零售客户净流入 $84B（YoY +12%）。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 老虎证券 ======= -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-tiger">虎</div>
+      <div class="p-info">
+        <h2>老虎证券（Tiger Brokers / TIGR）</h2>
+        <div class="p-meta">
+          <span class="src-tag">TigerTrade IR</span>
+          <span class="src-tag">EveryTicker · AAII</span>
+          <span class="meta-tag">TIGR $5.08 YTD -47%</span>
+          <span class="meta-tag">P/E 5.5</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本周重要度</div>
+        <div class="stars">⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="hl-banner">
+        <div class="hl-banner-emoji">📈</div>
+        <div class="hl-banner-text">
+          <div class="hl-title">本周最重磅：EveryTicker 深度报告——"老虎是 P/E 5.5 / P/B 1.02 的高质量成长股"</div>
+          <div class="hl-desc">9/5 EveryTicker 发布 UP Fintech（TIGR）深度报告：Q2 2026 营收 $182M（YoY +31.4%，创历史新高）+ GAAP 净利 $39.4M（回正）；交易于 $4.82，P/E 10.05，P/B 1.02，相对 FUTU（P/E 11.6）/IBKR（P/E 35.2）显著折价；尽管 16.7% 客户资产增长 + 31.4% 营收增长，估值却低于同行。中国大陆监管风险「已大幅释放、出走稳定」。</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">9/5</span>
+          <span class="tl-dot" style="background: #ffb84d;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🚀 【最重磅】EveryTicker 深度报告：估值便宜 + 基本面修复并行</div>
+            <div class="tl-desc">9/5 EveryTicker 深度报告：TIGR 当前 $4.82，P/E 10.05、P/B 1.02；同期 FUTU P/E 11.6、IBKR P/E 35.2。Q2 2026 营收 $182M（YoY +31.4%，创历史新高），GAAP 净利 $39.4M（回正）；证明全球业务模式可吸收中国 $60M 一次性监管罚款。9 家机构买入评级，目标价均值 $12.13（最高 $16.8，最低 $6.08）。
+              <a class="tl-link" href="https://everyticker.com/quote/TIGR/analysis/global-diversification-vs-regulatory-reality-up-fintech-s-cross-border-brokerage-tested-nasdaq-tigr" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/4</span>
+          <span class="tl-dot" style="background: #00c6a2;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📊 老虎 TIGR 收盘 $5.08（+0.2%），P/E 5.5</div>
+            <div class="tl-desc">9/4 周四收盘 $5.08（+0.2%），成交量 195.18 万股；当日区间 $5.00-$5.14；约 1.78 亿股流通。P/E 5.5（行业 median 19.8）；月度涨幅 +0.79%，9 月最高 $5.140、最低 $4.730。YTD -46.86%；近一年区间 $4.00-$13.42。
+              <a class="tl-link" href="https://www.sohu.com/a/1072076350_122123195" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #4f7cff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🌏 中国大陆监管风险「大幅释放、出走稳定」</div>
+            <div class="tl-desc">EveryTicker 报告指出：当前中国大陆零售客户已占总客户资产 <10%、占营收 15-20%（2025 年为 20-25%）；管理层表示影响已基本释放，资金流出趋稳。香港 + 新加坡持续承接增量业务——香港 + 新加坡客户资产 YoY +16.7%，可完全对冲中国暴露。零佣金压力真实存在但被对冲：Q2 现金股票 take rate 降至 3.6 bps（Q1 为 5.9 bps），但利息收入 YoY +36% + 期权交易增长抵消。
+              <a class="tl-link" href="https://everyticker.com/quote/TIGR/analysis/global-diversification-vs-regulatory-reality-up-fintech-s-cross-border-brokerage-tested-nasdaq-tigr" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #c07aff;"></span>
+          <div class="tl-content">
+            <div class="tl-title">💰 估值折价 vs 同行：FUTU P/E 11.6 / IBKR P/E 35.2</div>
+            <div class="tl-desc">同期对比：FUTU P/E 11.6（溢价反映港股本地化优势）、IBKR P/E 35.2（溢价反映机构用户 + AI 接入）；TIGR P/E 5.5 显著折价。投资论点核心：①香港 + 新加坡能否维持高资产增长率完全对冲中国暴露 ②获客成本 $450-550、回收期可接受的前提下维持「质量优先」获客策略。
+              <a class="tl-link" href="https://webmaster@www.aaii.com/investingideas/article/359240-why-up-fintech-holding-limited8217s-tigr-stock-is-up-518" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #ff80c0;"></span>
+          <div class="tl-content">
+            <div class="tl-title">🪙 TigerAI 持续运营 + 香港证监会 BMU940 牌照稳定</div>
+            <div class="tl-desc">老虎证券（香港）环球有限公司为香港证监会持牌法团（中央编号 BMU940），持有第 1/2/4/5/9 类牌照，受《证券及期货条例》监管。TigerAI 持续运营：研究工具包括 TigerAI、选股器、技术分析、财报、即时行情与新闻等；TigerAI 只供研究参考，不构成投资建议。多市场支持：港股 + 美股 + 北向股票通 + 新加坡。
+              <a class="tl-link" href="https://www.moneyhero.com.hk/zh/investment/provider/tiger-brokers" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="insights-block">
+        <h4>📡 本周关键信号</h4>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(0,198,162,.15); color: #00c6a2;">估值修复</span>
+          <span class="ins-text"><strong>P/E 5.5 / P/B 1.02 + 9 家机构买入 PT $12.13 = 「便宜筹码」窗口</strong>——相对 FUTU / IBKR 显著折价；但 Rosen 集体诉讼仍未最终结果，9 月是关键观察窗口。投资论点核心：能否维持高资产增长率完全对冲中国暴露。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(255,184,77,.15); color: #ffb84d;">监管</span>
+          <span class="ins-text"><strong>中国大陆风险已释放 + 香港证监会牌照稳定 = 监管不确定性显著下降</strong>——Q2 已吸收 $60M 中国监管罚款；中国大陆客户资产占比 <10%、营收占比 15-20%（2025 年为 20-25%），风险敞口持续收敛。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(192,122,255,.15); color: #c07aff;">商业模式</span>
+          <span class="ins-text"><strong>「质量优先获客」+ 利息收入 +36% YoY = 商业模式进入「资本效率优先」阶段</strong>——零佣金压力被期权交易 + 利息收入对冲；获客成本 $450-550、回收期可接受是关键指标。</span>
+        </div>
+      </div>
+      <div class="bg-section">
+        <h4>📋 近期重要背景（已超出本周时间窗口，供持续参考）</h4>
+        <div class="bg-item"><span class="bg-date">8/28</span>老虎接入 5 项美股 PE/VC SPV（OpenAI/Anthropic/SpaceX 等）。</div>
+        <div class="bg-item"><span class="bg-date">8/26</span>TigerAI 扩展至「商品/股指/外汇期货」全场景。</div>
+        <div class="bg-item"><span class="bg-date">8/22</span>TIGR 周涨 +17.9% 至 $5.33，反攻开启。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 华盛通 ======= -->
+  <div class="p-card">
+    <div class="p-header">
+      <div class="p-logo logo-hs">华</div>
+      <div class="p-info">
+        <h2>华盛通（VBrokers / HSTONG）</h2>
+        <div class="p-meta">
+          <span class="src-tag">vbkr.com</span>
+          <span class="src-tag">vcltrade.com · HK01</span>
+          <span class="meta-tag">银债 9/4 截止</span>
+          <span class="meta-tag">连续 12 周零动态</span>
+        </div>
+      </div>
+      <div class="p-importance">
+        <div class="label">本周重要度</div>
+        <div class="stars">⭐⭐</div>
+      </div>
+    </div>
+    <div class="p-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">9/4</span>
+          <span class="tl-dot" style="background: #7a8499;"></span>
+          <div class="tl-content">
+            <div class="tl-title">💼 2026 年银色债券（Silver Bond 105）认购截止</div>
+            <div class="tl-desc">华盛通银债 2026 认购期 8/21-9/4 截止——华盛截止认股时间为 9/4 早上 9:00；保底息率 4.25 厘（历史第二高，仅次于 2023 年的 5 厘）；年期 3 年；每半年派息一次；申请价每手 1 万港元；目标发行额 $500 亿（视认购反应加码至 $550 亿）。9/11 公布分配结果，9/15 正式发行。
+              <a class="tl-link" href="https://www.vcltrade.com/help/topic2-silver-bond-2026" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">9/2</span>
+          <span class="tl-dot" style="background: #7a8499;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📱 转发：瑞士银行发行腾讯控股牛熊证 53393</div>
+            <div class="tl-desc">9/2 华盛通快讯转发——瑞士银行（UBS AG）发布腾讯控股（00700）牛证 53393，发行价 $0.060/份，行使价 $446.8，赎回价 $450，到期 2027/6/25，推出日 9/1、发行日 9/3、上市日 9/4；流通量提供者：瑞银证券香港。UBS 长期信贷评级 Moody's Aa2 / S&P A+ / Fitch AA。属港股结构性产品日常资讯，无华盛通自营产品更新。
+              <a class="tl-link" href="https://www.hstong.com/news/hk/detail/26090219500594121" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">本周</span>
+          <span class="tl-dot" style="background: #7a8499;"></span>
+          <div class="tl-content">
+            <div class="tl-title">📊 APP V2.6.601（8/11 发布）持续推送</div>
+            <div class="tl-desc">华盛通 APP V2.6.601（8/11 发布）持续推送——主要更新：行情刷新性能优化、银债专题页升级、风控弹窗优化。无重大产品功能更新；港币 / 美元双柜台持续运行。无 AI / 加密 / MCP / PE 等新兴业务突破。
+              <a class="tl-link" href="https://vbkr.com/" target="_blank">原文</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="insights-block">
+        <h4>📡 本周关键信号</h4>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(122,132,153,.15); color: #7a8499;">沉寂</span>
+          <span class="ins-text"><strong>华盛通连续 12 周无重大产品动态 = "港股券商沉默期"延续</strong>——除银债营销（传统固定收益产品）外，无 AI/加密/MCP/PE 等新兴业务突破；与同行（长桥/老虎/Webull/HOOD）的活跃度形成鲜明对比。银债 9/4 截止，9/11 公布结果——若实际认购反应热烈（如 2025 年 37 万人认购、$982 亿），可能为华盛通 Q3 财报带来正向催化。</span>
+        </div>
+        <div class="ins-item">
+          <span class="ins-tag" style="background: rgba(255,184,77,.15); color: #ffb84d;">银债窗口</span>
+          <span class="ins-text"><strong>银债 4.25 厘保底 + 七免优惠 = 年内最强单一产品营销窗口</strong>——这是华盛通 2026 年最重要的零售产品销售机会；9/4 截止、9/11 公布、9/15 发行。2025 年 37.17 万人认购、$982 亿；今年保底息提高 +40 bps，认购反应预计延续热度。</span>
+        </div>
+      </div>
+      <div class="bg-section">
+        <h4>📋 近期重要背景（已超出本周时间窗口，供持续参考）</h4>
+        <div class="bg-item"><span class="bg-date">8/11</span>APP V2.6.601 安卓版发布。</div>
+        <div class="bg-item"><span class="bg-date">7/23</span>港币 / 美元双柜台正式运行。</div>
+        <div class="bg-item"><span class="bg-date">6/16</span>推出港股新股「专项预约」1.0。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 综合洞察 ======= -->
+  <div class="sec-title">💡 综合洞察</div>
+  <div class="insight-section">
+    <div class="insight-block full">
+      <h4 class="signals">📡 本期 7 大行业信号</h4>
+      <ol class="insight-list">
+        <li>
+          <span class="ins-num">1</span>
+          <span><strong>AI 原生券商进入「协议 vs 入口 vs 平台」三模式分化</strong>——长桥（ChatGPT/Claude 入口 + Agent 平台）、IBKR（MCP 协议开放 + Zero Hash 质押）、Webull（MCP 商业化 + Vega AI 港版）、HOOD（Agentic Trading + Tokenized 股票）四家代表性券商各自选择不同 AI 战略路径；「AI 接入」从单点产品升级为生态级基础设施。</span>
+        </li>
+        <li>
+          <span class="ins-num">2</span>
+          <span><strong>事件型金融进入「估值重构」阶段——HOOD 7% 用户贡献 Q2 收入超股票+加密总和</strong>——9/4 HOOD 单日 +16.5% + 摩根士丹利 PT $150 + Piper Sandler PT $145 + 加拿大丰业银行覆盖 = 华尔街 4 日内 4 家机构密集上调评级。事件合约已从体育博彩演变为「宏观经济对冲工具」；IBKR ForecastEx 机构兴趣上升 + Schwab S&P 500 预测合约 = 大型券商全面切入事件型金融。</span>
+        </li>
+        <li>
+          <span class="ins-num">3</span>
+          <span><strong>RWA + Tokenized 股票市场首次遭遇「高知名度法律威胁」</strong>——HOOD 9/4 AMC CEO Adam Aron 公开要求停止 AMC Token 交易、威胁 SEC 投诉；Robinhood 首席法务官、前 SEC 委员 Dan Gallagher 强硬拒绝。RWA.xyz 数据：代币化股票市场已达 $2.91B（环比 +17.5%）。若 SEC 正式立案审查，将决定整个 RWA 行业走向；HOOD Robinhood Chain 9/1 网络收入 $3.8M 居所有区块链第一。</span>
+        </li>
+        <li>
+          <span class="ins-num">4</span>
+          <span><strong>加密合规扩张进入「9/15 双事件最终落地窗口」</strong>——SEC 主席 Atkins 9/2 表示参议院预计 9/15 对 CLARITY Act 进行程序性投票；同日 FOMC 议息，市场定价 65-73% 加息概率。若两事件同向发生（CLARITY 通过 + Fed 加息），加密估值修复加速；若反向发生，短期承压。HOOD/COIN/SCHW 已吃下先期红利；中资券商加密业务面临被动合规跟进。</span>
+        </li>
+        <li>
+          <span class="ins-num">5</span>
+          <span><strong>AI 平台依赖风险首次公开暴露——Claude 8/24 宕机 3h24m 长桥 Connector 同步失效</strong>——Semalt 指出「平台依赖创造单点故障」——Claude 用户当日无法访问个人持仓或实时市场数据；与传统券商的多服务器冗余架构相比，AI 原生券商结构性风险是「第三方大模型基础设施不稳定」。长桥 Connector + HOOD Agentic + IBKR MCP 三种路径均面临类似风险。</span>
+        </li>
+        <li>
+          <span class="ins-num">6</span>
+          <span><strong>「散户 PE/VC 化」从美国单点演变为全球趋势——富途/老虎/SCHW/Webull/HOOD 五线并进</strong>——HOOD RVII（$225.5M）+ Webull Monark SPV（OpenAI/Anthropic/SpaceX）+ 老虎 SPV（OpenAI/Anthropic/SpaceX）+ Schwab Solana 接入 39.9M 账户 + 富途 SPV = 「$500 起投独角兽」正在重塑零售客户资产配置菜单。9 月 Solana 估值修复 + Bitwise SOL ETF $1B+ 流入进一步推动。</span>
+        </li>
+        <li>
+          <span class="ins-num">7</span>
+          <span><strong>中资跨境券商「超跌反弹 vs 中期压力」并存——老虎 TIGR P/E 5.5 / 富途 FHL 估值待修复</strong>——EveryTicker 9/5 深度报告：TIGR P/E 5.5、P/B 1.02，相对 FUTU P/E 11.6、IBKR P/E 35.2 显著折价；中国大陆监管风险已大幅释放、9 家机构买入 PT $12.13（隐含 +140%）；华盛通连续 12 周零动态；富途 FHL 9/2 Rosen 集体诉讼临近。9 月是估值修复与诉讼风险并存的复杂窗口。</span>
+        </li>
+      </ol>
+    </div>
+
+    <div class="insight-block full">
+      <h4 class="actions">🚀 5 条可执行行动建议</h4>
+      <ol class="insight-list">
+        <li>
+          <span class="ins-num">1</span>
+          <span><strong>【内容运营 - 长桥 AI Agent Platform 专题深度文章】</strong>本周五前发布 1 篇深度文章（图文 + Chart.js），标题方向《港股用户必看：长桥 LongbridgeAI Agent Platform 怎么用？》，重点展开「AI 自然语言构建专属 Agent」与「ChatGPT Apps 长桥 Plugin 一键安装」双入口；SEO 词覆盖 "AI 港股"、"ChatGPT 投资"、"Claude 投资"、"LongbridgeAI Agent" 等，预计 9 月开学季自然流量 +25%。</span>
+        </li>
+        <li>
+          <span class="ins-num">2</span>
+          <span><strong>【运营策略 - 对标 Webull HK Vega AI 9 月韩股上线专题】</strong>Webull HK 9 月正式上线韩国股票交易，富途/老虎必须在 9 月中旬前明确「港股 + 亚太全市场」覆盖路线图——<strong>建议方向</strong>：「港股 + A 股 + 美股 + 韩股 + 日股」五地一体化覆盖，避免与 Webull「美式选股 + 港股本地化」正面竞争；可考虑接入 IBKR 的「全球 170+ 市场」基础设施。</span>
+        </li>
+        <li>
+          <span class="ins-num">3</span>
+          <span><strong>【产品建议 - 借鉴 IBKR MCP 全开放的 AI 工具接入策略】</strong>IBKR 把 AI 接入从「认证市场（ChatGPT/Claude/Grok）」扩展到「任何 MCP 兼容工具（Claude Code/Cursor/Perplexity/Windsurf/Codex）」，是大型券商首次把 AI 协议开放做到行业标杆。建议富途/老虎提交产品提案，评估 9 月内接入 MCP 协议，让客户使用任意 AI 工具分析持仓与生成订单。</span>
+        </li>
+        <li>
+          <span class="ins-num">4</span>
+          <span><strong>【客户经理 - 重点客户「9/15 双事件」营销话术 + TIGR 估值修复提示】</strong>9/15 FOMC + CLARITY 法案程序性投票同日，<strong>建议在 KA 客户对话中纳入三个话题</strong>：①CLARITY 通过概率评估 + 加密资产配置（适合有跨境资产配置需求客户）②HOOD pToken / Schwab SOL-AVAX-LINK 接入进展（适合高净值客户）③老虎 TIGR P/E 5.5 估值修复预期（适合中资跨境股票客户）。</span>
+        </li>
+        <li>
+          <span class="ins-num">5</span>
+          <span><strong>【战略输入 - RWA 法律风险评估 + AMC vs Robinhood 案持续跟踪】</strong>HOOD 9/4 拒绝 AMC CEO 抗议的事件是 RWA 行业首次「高知名度法律威胁」，SEC 是否正式立案审查将决定整个 Tokenized 股票市场走向。<strong>建议提前准备</strong>：①梳理内部 RWA / Tokenized 股票业务边界 ②评估合规风险敞口 ③与法务/合规部门同步监管口径，9 月内完成首轮内部研讨。</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ======= 往期周报 ======= -->
+  <div class="archive-section">
+    <h3>📚 往期周报（共 23 期）</h3>
+    <div class="archive-grid">
+      <a class="archive-item" href="竞品监控周报_第22期_20260831.html">
+        <div class="issue-badge"><span class="num">22</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第22期 · 长桥 AI 原生 + HOOD pToken + IBKR 韩国 Daol</div><div class="date">2026-08-31</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第21期_20260824.html">
+        <div class="issue-badge"><span class="num">21</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第21期 · HOOD Agentic Trading 首发 + Webull Vega AI 披露</div><div class="date">2026-08-24</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第20期_20260817.html">
+        <div class="issue-badge"><span class="num">20</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第20期 · Robinhood RVII 上市 + 长桥 ACP</div><div class="date">2026-08-17</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第19期_20260810.html">
+        <div class="issue-badge"><span class="num">19</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第19期 · Webull CLI 全栈发布</div><div class="date">2026-08-10</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第18期_20260803.html">
+        <div class="issue-badge"><span class="num">18</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第18期 · HOOD Q2 财报 + IBKR MCP</div><div class="date">2026-08-03</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第17期_20260727.html">
+        <div class="issue-badge"><span class="num">17</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第17期 · 嘉信/IBKR 双财报</div><div class="date">2026-07-27</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第16期_20260720.html">
+        <div class="issue-badge"><span class="num">16</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第16期 · 长桥 AI 原生平台</div><div class="date">2026-07-20</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第15期_20260713.html">
+        <div class="issue-badge"><span class="num">15</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第15期 · 嘉信 24/7 加密期货</div><div class="date">2026-07-13</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第14期_20260706.html">
+        <div class="issue-badge"><span class="num">14</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第14期 · Robinhood Chain 主网</div><div class="date">2026-07-06</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第13期_20260629.html">
+        <div class="issue-badge"><span class="num">13</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第13期 · IBKR/嘉信首次纳入</div><div class="date">2026-06-29</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第12期_20260622.html">
+        <div class="issue-badge"><span class="num">12</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第12期 · HOOD 裁员重组</div><div class="date">2026-06-22</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第11期_20260615.html">
+        <div class="issue-badge"><span class="num">11</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第11期 · 只出不进正式执行</div><div class="date">2026-06-15</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第10期_20260608.html">
+        <div class="issue-badge"><span class="num">10</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第10期 · 6/12 关闸前夕</div><div class="date">2026-06-08</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第9期_20260601.html">
+        <div class="issue-badge"><span class="num">09</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第9期 · 监管八部门公告</div><div class="date">2026-06-01</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第8期_20260525.html">
+        <div class="issue-badge"><span class="num">08</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第8期 · 监管 5/22 公告</div><div class="date">2026-05-25</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第7期_20260518.html">
+        <div class="issue-badge"><span class="num">07</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第7期 · ROBINHOOD Chain 预热</div><div class="date">2026-05-18</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第6期_20260511.html">
+        <div class="issue-badge"><span class="num">06</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第6期 · Webull MCP 商业化</div><div class="date">2026-05-11</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第5期_20260504.html">
+        <div class="issue-badge"><span class="num">05</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第5期 · ROIBNHOOD Q1 财报</div><div class="date">2026-05-04</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第4期_20260427.html">
+        <div class="issue-badge"><span class="num">04</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第4期 · 长桥 ABF 获奖预热</div><div class="date">2026-04-27</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第3期_20260420.html">
+        <div class="issue-badge"><span class="num">03</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第3期 · HOOD Wallet 开放</div><div class="date">2026-04-20</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第2期_20260413.html">
+        <div class="issue-badge"><span class="num">02</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第2期 · 七家平台对比</div><div class="date">2026-04-13</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="archive-item" href="竞品监控周报_第1期_20260410.html">
+        <div class="issue-badge"><span class="num">01</span><span class="label">ISSUE</span></div>
+        <div class="info"><div class="title">第1期 · 创刊号</div><div class="date">2026-04-10</div></div>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ======= GitHub 上传清单 ======= -->
+  <div class="upload-list">
+    <h3>🚀 本周 GitHub 上传清单</h3>
+    <ul>
+      <li>上传 <code>竞品监控周报_第23期_20260907.html</code>（本期主报告）</li>
+      <li>更新 <code>index.html</code> 最新期卡片 → 第23期；Archive 区添加第22期</li>
+      <li>追加第23期链接至第1～22期 <code>archive-section</code>；各 HTML 期数计数从「共 22 期」更新为「共 23 期」</li>
+      <li>（可选）<code>automation-claw-20260410223220/.workbuddy/automations/automation-1787551932306/memory.md</code> 追加第23期条目（含执行摘要）</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <div>港美股竞品平台动态监控周报 · 第 23 期</div>
+  <div style="margin-top: 6px;">监控周期 2026-08-31 → 2026-09-06 · 生成于 2026-09-07</div>
+  <div style="margin-top: 12px; color: var(--text-dim);">监控平台：长桥 · 老虎 · 华盛通 · 微牛 · Robinhood · 嘉信理财 · 盈透证券</div>
+  <div style="margin-top: 4px; color: var(--text-dim);">本文档为内部参考资料，所有数据均来自公开信息源</div>
+</footer>
+
+</body>
+</html>
